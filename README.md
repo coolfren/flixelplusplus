@@ -5,7 +5,9 @@
 <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/coolfren/flixelplusplus?style=plastic">
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/coolfren/flixelplusplus?style=plastic">
 <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/coolfren/flixelplusplus/master?style=plastic">
+<a href="https://discord.gg/tNYFGGFrX9">
 <img alt="Discord" src="https://img.shields.io/discord/1051239786054164560?label=discord&logo=discord&style=plastic">
+</a>
 </p>
 
 # flixel++
