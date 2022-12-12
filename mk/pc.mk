@@ -3,7 +3,7 @@ CXX = g++
 INCLUDE = -Iinclude/
 FILES = source/**.cpp
 CFLAGS = -O3 -Wall -fPIC -g
-OUT = $(notdir $(CURDIR)).so
+OUT = $(notdir $(CURDIR)).exe
 OBJ = obj/pc
 CLIBS = ${sdl2-config --cflags --libs}-lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lopenal -lvorbisfile
 
@@ -15,10 +15,9 @@ endif
 
 
 all: ./source/*
-	@mkdir -p ${OBJ}
+	@mkdir ${OBJ}
 	@for file in $^ ; do \
-		echo "$${file}..." ; \
-		${CXX} ${CFLAGS} ${CLIBS} ${INCLUDE} $${file} -c -o ${OBJ}/$$(basename $${file} .cpp).o || exit 1 ; \
+		${CXX} ${CFLAGS} ${CLIBS} ${INCLUDE} $${file} -c -o ${OBJ}/$$(basename $${file} .cpp).exe || exit 1 ; \
 	done
 	@echo "Linking..."
-	@${CXX} ${CLIBS} ${OBJ}/*.o -o build/${OUT} -shared
+	@${CXX} ${CLIBS} ${OBJ}/*.exe -o build/${OUT} -shared

@@ -1,0 +1,345 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for Windows32
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Mon Dec 12 19:38:58 2022
+
+# Variables
+
+# environment
+SYSTEMDRIVE = C:
+# environment
+LC_ALL = C
+# environment
+USERPROFILE = C:\Users\gcgra
+# environment
+LOCALAPPDATA = C:\Users\gcgra\AppData\Local
+# environment
+VSCODE_CWD = C:\Users\gcgra\AppData\Local\Programs\Microsoft VS Code
+# environment
+CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
+# environment
+SYSTEMROOT = C:\WINDOWS
+# environment
+PROCESSOR_LEVEL = 23
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\LOCAL\crashpad_14284_VYWCQPBHMXWPJOWE
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\gcgra\AppData\Roaming\Code\CachedData\5235c6bb189b60b01b1f49062f4ffa42384f8c91
+# environment
+LANG = C
+# default
+.LOADED := 
+# environment
+TMP = C:\Users\gcgra\AppData\Local\Temp
+# default
+.INCLUDE_DIRS = .
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# makefile
+MAKEFLAGS = pqrR
+# environment
+GOLAND_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\goland.vmoptions
+# environment
+ONEDRIVE = C:\Users\gcgra\OneDrive
+# makefile
+CURDIR := e:/Works/C++/flixelplusplus
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# environment
+JETBRAINSCLIENT_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\jetbrainsclient.vmoptions
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# makefile (from 'Makefile', line 2)
+MYDIR = .
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_PID = 14284
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# environment
+CLION_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\clion.vmoptions
+# environment
+NEKO_INSTPATH = C:\HaxeToolkit\neko
+# automatic
+*F = $(notdir $*)
+# environment
+APPCODE_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\appcode.vmoptions
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"pt-pt","availableLanguages":{},"_languagePackSupport":true}
+# environment
+AMDRMPATH = C:\Program Files\AMD\RyzenMaster\
+# environment
+HAXEPATH = C:\HaxeToolkit\haxe
+# environment
+ONEDRIVECONSUMER = C:\Users\gcgra\OneDrive
+# default
+MAKE_HOST := Windows32
+# environment
+PROGRAMDATA = C:\ProgramData
+# default
+SHELL := sh.exe
+# environment
+HOMEPATH = \Users\gcgra
+# default
+MAKECMDGOALS := all
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+PHPSTORM_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\phpstorm.vmoptions
+# environment
+RUBYMINE_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\rubymine.vmoptions
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\HaxeToolkit\haxe;C:\HaxeToolkit\neko;E:\Program Files (x86)\IncrediBuild;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\mingw64\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Users\gcgra\vcpkg;C:\Users\gcgra\.cargo\bin;C:\Users\gcgra\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\gcgra\AppData\Local\Programs\Python\Python38\;C:\Users\gcgra\AppData\Local\Microsoft\WindowsApps;C:\Users\gcgra\.dotnet\tools;C:\mingw64\bin;C:\Users\gcgra\AppData\Local\Programs\Microsoft VS Code\bin;
+# environment
+COMPUTERNAME = DESKTOP-7GQK3RC
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# environment
+PROMPT = $P$G
+# environment
+CHOCOLATEYLASTPATHUPDATE = 133152653934633239
+# environment
+WEBIDE_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\webide.vmoptions
+# environment
+PYCHARM_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\pycharm.vmoptions
+# environment
+RIDER_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\rider.vmoptions
+# environment
+IDEA_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\idea.vmoptions
+# environment
+LOGONSERVER = \\DESKTOP-7GQK3RC
+# environment
+USERNAME = gcgra
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# automatic
+?F = $(notdir $?)
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+DATAGRIP_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\datagrip.vmoptions
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# environment
+WEBSTORM_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\webstorm.vmoptions
+# automatic
++F = $(notdir $+)
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERDOMAIN = DESKTOP-7GQK3RC
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+VS140COMNTOOLS = E:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\
+# environment
+OS = Windows_NT
+# environment
+DATASPELL_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\dataspell.vmoptions
+# makefile
+.DEFAULT_GOAL := all
+# default
+MAKE_VERSION := 4.3
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# environment
+USERDOMAIN_ROAMINGPROFILE = DESKTOP-7GQK3RC
+# environment
+NUMBER_OF_PROCESSORS = 24
+# environment
+PUBLIC = C:\Users\Public
+# environment
+JETBRAINS_CLIENT_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\jetbrains_client.vmoptions
+# environment
+APPDATA = C:\Users\gcgra\AppData\Roaming
+# environment
+HOMEDRIVE = C:
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+TEMP = C:\Users\gcgra\AppData\Local\Temp
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\4d9fdbbebbbe4d2b747c4ef3c752f726-1.74.0-main-sock
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+SESSIONNAME = Console
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
+# environment
+PROCESSOR_REVISION = 7100
+# environment
+GATEWAY_VM_OPTIONS = E:\ja-netfilter\ja-netfilter\vmoptions\gateway.vmoptions
+# environment
+PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 113 Stepping 0, AuthenticAMD
+# variable set hash-table stats:
+# Load=110/1024=11%, Rehash=0, Collisions=14/140=10%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (key e:/Works/C++/flixelplusplus, mtime 1670791624): 14 files, no impossibilities.
+
+# 14 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-12-11 21:22:17
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 10):
+	rm -rf build/
+	rm -rf obj/
+
+switch:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 8):
+	@make -f mk/switch.mk
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all:
+#  Command line target.
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := all
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 4):
+	@echo "Specify what platform you want to build"
+
+pc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 6):
+	@make -f mk/pc.mk SDL_LEGACY=$(SDL_LEGACY)
+
+install:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 13):
+	cp -r build/*.so /usr/lib/libflixel++.so
+	cp -r include/flixel++ /usr/include/flixel++
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=8/1024=1%, Rehash=0, Collisions=0/20=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 21 / storage = 153 B / avg = 7 B
+# current buf: size = 8174 B / used = 153 B / count = 21 / avg = 7 B
+
+# strcache performance: lookups = 32 / hit rate = 34%
+# hash-table stats:
+# Load=21/8192=0%, Rehash=0, Collisions=0/32=0%
+# Finished Make data base on Mon Dec 12 19:38:58 2022
+
+ 

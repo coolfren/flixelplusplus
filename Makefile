@@ -10,5 +10,5 @@ clean:
 	rm -rf build/
 	rm -rf obj/
 install:
-	cp -r build/*.so /usr/lib/libflixel++.so
+	cp -r build/*.exe /usr/lib/libflixel++.exe
 	cp -r include/flixel++ /usr/include/flixel++

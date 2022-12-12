@@ -1,0 +1,646 @@
+﻿cl : command line  warning D9002: ignoring unknown option '-lSDL2'
+cl : command line  warning D9002: ignoring unknown option '-lSDL2_image'
+cl : command line  warning D9002: ignoring unknown option '-lSDL2_mixer'
+cl : command line  warning D9002: ignoring unknown option '-lSDL2_ttf'
+cl : command line  warning D9002: ignoring unknown option '-lopenal'
+cl : command line  warning D9002: ignoring unknown option '-lvorbisfile'
+cl : command line  warning D9002: ignoring unknown option '-O3'
+cl : command line  warning D9002: ignoring unknown option '-fPIC'
+cl : command line  warning D9002: ignoring unknown option '-g'
+  Main.cpp
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_assert.h(124,25): warning C4820: 'SDL_AssertData': '4' bytes padding added after data member 'SDL_AssertData::linenum'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(105,20): warning C4820: 'SDL_RWops::<unnamed-tag>': '4' bytes padding added after data member 'SDL_RWops::<unnamed-tag>::append'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(133,13): warning C4820: 'SDL_RWops': '4' bytes padding added after data member 'SDL_RWops::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(241,12): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::len_mult'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(244,1): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::filter_index'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(321,22): warning C4820: 'SDL_Palette': '4' bytes padding added after data member 'SDL_Palette::ncolors'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(332,25): warning C4820: 'SDL_PixelFormat': '4' bytes padding added after data member 'SDL_PixelFormat::format'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(75,28): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(78,17): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::pitch'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(87,23): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::locked'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(97,1): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::refcount'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_keyboard.h(52,12): warning C4820: 'SDL_Keysym': '2' bytes padding added after data member 'SDL_Keysym::mod'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_touch.h(58,1): warning C4820: 'SDL_Finger': '4' bytes padding added after data member 'SDL_Finger::pressure'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(257,15): warning C4820: 'SDL_TextEditingExtEvent': '4' bytes padding added after data member 'SDL_TextEditingExtEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(526,1): warning C4820: 'SDL_MultiGestureEvent': '4' bytes padding added after data member 'SDL_MultiGestureEvent::padding'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(556,1): warning C4820: 'SDL_DropEvent': '4' bytes padding added after data member 'SDL_DropEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(462,18): warning C4820: 'SDL_HapticDirection': '3' bytes padding added after data member 'SDL_HapticDirection::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(481,25): warning C4820: 'SDL_HapticConstant': '2' bytes padding added after data member 'SDL_HapticConstant::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(564,25): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(585,1): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(616,25): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(633,1): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::center'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(652,25): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(671,1): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(691,12): warning C4820: 'SDL_HapticLeftRight': '2' bytes padding added after data member 'SDL_HapticLeftRight::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(717,25): warning C4820: 'SDL_HapticCustom': '2' bytes padding added after data member 'SDL_HapticCustom::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(729,12): warning C4820: 'SDL_HapticCustom': '1' bytes padding added after data member 'SDL_HapticCustom::channels'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(731,17): warning C4820: 'SDL_HapticCustom': '4' bytes padding added after data member 'SDL_HapticCustom::samples'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(92,27): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::product_id'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(97,33): warning C4820: 'SDL_hid_device_info': '6' bytes padding added after data member 'SDL_hid_device_info::release_number'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(121,37): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::interface_protocol'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(97,23): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(102,44): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::numbuttons'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_image.h(2048,22): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::count'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(230,16): warning C4820: 'Mix_Chunk': '4' bytes padding added after data member 'Mix_Chunk::allocated'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(233,1): warning C4820: 'Mix_Chunk': '3' bytes padding added after data member 'Mix_Chunk::volume'
+E:\Works\C++\Flixel++\Flixel++\Main.cpp(3,26): warning C4100: 'args': unreferenced formal parameter
+E:\Works\C++\Flixel++\Flixel++\Main.cpp(3,14): warning C4100: 'argc': unreferenced formal parameter
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(529,23): warning C4514: 'SDL_memset4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(757,24): warning C4514: 'SDL_memcpy4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(768,22): warning C4514: 'SDL_size_mul_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(798,22): warning C4514: 'SDL_size_add_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_endian.h(297,1): warning C4514: 'SDL_SwapFloat': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(110,27): warning C4514: 'SDL_PointInRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(119,27): warning C4514: 'SDL_RectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(127,27): warning C4514: 'SDL_RectEquals': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(233,27): warning C4514: 'SDL_PointInFRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(242,27): warning C4514: 'SDL_FRectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(267,27): warning C4514: 'SDL_FRectEquals': unreferenced inline function has been removed
+  FlxGame.cpp
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_assert.h(124,25): warning C4820: 'SDL_AssertData': '4' bytes padding added after data member 'SDL_AssertData::linenum'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(105,20): warning C4820: 'SDL_RWops::<unnamed-tag>': '4' bytes padding added after data member 'SDL_RWops::<unnamed-tag>::append'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(133,13): warning C4820: 'SDL_RWops': '4' bytes padding added after data member 'SDL_RWops::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(241,12): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::len_mult'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(244,1): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::filter_index'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(321,22): warning C4820: 'SDL_Palette': '4' bytes padding added after data member 'SDL_Palette::ncolors'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(332,25): warning C4820: 'SDL_PixelFormat': '4' bytes padding added after data member 'SDL_PixelFormat::format'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(75,28): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(78,17): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::pitch'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(87,23): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::locked'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(97,1): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::refcount'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_keyboard.h(52,12): warning C4820: 'SDL_Keysym': '2' bytes padding added after data member 'SDL_Keysym::mod'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_touch.h(58,1): warning C4820: 'SDL_Finger': '4' bytes padding added after data member 'SDL_Finger::pressure'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(257,15): warning C4820: 'SDL_TextEditingExtEvent': '4' bytes padding added after data member 'SDL_TextEditingExtEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(526,1): warning C4820: 'SDL_MultiGestureEvent': '4' bytes padding added after data member 'SDL_MultiGestureEvent::padding'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(556,1): warning C4820: 'SDL_DropEvent': '4' bytes padding added after data member 'SDL_DropEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(462,18): warning C4820: 'SDL_HapticDirection': '3' bytes padding added after data member 'SDL_HapticDirection::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(481,25): warning C4820: 'SDL_HapticConstant': '2' bytes padding added after data member 'SDL_HapticConstant::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(564,25): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(585,1): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(616,25): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(633,1): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::center'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(652,25): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(671,1): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(691,12): warning C4820: 'SDL_HapticLeftRight': '2' bytes padding added after data member 'SDL_HapticLeftRight::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(717,25): warning C4820: 'SDL_HapticCustom': '2' bytes padding added after data member 'SDL_HapticCustom::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(729,12): warning C4820: 'SDL_HapticCustom': '1' bytes padding added after data member 'SDL_HapticCustom::channels'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(731,17): warning C4820: 'SDL_HapticCustom': '4' bytes padding added after data member 'SDL_HapticCustom::samples'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(92,27): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::product_id'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(97,33): warning C4820: 'SDL_hid_device_info': '6' bytes padding added after data member 'SDL_hid_device_info::release_number'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(121,37): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::interface_protocol'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(97,23): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(102,44): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::numbuttons'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_image.h(2048,22): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::count'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(230,16): warning C4820: 'Mix_Chunk': '4' bytes padding added after data member 'Mix_Chunk::allocated'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(233,1): warning C4820: 'Mix_Chunk': '3' bytes padding added after data member 'Mix_Chunk::volume'
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxBasic.hpp(13,5): warning C4820: 'Flx::Basic': '3' bytes padding added after data member 'Flx::Basic::visible'
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxGame.hpp(19,30): warning C4820: 'Flx::Game': '4' bytes padding added after data member 'Flx::Game::framerate'
+E:\Works\C++\Flixel++\Flixel++\source\FlxGame.cpp(94,35): warning C4365: 'argument': conversion from 'int' to 'Uint32', signed/unsigned mismatch
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(529,23): warning C4514: 'SDL_memset4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(757,24): warning C4514: 'SDL_memcpy4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(768,22): warning C4514: 'SDL_size_mul_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(798,22): warning C4514: 'SDL_size_add_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_endian.h(297,1): warning C4514: 'SDL_SwapFloat': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(110,27): warning C4514: 'SDL_PointInRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(119,27): warning C4514: 'SDL_RectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(127,27): warning C4514: 'SDL_RectEquals': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(233,27): warning C4514: 'SDL_PointInFRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(242,27): warning C4514: 'SDL_FRectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(267,27): warning C4514: 'SDL_FRectEquals': unreferenced inline function has been removed
+  FlxGraphic.cpp
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_assert.h(124,25): warning C4820: 'SDL_AssertData': '4' bytes padding added after data member 'SDL_AssertData::linenum'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(105,20): warning C4820: 'SDL_RWops::<unnamed-tag>': '4' bytes padding added after data member 'SDL_RWops::<unnamed-tag>::append'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(133,13): warning C4820: 'SDL_RWops': '4' bytes padding added after data member 'SDL_RWops::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(241,12): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::len_mult'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(244,1): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::filter_index'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(321,22): warning C4820: 'SDL_Palette': '4' bytes padding added after data member 'SDL_Palette::ncolors'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(332,25): warning C4820: 'SDL_PixelFormat': '4' bytes padding added after data member 'SDL_PixelFormat::format'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(75,28): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(78,17): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::pitch'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(87,23): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::locked'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(97,1): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::refcount'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_keyboard.h(52,12): warning C4820: 'SDL_Keysym': '2' bytes padding added after data member 'SDL_Keysym::mod'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_touch.h(58,1): warning C4820: 'SDL_Finger': '4' bytes padding added after data member 'SDL_Finger::pressure'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(257,15): warning C4820: 'SDL_TextEditingExtEvent': '4' bytes padding added after data member 'SDL_TextEditingExtEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(526,1): warning C4820: 'SDL_MultiGestureEvent': '4' bytes padding added after data member 'SDL_MultiGestureEvent::padding'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(556,1): warning C4820: 'SDL_DropEvent': '4' bytes padding added after data member 'SDL_DropEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(462,18): warning C4820: 'SDL_HapticDirection': '3' bytes padding added after data member 'SDL_HapticDirection::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(481,25): warning C4820: 'SDL_HapticConstant': '2' bytes padding added after data member 'SDL_HapticConstant::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(564,25): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(585,1): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(616,25): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(633,1): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::center'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(652,25): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(671,1): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(691,12): warning C4820: 'SDL_HapticLeftRight': '2' bytes padding added after data member 'SDL_HapticLeftRight::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(717,25): warning C4820: 'SDL_HapticCustom': '2' bytes padding added after data member 'SDL_HapticCustom::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(729,12): warning C4820: 'SDL_HapticCustom': '1' bytes padding added after data member 'SDL_HapticCustom::channels'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(731,17): warning C4820: 'SDL_HapticCustom': '4' bytes padding added after data member 'SDL_HapticCustom::samples'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(92,27): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::product_id'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(97,33): warning C4820: 'SDL_hid_device_info': '6' bytes padding added after data member 'SDL_hid_device_info::release_number'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(121,37): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::interface_protocol'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(97,23): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(102,44): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::numbuttons'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_image.h(2048,22): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::count'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(230,16): warning C4820: 'Mix_Chunk': '4' bytes padding added after data member 'Mix_Chunk::allocated'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(233,1): warning C4820: 'Mix_Chunk': '3' bytes padding added after data member 'Mix_Chunk::volume'
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxBasic.hpp(13,5): warning C4820: 'Flx::Basic': '3' bytes padding added after data member 'Flx::Basic::visible'
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxGame.hpp(19,30): warning C4820: 'Flx::Game': '4' bytes padding added after data member 'Flx::Game::framerate'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(529,23): warning C4514: 'SDL_memset4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(757,24): warning C4514: 'SDL_memcpy4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(768,22): warning C4514: 'SDL_size_mul_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(798,22): warning C4514: 'SDL_size_add_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_endian.h(297,1): warning C4514: 'SDL_SwapFloat': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(110,27): warning C4514: 'SDL_PointInRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(119,27): warning C4514: 'SDL_RectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(127,27): warning C4514: 'SDL_RectEquals': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(233,27): warning C4514: 'SDL_PointInFRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(242,27): warning C4514: 'SDL_FRectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(267,27): warning C4514: 'SDL_FRectEquals': unreferenced inline function has been removed
+  FlxGroup.cpp
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_assert.h(124,25): warning C4820: 'SDL_AssertData': '4' bytes padding added after data member 'SDL_AssertData::linenum'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(105,20): warning C4820: 'SDL_RWops::<unnamed-tag>': '4' bytes padding added after data member 'SDL_RWops::<unnamed-tag>::append'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(133,13): warning C4820: 'SDL_RWops': '4' bytes padding added after data member 'SDL_RWops::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(241,12): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::len_mult'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(244,1): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::filter_index'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(321,22): warning C4820: 'SDL_Palette': '4' bytes padding added after data member 'SDL_Palette::ncolors'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(332,25): warning C4820: 'SDL_PixelFormat': '4' bytes padding added after data member 'SDL_PixelFormat::format'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(75,28): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(78,17): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::pitch'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(87,23): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::locked'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(97,1): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::refcount'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_keyboard.h(52,12): warning C4820: 'SDL_Keysym': '2' bytes padding added after data member 'SDL_Keysym::mod'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_touch.h(58,1): warning C4820: 'SDL_Finger': '4' bytes padding added after data member 'SDL_Finger::pressure'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(257,15): warning C4820: 'SDL_TextEditingExtEvent': '4' bytes padding added after data member 'SDL_TextEditingExtEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(526,1): warning C4820: 'SDL_MultiGestureEvent': '4' bytes padding added after data member 'SDL_MultiGestureEvent::padding'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(556,1): warning C4820: 'SDL_DropEvent': '4' bytes padding added after data member 'SDL_DropEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(462,18): warning C4820: 'SDL_HapticDirection': '3' bytes padding added after data member 'SDL_HapticDirection::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(481,25): warning C4820: 'SDL_HapticConstant': '2' bytes padding added after data member 'SDL_HapticConstant::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(564,25): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(585,1): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(616,25): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(633,1): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::center'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(652,25): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(671,1): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(691,12): warning C4820: 'SDL_HapticLeftRight': '2' bytes padding added after data member 'SDL_HapticLeftRight::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(717,25): warning C4820: 'SDL_HapticCustom': '2' bytes padding added after data member 'SDL_HapticCustom::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(729,12): warning C4820: 'SDL_HapticCustom': '1' bytes padding added after data member 'SDL_HapticCustom::channels'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(731,17): warning C4820: 'SDL_HapticCustom': '4' bytes padding added after data member 'SDL_HapticCustom::samples'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(92,27): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::product_id'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(97,33): warning C4820: 'SDL_hid_device_info': '6' bytes padding added after data member 'SDL_hid_device_info::release_number'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(121,37): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::interface_protocol'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(97,23): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(102,44): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::numbuttons'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_image.h(2048,22): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::count'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(230,16): warning C4820: 'Mix_Chunk': '4' bytes padding added after data member 'Mix_Chunk::allocated'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(233,1): warning C4820: 'Mix_Chunk': '3' bytes padding added after data member 'Mix_Chunk::volume'
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxBasic.hpp(13,5): warning C4820: 'Flx::Basic': '3' bytes padding added after data member 'Flx::Basic::visible'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(529,23): warning C4514: 'SDL_memset4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(757,24): warning C4514: 'SDL_memcpy4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(768,22): warning C4514: 'SDL_size_mul_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(798,22): warning C4514: 'SDL_size_add_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_endian.h(297,1): warning C4514: 'SDL_SwapFloat': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(110,27): warning C4514: 'SDL_PointInRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(119,27): warning C4514: 'SDL_RectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(127,27): warning C4514: 'SDL_RectEquals': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(233,27): warning C4514: 'SDL_PointInFRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(242,27): warning C4514: 'SDL_FRectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(267,27): warning C4514: 'SDL_FRectEquals': unreferenced inline function has been removed
+  FlxManagers.cpp
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_assert.h(124,25): warning C4820: 'SDL_AssertData': '4' bytes padding added after data member 'SDL_AssertData::linenum'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(105,20): warning C4820: 'SDL_RWops::<unnamed-tag>': '4' bytes padding added after data member 'SDL_RWops::<unnamed-tag>::append'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(133,13): warning C4820: 'SDL_RWops': '4' bytes padding added after data member 'SDL_RWops::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(241,12): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::len_mult'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(244,1): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::filter_index'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(321,22): warning C4820: 'SDL_Palette': '4' bytes padding added after data member 'SDL_Palette::ncolors'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(332,25): warning C4820: 'SDL_PixelFormat': '4' bytes padding added after data member 'SDL_PixelFormat::format'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(75,28): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(78,17): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::pitch'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(87,23): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::locked'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(97,1): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::refcount'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_keyboard.h(52,12): warning C4820: 'SDL_Keysym': '2' bytes padding added after data member 'SDL_Keysym::mod'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_touch.h(58,1): warning C4820: 'SDL_Finger': '4' bytes padding added after data member 'SDL_Finger::pressure'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(257,15): warning C4820: 'SDL_TextEditingExtEvent': '4' bytes padding added after data member 'SDL_TextEditingExtEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(526,1): warning C4820: 'SDL_MultiGestureEvent': '4' bytes padding added after data member 'SDL_MultiGestureEvent::padding'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(556,1): warning C4820: 'SDL_DropEvent': '4' bytes padding added after data member 'SDL_DropEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(462,18): warning C4820: 'SDL_HapticDirection': '3' bytes padding added after data member 'SDL_HapticDirection::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(481,25): warning C4820: 'SDL_HapticConstant': '2' bytes padding added after data member 'SDL_HapticConstant::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(564,25): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(585,1): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(616,25): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(633,1): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::center'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(652,25): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(671,1): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(691,12): warning C4820: 'SDL_HapticLeftRight': '2' bytes padding added after data member 'SDL_HapticLeftRight::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(717,25): warning C4820: 'SDL_HapticCustom': '2' bytes padding added after data member 'SDL_HapticCustom::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(729,12): warning C4820: 'SDL_HapticCustom': '1' bytes padding added after data member 'SDL_HapticCustom::channels'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(731,17): warning C4820: 'SDL_HapticCustom': '4' bytes padding added after data member 'SDL_HapticCustom::samples'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(92,27): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::product_id'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(97,33): warning C4820: 'SDL_hid_device_info': '6' bytes padding added after data member 'SDL_hid_device_info::release_number'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(121,37): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::interface_protocol'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(97,23): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(102,44): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::numbuttons'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_image.h(2048,22): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::count'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(230,16): warning C4820: 'Mix_Chunk': '4' bytes padding added after data member 'Mix_Chunk::allocated'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(233,1): warning C4820: 'Mix_Chunk': '3' bytes padding added after data member 'Mix_Chunk::volume'
+E:\Works\C++\Flixel++\Flixel++\source\FlxManagers.cpp(4,71): warning C4244: 'argument': conversion from '_Rep' to 'unsigned int', possible loss of data
+          with
+          [
+              _Rep=std::chrono::system_clock::rep
+          ]
+E:\Works\C++\Flixel++\Flixel++\source\FlxManagers.cpp(5,1): warning C4365: 'argument': conversion from '_Rep' to 'unsigned int', signed/unsigned mismatch
+          with
+          [
+              _Rep=std::chrono::system_clock::rep
+          ]
+E:\Works\C++\Flixel++\Flixel++\source\FlxManagers.cpp(12,1): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+E:\Works\C++\Flixel++\Flixel++\source\FlxManagers.cpp(17,44): warning C4365: 'return': conversion from 'unsigned int' to 'int', signed/unsigned mismatch
+E:\Works\C++\Flixel++\Flixel++\source\FlxManagers.cpp(22,53): warning C5219: implicit conversion from 'unsigned int' to 'float', possible loss of data
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(529,23): warning C4514: 'SDL_memset4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(757,24): warning C4514: 'SDL_memcpy4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(768,22): warning C4514: 'SDL_size_mul_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(798,22): warning C4514: 'SDL_size_add_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_endian.h(297,1): warning C4514: 'SDL_SwapFloat': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(110,27): warning C4514: 'SDL_PointInRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(119,27): warning C4514: 'SDL_RectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(127,27): warning C4514: 'SDL_RectEquals': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(233,27): warning C4514: 'SDL_PointInFRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(242,27): warning C4514: 'SDL_FRectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(267,27): warning C4514: 'SDL_FRectEquals': unreferenced inline function has been removed
+  FlxSound.cpp
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_assert.h(124,25): warning C4820: 'SDL_AssertData': '4' bytes padding added after data member 'SDL_AssertData::linenum'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(105,20): warning C4820: 'SDL_RWops::<unnamed-tag>': '4' bytes padding added after data member 'SDL_RWops::<unnamed-tag>::append'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(133,13): warning C4820: 'SDL_RWops': '4' bytes padding added after data member 'SDL_RWops::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(241,12): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::len_mult'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(244,1): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::filter_index'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(321,22): warning C4820: 'SDL_Palette': '4' bytes padding added after data member 'SDL_Palette::ncolors'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(332,25): warning C4820: 'SDL_PixelFormat': '4' bytes padding added after data member 'SDL_PixelFormat::format'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(75,28): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(78,17): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::pitch'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(87,23): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::locked'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(97,1): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::refcount'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_keyboard.h(52,12): warning C4820: 'SDL_Keysym': '2' bytes padding added after data member 'SDL_Keysym::mod'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_touch.h(58,1): warning C4820: 'SDL_Finger': '4' bytes padding added after data member 'SDL_Finger::pressure'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(257,15): warning C4820: 'SDL_TextEditingExtEvent': '4' bytes padding added after data member 'SDL_TextEditingExtEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(526,1): warning C4820: 'SDL_MultiGestureEvent': '4' bytes padding added after data member 'SDL_MultiGestureEvent::padding'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(556,1): warning C4820: 'SDL_DropEvent': '4' bytes padding added after data member 'SDL_DropEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(462,18): warning C4820: 'SDL_HapticDirection': '3' bytes padding added after data member 'SDL_HapticDirection::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(481,25): warning C4820: 'SDL_HapticConstant': '2' bytes padding added after data member 'SDL_HapticConstant::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(564,25): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(585,1): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(616,25): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(633,1): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::center'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(652,25): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(671,1): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(691,12): warning C4820: 'SDL_HapticLeftRight': '2' bytes padding added after data member 'SDL_HapticLeftRight::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(717,25): warning C4820: 'SDL_HapticCustom': '2' bytes padding added after data member 'SDL_HapticCustom::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(729,12): warning C4820: 'SDL_HapticCustom': '1' bytes padding added after data member 'SDL_HapticCustom::channels'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(731,17): warning C4820: 'SDL_HapticCustom': '4' bytes padding added after data member 'SDL_HapticCustom::samples'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(92,27): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::product_id'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(97,33): warning C4820: 'SDL_hid_device_info': '6' bytes padding added after data member 'SDL_hid_device_info::release_number'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(121,37): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::interface_protocol'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(97,23): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(102,44): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::numbuttons'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_image.h(2048,22): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::count'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(230,16): warning C4820: 'Mix_Chunk': '4' bytes padding added after data member 'Mix_Chunk::allocated'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(233,1): warning C4820: 'Mix_Chunk': '3' bytes padding added after data member 'Mix_Chunk::volume'
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxBasic.hpp(13,5): warning C4820: 'Flx::Basic': '3' bytes padding added after data member 'Flx::Basic::visible'
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxSound.hpp(13,24): warning C4820: 'Flx::Sound': '4' bytes padding added after data member 'Flx::Sound::startTime'
+E:\Works\C++\Flixel++\Flixel++\source\FlxSound.cpp(29,89): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+E:\Works\C++\Flixel++\Flixel++\source\FlxSound.cpp(29,89): warning C4365: 'argument': conversion from 'unsigned __int64' to 'int', signed/unsigned mismatch
+E:\Works\C++\Flixel++\Flixel++\source\FlxSound.cpp(41,94): warning C4267: 'argument': conversion from 'size_t' to 'ALsizei', possible loss of data
+E:\Works\C++\Flixel++\Flixel++\source\FlxSound.cpp(41,94): warning C4365: 'argument': conversion from 'unsigned __int64' to 'ALsizei', signed/unsigned mismatch
+E:\Works\C++\Flixel++\Flixel++\source\FlxSound.cpp(43,40): warning C4365: 'argument': conversion from 'ALuint' to 'ALint', signed/unsigned mismatch
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(529,23): warning C4514: 'SDL_memset4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(757,24): warning C4514: 'SDL_memcpy4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(768,22): warning C4514: 'SDL_size_mul_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(798,22): warning C4514: 'SDL_size_add_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_endian.h(297,1): warning C4514: 'SDL_SwapFloat': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(110,27): warning C4514: 'SDL_PointInRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(119,27): warning C4514: 'SDL_RectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(127,27): warning C4514: 'SDL_RectEquals': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(233,27): warning C4514: 'SDL_PointInFRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(242,27): warning C4514: 'SDL_FRectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(267,27): warning C4514: 'SDL_FRectEquals': unreferenced inline function has been removed
+  FlxSprite.cpp
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxBasic.hpp(13,5): warning C4820: 'Flx::Basic': '3' bytes padding added after data member 'Flx::Basic::visible'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_assert.h(124,25): warning C4820: 'SDL_AssertData': '4' bytes padding added after data member 'SDL_AssertData::linenum'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(105,20): warning C4820: 'SDL_RWops::<unnamed-tag>': '4' bytes padding added after data member 'SDL_RWops::<unnamed-tag>::append'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(133,13): warning C4820: 'SDL_RWops': '4' bytes padding added after data member 'SDL_RWops::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(241,12): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::len_mult'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(244,1): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::filter_index'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(321,22): warning C4820: 'SDL_Palette': '4' bytes padding added after data member 'SDL_Palette::ncolors'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(332,25): warning C4820: 'SDL_PixelFormat': '4' bytes padding added after data member 'SDL_PixelFormat::format'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(75,28): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(78,17): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::pitch'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(87,23): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::locked'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(97,1): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::refcount'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_keyboard.h(52,12): warning C4820: 'SDL_Keysym': '2' bytes padding added after data member 'SDL_Keysym::mod'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_touch.h(58,1): warning C4820: 'SDL_Finger': '4' bytes padding added after data member 'SDL_Finger::pressure'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(257,15): warning C4820: 'SDL_TextEditingExtEvent': '4' bytes padding added after data member 'SDL_TextEditingExtEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(526,1): warning C4820: 'SDL_MultiGestureEvent': '4' bytes padding added after data member 'SDL_MultiGestureEvent::padding'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(556,1): warning C4820: 'SDL_DropEvent': '4' bytes padding added after data member 'SDL_DropEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(462,18): warning C4820: 'SDL_HapticDirection': '3' bytes padding added after data member 'SDL_HapticDirection::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(481,25): warning C4820: 'SDL_HapticConstant': '2' bytes padding added after data member 'SDL_HapticConstant::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(564,25): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(585,1): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(616,25): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(633,1): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::center'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(652,25): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(671,1): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(691,12): warning C4820: 'SDL_HapticLeftRight': '2' bytes padding added after data member 'SDL_HapticLeftRight::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(717,25): warning C4820: 'SDL_HapticCustom': '2' bytes padding added after data member 'SDL_HapticCustom::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(729,12): warning C4820: 'SDL_HapticCustom': '1' bytes padding added after data member 'SDL_HapticCustom::channels'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(731,17): warning C4820: 'SDL_HapticCustom': '4' bytes padding added after data member 'SDL_HapticCustom::samples'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(92,27): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::product_id'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(97,33): warning C4820: 'SDL_hid_device_info': '6' bytes padding added after data member 'SDL_hid_device_info::release_number'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(121,37): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::interface_protocol'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(97,23): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(102,44): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::numbuttons'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_image.h(2048,22): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::count'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(230,16): warning C4820: 'Mix_Chunk': '4' bytes padding added after data member 'Mix_Chunk::allocated'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(233,1): warning C4820: 'Mix_Chunk': '3' bytes padding added after data member 'Mix_Chunk::volume'
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxGame.hpp(19,30): warning C4820: 'Flx::Game': '4' bytes padding added after data member 'Flx::Game::framerate'
+E:\Works\C++\Flixel++\Flixel++\source\FlxSprite.cpp(17,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\Works\C++\Flixel++\Flixel++\source\FlxSprite.cpp(18,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(529,23): warning C4514: 'SDL_memset4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(757,24): warning C4514: 'SDL_memcpy4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(768,22): warning C4514: 'SDL_size_mul_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(798,22): warning C4514: 'SDL_size_add_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_endian.h(297,1): warning C4514: 'SDL_SwapFloat': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(110,27): warning C4514: 'SDL_PointInRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(119,27): warning C4514: 'SDL_RectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(127,27): warning C4514: 'SDL_RectEquals': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(233,27): warning C4514: 'SDL_PointInFRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(242,27): warning C4514: 'SDL_FRectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(267,27): warning C4514: 'SDL_FRectEquals': unreferenced inline function has been removed
+  FlxState.cpp
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_assert.h(124,25): warning C4820: 'SDL_AssertData': '4' bytes padding added after data member 'SDL_AssertData::linenum'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(105,20): warning C4820: 'SDL_RWops::<unnamed-tag>': '4' bytes padding added after data member 'SDL_RWops::<unnamed-tag>::append'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rwops.h(133,13): warning C4820: 'SDL_RWops': '4' bytes padding added after data member 'SDL_RWops::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(241,12): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::len_mult'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_audio.h(244,1): warning C4820: 'SDL_AudioCVT': '4' bytes padding added after data member 'SDL_AudioCVT::filter_index'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(321,22): warning C4820: 'SDL_Palette': '4' bytes padding added after data member 'SDL_Palette::ncolors'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_pixels.h(332,25): warning C4820: 'SDL_PixelFormat': '4' bytes padding added after data member 'SDL_PixelFormat::format'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(75,28): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(78,17): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::pitch'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(87,23): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::locked'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_surface.h(97,1): warning C4820: 'SDL_Surface': '4' bytes padding added after data member 'SDL_Surface::refcount'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_keyboard.h(52,12): warning C4820: 'SDL_Keysym': '2' bytes padding added after data member 'SDL_Keysym::mod'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_touch.h(58,1): warning C4820: 'SDL_Finger': '4' bytes padding added after data member 'SDL_Finger::pressure'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(257,15): warning C4820: 'SDL_TextEditingExtEvent': '4' bytes padding added after data member 'SDL_TextEditingExtEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(526,1): warning C4820: 'SDL_MultiGestureEvent': '4' bytes padding added after data member 'SDL_MultiGestureEvent::padding'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_events.h(556,1): warning C4820: 'SDL_DropEvent': '4' bytes padding added after data member 'SDL_DropEvent::windowID'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(462,18): warning C4820: 'SDL_HapticDirection': '3' bytes padding added after data member 'SDL_HapticDirection::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(481,25): warning C4820: 'SDL_HapticConstant': '2' bytes padding added after data member 'SDL_HapticConstant::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(564,25): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(585,1): warning C4820: 'SDL_HapticPeriodic': '2' bytes padding added after data member 'SDL_HapticPeriodic::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(616,25): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(633,1): warning C4820: 'SDL_HapticCondition': '2' bytes padding added after data member 'SDL_HapticCondition::center'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(652,25): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(671,1): warning C4820: 'SDL_HapticRamp': '2' bytes padding added after data member 'SDL_HapticRamp::fade_level'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(691,12): warning C4820: 'SDL_HapticLeftRight': '2' bytes padding added after data member 'SDL_HapticLeftRight::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(717,25): warning C4820: 'SDL_HapticCustom': '2' bytes padding added after data member 'SDL_HapticCustom::type'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(729,12): warning C4820: 'SDL_HapticCustom': '1' bytes padding added after data member 'SDL_HapticCustom::channels'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_haptic.h(731,17): warning C4820: 'SDL_HapticCustom': '4' bytes padding added after data member 'SDL_HapticCustom::samples'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(92,27): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::product_id'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(97,33): warning C4820: 'SDL_hid_device_info': '6' bytes padding added after data member 'SDL_hid_device_info::release_number'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_hidapi.h(121,37): warning C4820: 'SDL_hid_device_info': '4' bytes padding added after data member 'SDL_hid_device_info::interface_protocol'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(97,23): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::flags'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_messagebox.h(102,44): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::numbuttons'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_image.h(2048,22): warning C4820: '<unnamed-tag>': '4' bytes padding added after data member '<unnamed-tag>::count'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(230,16): warning C4820: 'Mix_Chunk': '4' bytes padding added after data member 'Mix_Chunk::allocated'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_mixer.h(233,1): warning C4820: 'Mix_Chunk': '3' bytes padding added after data member 'Mix_Chunk::volume'
+E:\Works\C++\Flixel++\Flixel++\include\flixel++\FlxBasic.hpp(13,5): warning C4820: 'Flx::Basic': '3' bytes padding added after data member 'Flx::Basic::visible'
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(529,23): warning C4514: 'SDL_memset4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(757,24): warning C4514: 'SDL_memcpy4': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(768,22): warning C4514: 'SDL_size_mul_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_stdinc.h(798,22): warning C4514: 'SDL_size_add_overflow': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_endian.h(297,1): warning C4514: 'SDL_SwapFloat': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(110,27): warning C4514: 'SDL_PointInRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(119,27): warning C4514: 'SDL_RectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(127,27): warning C4514: 'SDL_RectEquals': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(233,27): warning C4514: 'SDL_PointInFRect': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(242,27): warning C4514: 'SDL_FRectEmpty': unreferenced inline function has been removed
+E:\Works\C++\Flixel++\Flixel++\includes\SDL2\SDL_rect.h(267,27): warning C4514: 'SDL_FRectEquals': unreferenced inline function has been removed
+  Generating Code...
+  Searching libraries
+      Searching lib\x64\OpenAL32.lib:
+      Searching lib\x64\SDL2.lib:
+      Searching lib\x64\SDL2main.lib:
+      Searching lib\x64\SDL2_image.lib:
+      Searching lib\x64\SDL2_ttf.lib:
+      Searching lib\x64\SDL2_mixer.lib:
+      Searching lib\x64\vorbis.lib:
+      Searching lib\x64\vorbisenc.lib:
+      Searching lib\x64\vorbisfile.lib:
+      Searching lib\x64\ogg.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\kernel32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\user32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\gdi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\winspool.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\comdlg32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\advapi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\shell32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\ole32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\oleaut32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\uuid.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbc32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbccp32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\ogg.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\OpenAL32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbis.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisenc.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisfile.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\ucrt\x64\ucrtd.lib:
+      Searching lib\x64\OpenAL32.lib:
+      Searching lib\x64\SDL2.lib:
+      Searching lib\x64\SDL2main.lib:
+      Searching lib\x64\SDL2_image.lib:
+      Searching lib\x64\SDL2_ttf.lib:
+      Searching lib\x64\SDL2_mixer.lib:
+      Searching lib\x64\vorbis.lib:
+      Searching lib\x64\vorbisenc.lib:
+      Searching lib\x64\vorbisfile.lib:
+      Searching lib\x64\ogg.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\kernel32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\user32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\gdi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\winspool.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\comdlg32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\advapi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\shell32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\ole32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\oleaut32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\uuid.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbc32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbccp32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\ogg.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\OpenAL32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbis.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisenc.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisfile.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\ucrt\x64\ucrtd.lib:
+      Searching lib\x64\OpenAL32.lib:
+      Searching lib\x64\SDL2.lib:
+      Searching lib\x64\SDL2main.lib:
+      Searching lib\x64\SDL2_image.lib:
+      Searching lib\x64\SDL2_ttf.lib:
+      Searching lib\x64\SDL2_mixer.lib:
+      Searching lib\x64\vorbis.lib:
+      Searching lib\x64\vorbisenc.lib:
+      Searching lib\x64\vorbisfile.lib:
+      Searching lib\x64\ogg.lib:
+  Finished searching libraries
+  Searching libraries
+      Searching lib\x64\OpenAL32.lib:
+      Searching lib\x64\SDL2.lib:
+      Searching lib\x64\SDL2main.lib:
+      Searching lib\x64\SDL2_image.lib:
+      Searching lib\x64\SDL2_ttf.lib:
+      Searching lib\x64\SDL2_mixer.lib:
+      Searching lib\x64\vorbis.lib:
+      Searching lib\x64\vorbisenc.lib:
+      Searching lib\x64\vorbisfile.lib:
+      Searching lib\x64\ogg.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\kernel32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\user32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\gdi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\winspool.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\comdlg32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\advapi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\shell32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\ole32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\oleaut32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\uuid.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbc32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbccp32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\ogg.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\OpenAL32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbis.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisenc.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisfile.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\ucrt\x64\ucrtd.lib:
+  Finished searching libraries
+  Searching libraries
+      Searching lib\x64\OpenAL32.lib:
+      Searching lib\x64\SDL2.lib:
+      Searching lib\x64\SDL2main.lib:
+      Searching lib\x64\SDL2_image.lib:
+      Searching lib\x64\SDL2_ttf.lib:
+      Searching lib\x64\SDL2_mixer.lib:
+      Searching lib\x64\vorbis.lib:
+      Searching lib\x64\vorbisenc.lib:
+      Searching lib\x64\vorbisfile.lib:
+      Searching lib\x64\ogg.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\kernel32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\user32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\gdi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\winspool.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\comdlg32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\advapi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\shell32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\ole32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\oleaut32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\uuid.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbc32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbccp32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\ogg.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\OpenAL32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbis.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisenc.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisfile.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\ucrt\x64\ucrtd.lib:
+  Finished searching libraries
+  Searching libraries
+      Searching lib\x64\OpenAL32.lib:
+      Searching lib\x64\SDL2.lib:
+      Searching lib\x64\SDL2main.lib:
+      Searching lib\x64\SDL2_image.lib:
+      Searching lib\x64\SDL2_ttf.lib:
+      Searching lib\x64\SDL2_mixer.lib:
+      Searching lib\x64\vorbis.lib:
+      Searching lib\x64\vorbisenc.lib:
+      Searching lib\x64\vorbisfile.lib:
+      Searching lib\x64\ogg.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\kernel32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\user32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\gdi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\winspool.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\comdlg32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\advapi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\shell32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\ole32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\oleaut32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\uuid.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbc32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbccp32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\ogg.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\OpenAL32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbis.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisenc.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisfile.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\ucrt\x64\ucrtd.lib:
+  Finished searching libraries
+  Searching libraries
+      Searching lib\x64\OpenAL32.lib:
+      Searching lib\x64\SDL2.lib:
+      Searching lib\x64\SDL2main.lib:
+      Searching lib\x64\SDL2_image.lib:
+      Searching lib\x64\SDL2_ttf.lib:
+      Searching lib\x64\SDL2_mixer.lib:
+      Searching lib\x64\vorbis.lib:
+      Searching lib\x64\vorbisenc.lib:
+      Searching lib\x64\vorbisfile.lib:
+      Searching lib\x64\ogg.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\kernel32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\user32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\gdi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\winspool.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\comdlg32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\advapi32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\shell32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\ole32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\oleaut32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\uuid.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbc32.lib:
+      Searching C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64\odbccp32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\ogg.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\OpenAL32.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbis.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisenc.lib:
+      Searching C:\Users\gcgra\vcpkg\installed\x64-windows\debug\lib\vorbisfile.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib:
+      Searching E:\Visual Studio\IDE\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib:
+  Finished searching libraries
+  Flixel++.vcxproj -> E:\Works\C++\Flixel++\x64\Debug\Flixel++.exe
+  E:\Works\C++\Flixel++\Flixel++\assets\logo.png
+  1 File(s) copied
+  E:\Works\C++\Flixel++\Flixel++\lib/x64/dlls\SDL2.dll
+  E:\Works\C++\Flixel++\Flixel++\lib/x64/dlls\SDL2_image.dll
+  E:\Works\C++\Flixel++\Flixel++\lib/x64/dlls\SDL2_mixer.dll
+  E:\Works\C++\Flixel++\Flixel++\lib/x64/dlls\SDL2_ttf.dll
+  4 File(s) copied
