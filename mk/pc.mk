@@ -3,7 +3,7 @@ CXX = g++
 INCLUDE = -Iinclude/
 FILES = source/**.cpp
 CFLAGS = -O3 -Wall -fPIC -g
-OUT = $(notdir $(CURDIR)).so
+OUT = lib$(notdir $(CURDIR)).so
 OBJ = obj/pc
 CLIBS = ${sdl2-config --cflags --libs}-lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lopenal -lvorbisfile
 

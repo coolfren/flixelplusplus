@@ -25,6 +25,10 @@
 #include <AL/alc.h>
 #include <vorbis/vorbisfile.h>
 
+#ifdef __SWITCH__
+#include <switch.h>
+#endif
+
 #ifdef SDL_LEGACY
 typedef SDL_Surface Bitmap;
 #else

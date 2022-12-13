@@ -15,7 +15,7 @@ namespace Flx
         SDL_Window* window;
         SDL_Renderer* renderer;
         #endif
-        int framerate;
+        float framerate;
         Flx::State* curState = nullptr;
         Game(const char* title, int width, int height, int framerate, Flx::State* initialState);
         ~Game();
@@ -28,6 +28,8 @@ namespace Flx
 
     namespace Globals
     {
+        extern float width, height;
+
         extern Flx::Game* _curGame;
 
         extern Flx::Random* random;

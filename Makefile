@@ -12,3 +12,6 @@ clean:
 install:
 	cp -r build/*.so /usr/lib/libflixel++.so
 	cp -r include/flixel++ /usr/include/flixel++
+example:
+	@make -f examples/Makefile
+	LD_LIBRARY_PATH="./build/" examples/example
