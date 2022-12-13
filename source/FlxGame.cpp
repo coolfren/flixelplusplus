@@ -3,17 +3,17 @@
 float Flx::Globals::width = 0;
 float Flx::Globals::height = 0;
 
-Flx::Game *Flx::Globals::_curGame = nullptr;
-Flx::Random *Flx::Globals::random = nullptr;
-Flx::SoundManager *Flx::Globals::sound = nullptr;
+Flx::Game* Flx::Globals::_curGame = nullptr;
+Flx::Random* Flx::Globals::random = nullptr;
+Flx::SoundManager* Flx::Globals::sound = nullptr;
 
-Flx::Game::Game(const char *title, int width, int height, int framerate, Flx::State *initialState)
+Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState)
     : framerate(framerate)
 {
-    #ifdef __SWITCH__
+#ifdef __SWITCH__
     consoleInit(NULL);
     romfsInit();
-    #endif
+#endif
     SDL_Init(SDL_INIT_EVERYTHING);
 #ifdef SDL_LEGACY
     window = SDL_SetVideoMode(width, height, 0, 0);
@@ -60,7 +60,7 @@ void Flx::Game::destroyGlobals()
     delete Flx::Globals::sound;
 }
 
-void Flx::Game::switchState(Flx::State *state)
+void Flx::Game::switchState(Flx::State* state)
 {
 
     if (curState != nullptr)

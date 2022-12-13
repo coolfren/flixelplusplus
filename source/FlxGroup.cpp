@@ -1,5 +1,7 @@
 #include "flixel++/FlxGroup.hpp"
 
+//G.. TODO: REMAKE THIS INTO A FLXTYPEDGROUP CUS IS MORE INTUITIVE AND PRECISE
+
 Flx::Group::Group()
     : members()
 {}

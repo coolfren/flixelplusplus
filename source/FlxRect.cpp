@@ -12,7 +12,7 @@ Flx::Rect::Rect(float x, float y, float width, float height)
 
 Flx::Rect::~Rect()
 {
-    
+
 }
 
 const SDL_Rect Flx::Rect::toSDLRect()

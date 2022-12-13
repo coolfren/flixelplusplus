@@ -7,14 +7,14 @@ namespace Flx
 {
     class Game
     {
-        public:
-        
-        #ifdef SDL_LEGACY
+    public:
+
+#ifdef SDL_LEGACY
         SDL_Surface* window;
-        #else
+#else
         SDL_Window* window;
         SDL_Renderer* renderer;
-        #endif
+#endif
         float framerate;
         Flx::State* curState = nullptr;
         Game(const char* title, int width, int height, int framerate, Flx::State* initialState);
