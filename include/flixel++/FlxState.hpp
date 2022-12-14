@@ -1,8 +1,8 @@
 #ifndef FLXSTATE_HPP
 #define FLXSTATE_HPP
-#include <flixel++/Common.hpp>
-#include <flixel++/FlxBasic.hpp>
-#include <flixel++/FlxGroup.hpp>
+#include "flixel++/Common.hpp"
+#include "flixel++/FlxBasic.hpp"
+#include "flixel++/FlxGroup.hpp"
 
 namespace Flx
 {

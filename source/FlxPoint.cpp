@@ -5,8 +5,9 @@ Flx::Point::Point()
 {}
 
 Flx::Point::Point(float x, float y)
-    : x(x), y(y)
-{}
+{
+	set(x, y);
+}
 
 Flx::Point::~Point(){}
 

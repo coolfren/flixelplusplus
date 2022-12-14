@@ -9,7 +9,7 @@ namespace Flx
 {
     class Sprite : public Flx::Object
     {
-    public:
+        public:
         Flx::Graphic* graphic;
         Flx::Rect clipRect;
         Flx::Rect hitbox;
@@ -21,10 +21,10 @@ namespace Flx
         void updateHitbox();
         void update();
         void draw();
-         
+
+        Flx::Point origin;
         Flx::Point offset;
         Flx::Point scale;
-        Flx::Point origin;
     };
 }
 

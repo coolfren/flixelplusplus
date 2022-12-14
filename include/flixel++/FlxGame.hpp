@@ -7,14 +7,15 @@ namespace Flx
 {
     class Game
     {
-    public:
-
-#ifdef SDL_LEGACY
+        public:
+        
+        #ifdef SDL_LEGACY
         SDL_Surface* window;
-#else
+        #else
         SDL_Window* window;
         SDL_Renderer* renderer;
-#endif
+        SDL_Rect test;
+        #endif
         float framerate;
         Flx::State* curState = nullptr;
         Game(const char* title, int width, int height, int framerate, Flx::State* initialState);
@@ -25,6 +26,17 @@ namespace Flx
         void run();
         void start();
     };
+
+    namespace Globals
+    {
+        extern float width, height;
+
+        extern Flx::Game* _curGame;
+
+        extern Flx::Random* random;
+
+        extern Flx::SoundManager* sound;
+    }
 }
 
 #endif

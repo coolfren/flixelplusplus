@@ -2,8 +2,7 @@
 #define FLXBASIC_HPP
 namespace Flx
 {
-    class Basic
-    {
+    class Basic{
         public:
         int ID;
         bool visible = false;

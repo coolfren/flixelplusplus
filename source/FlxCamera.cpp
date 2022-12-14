@@ -1,0 +1,2 @@
+#include "flixel++/FlxCamera.hpp"
+
