@@ -25,17 +25,6 @@ namespace Flx
         void run();
         void start();
     };
-
-    namespace Globals
-    {
-        extern float width, height;
-
-        extern Flx::Game* _curGame;
-
-        extern Flx::Random* random;
-
-        extern Flx::SoundManager* sound;
-    }
 }
 
 #endif

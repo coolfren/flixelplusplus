@@ -1,4 +1,5 @@
 #include "flixel++/FlxGame.hpp"
+#include "flixel++/FlxG.hpp"
 
 float Flx::Globals::width = 0;
 float Flx::Globals::height = 0;
