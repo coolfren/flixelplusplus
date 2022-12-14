@@ -10,6 +10,10 @@ namespace Flx {
 		Point(float x, float y);
 		~Point();
 
+		add(float x, float y);
+		set(float x, float y);
+		subtract(float x, float y);
+
 
 		float x, y;
 		float angle;
