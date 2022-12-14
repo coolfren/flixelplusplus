@@ -6,23 +6,9 @@
 namespace Flx {
 	class Point {
 	public:
-		Point() {};
-		Point(float x, float y) {
-			set(x, y);
-		}
-		~Point() {};
-		void add(float x, float y) {
-			this->x += x;
-			this->y += y;
-		}
-		void set(float x, float y) {
-			this->x = x;
-			this->y = y;
-		}
-		void subtract(float x, float y) {
-			this->x -= x;
-			this->y -= y;
-		}
+		Point();
+		Point(float x, float y);
+		~Point();
 
 
 		float x, y;
