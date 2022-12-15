@@ -1,3 +1,5 @@
+# Legacy Makefile, use CMake instead!
+
 CC = gcc
 CXX = g++
 INCLUDE = -Iinclude/

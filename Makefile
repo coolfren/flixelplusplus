@@ -1,9 +1,14 @@
 #!/usr/bin/make -f
-MYDIR = .
 all:
 	@echo "Specify what platform you want to build"
 pc:
-	@make -f mk/pc.mk SDL_LEGACY=$(SDL_LEGACY)
+ifeq ($(SDL_LEGACY),1)
+	@mkdir -p build
+	@cd build && cmake -DSDL_LEGACY .. && make
+else
+	@mkdir -p build
+	@cd build && cmake .. && make
+endif
 switch:
 	@make -f mk/switch.mk
 clean:

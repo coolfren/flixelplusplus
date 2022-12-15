@@ -8,6 +8,7 @@ You will need the following dependencies:
 - libvorbis
 - gcc
 - make
+- cmake
 
 1. Run ``make pc``
 2. Run ``make install`` (with root permissions)
