@@ -29,6 +29,37 @@ void Flx::Net::send(const char* data) {
     #endif
 }
 
+std::string Flx::Net::read() {
+    #ifdef _WIN32
+    #else
+    std::string str;
+    int recvsize = 0;
+    char buffer[1024];
+    while((recvsize = ::recv(sock, buffer, 1024, 0)) > 1)
+    {
+        std::cout << recvsize << std::endl;
+        str.append(buffer, recvsize);
+    }
+    return str;
+    #endif
+}
+
+std::string Flx::Net::readUntil(char until) {
+    #ifdef _WIN32
+    #else
+    std::stringbuf buffer;
+    while(true)
+    {
+        char c;
+        ssize_t code = ::recv(sock, &c, 1, 0);
+        if(c == until || code < 1)
+            break;
+        buffer.sputc(c);
+    }
+    return buffer.str();
+    #endif
+}
+
 void Flx::Net::connect() {
     #ifdef _WIN32
     #else

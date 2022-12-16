@@ -7,11 +7,10 @@ namespace Flx
     class Sound : public Basic
     {
         private:
-        Mix_Chunk* internal;
         Uint32 startTime;
 
         OggVorbis_File vorbis;
-        vorbis_info *info;
+        vorbis_info*info;
 
         ALuint buffer;
         ALuint source;

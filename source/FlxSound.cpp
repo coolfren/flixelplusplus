@@ -1,13 +1,14 @@
 #include "flixel++/FlxSound.hpp"
 
 Flx::Sound::Sound()
-    : internal(nullptr)
 {
 }
 
 Flx::Sound::~Sound()
 {
-    Mix_FreeChunk(internal);
+    alDeleteSources(1, &source);
+    alDeleteBuffers(1, &buffer);
+    vorbis_info_clear(info);
 }
 
 void Flx::Sound::play()
@@ -18,7 +19,6 @@ void Flx::Sound::play()
 
 void Flx::Sound::load(const char *path)
 {
-    internal = Mix_LoadWAV(path);
     ov_fopen(path, &vorbis);
     info = ov_info(&vorbis, -1);
     alGenBuffers(1, &buffer);

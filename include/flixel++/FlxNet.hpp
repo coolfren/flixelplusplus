@@ -1,6 +1,8 @@
 #ifndef FLXNET_HPP
 #define FLXNET_HPP
 
+#include <iostream>
+#include <sstream>
 #ifdef _WIN32
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
@@ -10,9 +12,13 @@
 #include <sys/types.h>
 #include <netdb.h>
 #include <memory.h>
+#include <stdlib.h>
 #endif
 
 namespace Flx {
+    /*
+    * Provides a platform independent way of handling sockets.
+    */
     class Net {
     private:
         #ifdef _WIN32
@@ -26,6 +32,8 @@ namespace Flx {
         ~Net();
         void listen(int connections);
         void send(const char* data);
+        std::string read();
+        std::string readUntil(char until);
         void connect();
     };
 }

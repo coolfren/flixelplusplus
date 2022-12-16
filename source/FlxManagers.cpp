@@ -29,7 +29,6 @@ bool Flx::Random::boolean(float chance)
 
 Flx::SoundManager::SoundManager()
 {
-    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
     device = alcOpenDevice(NULL);
     context = alcCreateContext(device, NULL);
     alcMakeContextCurrent(context);
@@ -37,7 +36,6 @@ Flx::SoundManager::SoundManager()
 
 Flx::SoundManager::~SoundManager()
 {
-    Mix_CloseAudio();
     alcDestroyContext (context);
     alcCloseDevice (device);
 }
