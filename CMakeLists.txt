@@ -13,6 +13,9 @@ file (GLOB_RECURSE FLIXEL_FILES CONFIGURE_DEPENDS "source/*.cpp")
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL2IMAGE_INCLUDE_DIRS})
 
+find_package(SDL2_ttf REQUIRED)
+include_directories(${SDL2TTF_INCLUDE_DIRS})
+
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
@@ -26,6 +29,7 @@ add_library(flixel++ SHARED ${FLIXEL_FILES})
 
 target_link_libraries(flixel++ ${SDL2_LIBRARIES})
 target_link_libraries(flixel++ ${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(flixel++ ${SDL2_TTF_LIBRARIES})
 target_link_libraries(flixel++ ${OPENAL_LIBRARY})
 target_link_libraries(flixel++ ${VORBISFILE_LIBRARY})
 

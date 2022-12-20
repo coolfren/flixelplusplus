@@ -1,5 +1,6 @@
 #include "flixel++/FlxGame.hpp"
 #include "flixel++/FlxG.hpp"
+#include "flixel++/FlxAssets.hpp"
 
 float Flx::Globals::width = 0;
 float Flx::Globals::height = 0;
@@ -16,6 +17,7 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     romfsInit();
 #endif
     SDL_Init(SDL_INIT_EVERYTHING);
+    TTF_Init();
 #ifdef SDL_LEGACY
     window = SDL_SetVideoMode(width, height, 0, 0);
     SDL_WM_SetCaption(title, NULL);
@@ -43,6 +45,7 @@ Flx::Game::~Game()
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 #endif
+    TTF_Quit();
     SDL_Quit();
 }
 
@@ -53,6 +56,8 @@ void Flx::Game::setupGlobals()
     Flx::Globals::random = new Flx::Random();
 
     Flx::Globals::sound = new Flx::SoundManager();
+
+    Flx::Assets::initialize();
 }
 
 void Flx::Game::destroyGlobals()

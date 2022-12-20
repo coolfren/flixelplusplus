@@ -18,6 +18,7 @@ namespace Flx
         Flx::Sprite* loadGraphic(const char* path);
         void setGraphicSize(float width, float height);
         void screenCenter();
+        void updatePosition();
         void updateHitbox();
         void update();
         void draw();

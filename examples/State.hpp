@@ -3,7 +3,7 @@
 #include "flixel++/FlxSprite.hpp"
 #include "flixel++/FlxSound.hpp"
 #include "flixel++/FlxNet.hpp"
-
+#include "flixel++/FlxText.hpp"
 class PlayState : public Flx::State
 {
     public:
@@ -12,15 +12,17 @@ class PlayState : public Flx::State
     Flx::Sprite* sprite;
     float time = 0.0f;
     void create(){
-        auto net = new Flx::Net("www.google.com", 80);
-        net->connect();
-        net->send("GET / HTTP/1.1\r\nHost: www.google.com\r\nConnection: close\r\n\r\n");
-        std::cout << net->read() << std::endl;
         sprite = new Flx::Sprite(0,0);
         sprite->loadGraphic("assets/logo.png");
         sprite->setGraphicSize(240,240);
         sprite->screenCenter();
         add(sprite);
+
+        trace("ok");
+
+        auto text = new Flx::Text(0,0, "i am a piece of text!");
+        text->screenCenter();
+        add(text);
     };
     virtual void update(){
         sprite->x += cos(time);

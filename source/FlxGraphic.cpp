@@ -17,14 +17,18 @@ Flx::Graphic::~Graphic(){
 };
 
 Flx::Graphic* Flx::Graphic::loadFromPath(const char* path){
+    return loadFromSurface(IMG_Load(path));
+}
+
+Flx::Graphic* Flx::Graphic::loadFromSurface(SDL_Surface* surface){
     SDL_Rect tempQ{0,0,0,0};
+    tempQ.w = surface->w;
+    tempQ.h = surface->h;
     #ifdef SDL_LEGACY
-    Bitmap* temp = IMG_Load(path);
-    tempQ.w = temp->w;
-    tempQ.h = temp->h;
+    auto temp = surface;
     #else
-    Bitmap* temp = IMG_LoadTexture(Flx::Globals::_curGame->renderer, path);
-    SDL_QueryTexture(temp, NULL, NULL, &tempQ.w, &tempQ.h);
+    auto temp = SDL_CreateTextureFromSurface(Flx::Globals::_curGame->renderer, surface);
+    SDL_FreeSurface(surface);
     #endif
 
     Flx::Graphic* a = new Flx::Graphic(tempQ.w, tempQ.h, temp);

@@ -17,10 +17,7 @@ Flx::Sprite::~Sprite()
 
 Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
     graphic = Flx::Graphic::loadFromPath(path);
-    this->width = graphic->width;
-    this->height = graphic->height;
-    this->clipRect.width = graphic->width;
-    this->clipRect.height = graphic->height;
+    updatePosition();
     return this;
 }
 
@@ -36,6 +33,15 @@ void Flx::Sprite::screenCenter()
     x = (Flx::Globals::width / 2);
     y = (Flx::Globals::height / 2);
 }
+
+void Flx::Sprite::updatePosition()
+{
+    this->width = graphic->width;
+    this->height = graphic->height;
+    this->clipRect.width = graphic->width;
+    this->clipRect.height = graphic->height;
+}
+
 void Flx::Sprite::updateHitbox()
 {
     hitbox.x = x;

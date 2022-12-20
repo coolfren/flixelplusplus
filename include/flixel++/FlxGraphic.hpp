@@ -12,6 +12,7 @@ namespace Flx
         int width, height;
         Bitmap* bitmap;
         static Flx::Graphic* loadFromPath(const char* path);
+        static Flx::Graphic* loadFromSurface(SDL_Surface* surface);
     };
 }
 
