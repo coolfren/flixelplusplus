@@ -16,5 +16,16 @@ flixel++ is a port of Adam "Atomic" Saltsman's Flixel library originally created
 
 flixel++ is a work in progess, things might change or break.
 
-# Building
+## Cloning
+Make sure you clone with submodules OR it will not work as the needed submodules are not there.
+
+```
+git clone --recursive https://github.com/coolfren/flixelplusplus
+```
+
+If you already cloned it:
+```
+git submodule update --init --recursive
+```
+## Building
 Refer to BUILDING.md for instructions.

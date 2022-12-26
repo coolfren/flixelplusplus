@@ -4,9 +4,8 @@
 
 namespace Flx
 {
-    class Rect
+    struct Rect
     {
-    public:
 
         Rect();
         Rect(float x, float y, float width, float height);

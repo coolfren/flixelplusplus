@@ -2,17 +2,22 @@
 #include "flixel++/FlxG.hpp"
 
 Flx::Sprite::Sprite(float x, float y)
-    : Object(x, y), clipRect(0, 0, 0, 0), hitbox(0, 0, 0, 0)
+    : Object(x, y), 
+    clipRect(0, 0, 0, 0), 
+    hitbox(0, 0, 0, 0), 
+    animation(new Flx::AnimationController),
+    offset(0, 0),
+    scale(1, 1),
+    origin(x, y)
 {
-    offset = Flx::Point(0, 0);
-    scale = Flx::Point(1, 1);
-    origin = Flx::Point(x, y);
-
 }
 
 Flx::Sprite::~Sprite()
 {
     delete graphic;
+    delete animation;
+    if(frames != nullptr)
+        delete frames;
 }
 
 Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
@@ -51,7 +56,11 @@ void Flx::Sprite::updateHitbox()
 }
 
 void Flx::Sprite::update() {
-
+    if(animation->animated)
+    {
+        animation->frameIndex++;
+        animation->frameIndex = (SDL_GetTicks() / (animation->curAnim->fps)) % animation->curAnim->size();
+    }
 }
 
 void Flx::Sprite::draw() {
@@ -63,9 +72,20 @@ void Flx::Sprite::draw() {
 #else
     SDL_FRect dst = SDL_FRect{
         //NEED TO CHANGE IT LATER IF RECUSED
-        x - (width / 2),y - (height / 2),width* scale.x,height* scale.y
+        x - (width / 2),
+        y - (height / 2), 
+        width * scale.x, 
+        height * scale.y
     };
     auto stuff = clipRect.toSDLRect();
+    if(animation->animated)
+    {
+        auto anim = animation->getCurAnim();
+        stuff.x = anim->x;
+        stuff.y = anim->y;
+        stuff.w = anim->width;
+        stuff.h = anim->height;
+    }
     SDL_RenderCopyF(Flx::Globals::_curGame->renderer, graphic->bitmap, &stuff, &dst);
 #endif
 }

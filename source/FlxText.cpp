@@ -5,7 +5,7 @@
 Flx::Text::Text(float x, float y, const std::string& text)
     : Flx::Sprite::Sprite(x,y)
 {
-    auto ttf = TTF_RenderText_LCD(Flx::Assets::defaultFont, text.c_str(), {255,255,255,255}, {0,0,0,0});
+    auto ttf = TTF_RenderText_Solid(Flx::Assets::defaultFont, text.c_str(), {255,255,255,255});
     graphic = Flx::Graphic::loadFromSurface(ttf);
     updatePosition();
 }

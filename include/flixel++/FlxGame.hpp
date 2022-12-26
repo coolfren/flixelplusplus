@@ -7,6 +7,8 @@ namespace Flx
 {
     class Game
     {
+        bool quitting = false;
+        bool paused = false;
     public:
 
 #ifdef SDL_LEGACY

@@ -18,8 +18,6 @@ class PlayState : public Flx::State
         sprite->screenCenter();
         add(sprite);
 
-        trace("ok");
-
         auto text = new Flx::Text(0,0, "i am a piece of text!");
         text->screenCenter();
         add(text);

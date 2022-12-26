@@ -4,6 +4,7 @@
 #include "flixel++/FlxGraphic.hpp"
 #include "flixel++/FlxRect.hpp"
 #include "flixel++/FlxPoint.hpp"
+#include "flixel++/FlxAnimation.hpp"
 
 namespace Flx
 {
@@ -13,6 +14,7 @@ namespace Flx
         Flx::Graphic* graphic;
         Flx::Rect clipRect;
         Flx::Rect hitbox;
+        Flx::AnimationController* animation;
         Sprite(float x, float y);
         ~Sprite();
         Flx::Sprite* loadGraphic(const char* path);

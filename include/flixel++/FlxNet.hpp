@@ -12,6 +12,7 @@
 #include <sys/types.h>
 #include <netdb.h>
 #include <memory.h>
+#include <arpa/inet.h>
 #include <stdlib.h>
 #endif
 

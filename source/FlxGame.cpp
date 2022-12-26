@@ -1,6 +1,7 @@
 #include "flixel++/FlxGame.hpp"
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxAssets.hpp"
+#include <thread>
 
 float Flx::Globals::width = 0;
 float Flx::Globals::height = 0;
@@ -90,23 +91,41 @@ void Flx::Game::run()
 
     curState->draw();
     SDL_RenderPresent(renderer);
+
 #endif
 }
 
 void Flx::Game::start()
 {
-    bool quitting = false;
-    SDL_Event e;
-    while (!quitting)
-    {
-        while (SDL_PollEvent(&e) != 0)
-        {
-            if (e.type == SDL_QUIT)
+    std::thread t([this](){
+        SDL_Event e;
+        while(!quitting){
+            while (SDL_PollEvent(&e) != 0)
             {
-                quitting = true;
+                switch(e.type)
+                {
+                    case SDL_WINDOWEVENT:
+                        switch(e.window.event){
+                            case SDL_WINDOWEVENT_FOCUS_GAINED:
+                                paused = false;
+                                break;
+                            case SDL_WINDOWEVENT_FOCUS_LOST:
+                                paused = true;
+                                break;
+                        }
+                        break;
+                    case SDL_QUIT:
+                        quitting = true;
+                        break;
+                }
             }
         }
-        run();
+    });
+    while (!quitting)
+    {
+        if(!paused)
+            run();
         SDL_Delay(1000.0f / framerate);
     }
+    t.join();
 }
