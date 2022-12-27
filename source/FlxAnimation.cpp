@@ -46,7 +46,11 @@ void Flx::AnimationController::fromSparrow(const char* path, const char* default
     curAnim = &animations[defaultAnim];
     animated = true;
 }
-    
+
+void Flx::AnimationController::play(const char* name){
+    curAnim = &animations[name];
+}
+
 Flx::Frame *Flx::AnimationController::getCurAnim()
 {
     return &(curAnim->frames[frameIndex]);

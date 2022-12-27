@@ -34,6 +34,4 @@ typedef SDL_Surface Bitmap;
 typedef SDL_Texture Bitmap;
 #endif
 
-#define trace(x) std::cout << '(' << __FILE__ << ',' << __LINE__ << "): " << x << std::endl
-
 #endif

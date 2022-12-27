@@ -16,8 +16,6 @@ Flx::Sprite::~Sprite()
 {
     delete graphic;
     delete animation;
-    if(frames != nullptr)
-        delete frames;
 }
 
 Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {

@@ -29,6 +29,7 @@ namespace Flx
         std::map<const std::string, Animation> animations;
         AnimationController();
         void fromSparrow(const char* path, const char* defaultAnim, int fps);
+        void play(const char* name);
         Frame* getCurAnim();
     };
 }

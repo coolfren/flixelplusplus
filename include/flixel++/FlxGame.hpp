@@ -24,6 +24,7 @@ namespace Flx
         void setupGlobals();
         void destroyGlobals();
         void switchState(Flx::State* state);
+        void runEvents();
         void run();
         void start();
     };

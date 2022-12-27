@@ -1,6 +1,7 @@
 #ifndef FLXG_HPP
 #define FLXG_HPP
 #include "flixel++/FlxGame.hpp"
+#include "flixel++/FlxKeyboard.hpp"
 
 namespace Flx
 {
@@ -13,6 +14,8 @@ namespace Flx
         extern Flx::Random* random;
 
         extern Flx::SoundManager* sound;
+
+        extern Flx::Keyboard* keys;
     }
 }
 
