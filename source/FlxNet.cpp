@@ -12,7 +12,7 @@ Flx::Net::Net(const char* host, int port) {
 }
 
 Flx::Net::~Net() {
-    
+    shutdown(sock, 2);
 }
 
 void Flx::Net::listen(int connections) {

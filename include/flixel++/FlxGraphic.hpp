@@ -3,6 +3,7 @@
 #include "flixel++/Common.hpp"
 namespace Flx
 {
+
     class Graphic
     {
         private:
@@ -13,6 +14,7 @@ namespace Flx
         Bitmap* bitmap;
         static Flx::Graphic* loadFromPath(const char* path);
         static Flx::Graphic* loadFromSurface(SDL_Surface* surface);
+        friend class Sprite;
     };
 }
 

@@ -1,5 +1,6 @@
 #include "flixel++/FlxSprite.hpp"
 #include "flixel++/FlxG.hpp"
+#include "flixel++/FlxColor.hpp"
 
 Flx::Sprite::Sprite(float x, float y)
     : Object(x, y), 
@@ -20,6 +21,27 @@ Flx::Sprite::~Sprite()
 
 Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
     graphic = Flx::Graphic::loadFromPath(path);
+    updatePosition();
+    return this;
+}
+
+Flx::Sprite* Flx::Sprite::makeGraphic(float width, float height, int color)
+{
+    auto tex = SDL_CreateTexture(Flx::Globals::_curGame->renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STATIC, width, height);
+    int pitch = 4;
+    int size = (width*height) * pitch;
+    uint8_t* pixels = new uint8_t[size];
+    Flx::Color colors = Flx::Color::fromHex(color);
+    for(int i=0; i<size; i++){
+        pixels[0 + i] = colors.r;
+        pixels[1 + i] = colors.g;
+        pixels[2 + i] = colors.b;
+        pixels[3 + i] = colors.a;
+        i += 3;
+    };
+    SDL_UpdateTexture(tex, NULL, pixels, pitch);
+    delete pixels;
+    graphic = new Flx::Graphic(width, height, tex);
     updatePosition();
     return this;
 }
