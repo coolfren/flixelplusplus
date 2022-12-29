@@ -1,6 +1,6 @@
 #ifndef FLXCOLOR_HPP
 #define FLXCOLOR_HPP
-#include "SDL2/SDL.h"
+#include "flixel++/Common.hpp"
 
 namespace Flx
 {

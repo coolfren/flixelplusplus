@@ -11,9 +11,10 @@ namespace Flx
 
         OggVorbis_File vorbis;
         vorbis_info*info;
-
+        #ifdef OPENAL
         ALuint buffer;
         ALuint source;
+        #endif
         std::vector<char> bufferData;
         public:
         Sound();

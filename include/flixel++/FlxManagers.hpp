@@ -19,8 +19,10 @@ namespace Flx
     class SoundManager
     {
         private:
+        #ifdef OPENAL
         ALCdevice *device;
         ALCcontext *context;
+        #endif
         public:
         SoundManager();
         ~SoundManager();

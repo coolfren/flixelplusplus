@@ -14,8 +14,12 @@ Flx::Keyboard* Flx::Globals::keys = nullptr;
 Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState)
     : framerate(framerate)
 {
-#ifdef __SWITCH__
+#if defined(__SWITCH__)
     consoleInit(NULL);
+    romfsInit();
+#elif defined(__3DS__)
+	gfxInitDefault();
+	consoleInit(GFX_TOP, NULL);
     romfsInit();
 #endif
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -94,6 +98,7 @@ void Flx::Game::runEvents()
             case SDL_KEYUP:
                 Flx::Globals::keys->keys[e.key.keysym.sym % 255] = false;
                 break;
+            #ifndef SDL_LEGACY
             case SDL_WINDOWEVENT:
                 switch(e.window.event){
                     case SDL_WINDOWEVENT_FOCUS_GAINED:
@@ -104,6 +109,7 @@ void Flx::Game::runEvents()
                         break;
                 }
                 break;
+            #endif
             case SDL_QUIT:
                 quitting = true;
                 break;

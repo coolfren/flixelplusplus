@@ -17,7 +17,7 @@ Flx::AnimationController::AnimationController()
 
 void Flx::AnimationController::fromSparrow(const char* path, const char* defaultAnim, int fps)
 {
-    tinyxml2::XMLDocument doc = tinyxml2::XMLDocument();
+    tinyxml2::XMLDocument doc;
     doc.LoadFile(path);
     auto root = doc.FirstChildElement("TextureAtlas");
     tinyxml2::XMLElement* subTexture = root->FirstChildElement("SubTexture");

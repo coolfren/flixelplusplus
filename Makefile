@@ -11,6 +11,8 @@ else
 endif
 switch:
 	@make -f mk/switch.mk
+3ds:
+	@make -f mk/3ds.mk
 clean:
 	rm -rf build/
 	rm -rf obj/

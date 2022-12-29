@@ -3,7 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "/opt/devkitpro/portlibs/3ds/include",
+                "/opt/devkitpro/libctru/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

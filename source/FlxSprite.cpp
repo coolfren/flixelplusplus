@@ -27,6 +27,22 @@ Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
 
 Flx::Sprite* Flx::Sprite::makeGraphic(float width, float height, int color)
 {
+    #ifdef SDL_LEGACY
+    Uint32 rmask, gmask, bmask, amask;
+    #if SDL_BYTEORDER == SDL_BIG_ENDIAN
+    rmask = 0xff000000;
+    gmask = 0x00ff0000;
+    bmask = 0x0000ff00;
+    amask = 0x000000ff;
+    #else
+    rmask = 0x000000ff;
+    gmask = 0x0000ff00;
+    bmask = 0x00ff0000;
+    amask = 0xff000000;
+    #endif
+    auto tex = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, rmask, gmask, bmask, amask);
+    SDL_FillRect(tex, nullptr, color);
+    #else
     auto tex = SDL_CreateTexture(Flx::Globals::_curGame->renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STATIC, width, height);
     int pitch = 4;
     int size = (width*height) * pitch;
@@ -41,6 +57,7 @@ Flx::Sprite* Flx::Sprite::makeGraphic(float width, float height, int color)
     };
     SDL_UpdateTexture(tex, NULL, pixels, pitch);
     delete pixels;
+    #endif
     graphic = new Flx::Graphic(width, height, tex);
     updatePosition();
     return this;
@@ -86,7 +103,10 @@ void Flx::Sprite::update() {
 void Flx::Sprite::draw() {
 #ifdef SDL_LEGACY
     SDL_Rect dst = SDL_Rect{
-        (Sint16)x,(Sint16)y,(Uint16)width,(Uint16)height
+        (Sint16)x - (width / 2),
+        (Sint16)y - (height / 2),
+        (Uint16)width * scale.x,
+        (Uint16)height * scale.y
     };
     SDL_BlitSurface(graphic->bitmap, NULL, Flx::Globals::_curGame->window, &dst);
 #else

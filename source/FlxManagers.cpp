@@ -29,13 +29,17 @@ bool Flx::Random::boolean(float chance)
 
 Flx::SoundManager::SoundManager()
 {
+    #ifdef OPENAL
     device = alcOpenDevice(NULL);
     context = alcCreateContext(device, NULL);
     alcMakeContextCurrent(context);
+    #endif
 }
 
 Flx::SoundManager::~SoundManager()
 {
+    #ifdef OPENAL
     alcDestroyContext (context);
     alcCloseDevice (device);
+    #endif
 }

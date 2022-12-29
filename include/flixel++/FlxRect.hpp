@@ -15,7 +15,10 @@ namespace Flx
         float width, height;
 
         const SDL_Rect toSDLRect();
+        
+        #ifndef SDL_LEGACY
         const SDL_FRect toSDLFRect();
+        #endif
     };
 }
 #endif
