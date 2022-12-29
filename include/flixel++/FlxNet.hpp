@@ -1,6 +1,8 @@
 #ifndef FLXNET_HPP
 #define FLXNET_HPP
 
+#ifdef USE_SOCKETS
+
 #include <iostream>
 #include <sstream>
 #ifdef _WIN32
@@ -39,4 +41,5 @@ namespace Flx {
     };
 }
 
+#endif
 #endif

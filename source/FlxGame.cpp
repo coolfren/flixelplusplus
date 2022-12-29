@@ -123,8 +123,9 @@ void Flx::Game::run()
 {
 #ifdef SDL_LEGACY
     curState->update();
-    SDL_Flip(window);
+    SDL_FillRect(window, NULL, 0x000000);
     curState->draw();
+    SDL_Flip(window);
 #else
     curState->update();
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);

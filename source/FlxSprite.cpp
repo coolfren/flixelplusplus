@@ -1,7 +1,6 @@
 #include "flixel++/FlxSprite.hpp"
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxColor.hpp"
-
 Flx::Sprite::Sprite(float x, float y)
     : Object(x, y), 
     clipRect(0, 0, 0, 0), 
@@ -103,12 +102,12 @@ void Flx::Sprite::update() {
 void Flx::Sprite::draw() {
 #ifdef SDL_LEGACY
     SDL_Rect dst = SDL_Rect{
-        (Sint16)x - (width / 2),
-        (Sint16)y - (height / 2),
-        (Uint16)width * scale.x,
-        (Uint16)height * scale.y
+        (Sint16)x - (Sint16)(width / 2),
+        (Sint16)y - (Sint16)(height / 2),
+        (Uint16)width * (Uint16)scale.x,
+        (Uint16)height * (Uint16)scale.y
     };
-    SDL_BlitSurface(graphic->bitmap, NULL, Flx::Globals::_curGame->window, &dst);
+    SDL_UpperBlitScaled(graphic->bitmap, NULL, Flx::Globals::_curGame->window, &dst);
 #else
     SDL_FRect dst = SDL_FRect{
         //NEED TO CHANGE IT LATER IF RECUSED

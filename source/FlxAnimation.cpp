@@ -1,5 +1,4 @@
 #include "flixel++/FlxAnimation.hpp"
-#include "tinyxml2.h"
 
 Flx::Animation::Animation()
     : frames()
@@ -17,6 +16,7 @@ Flx::AnimationController::AnimationController()
 
 void Flx::AnimationController::fromSparrow(const char* path, const char* defaultAnim, int fps)
 {
+    #ifdef TINYXML2
     tinyxml2::XMLDocument doc;
     doc.LoadFile(path);
     auto root = doc.FirstChildElement("TextureAtlas");
@@ -45,6 +45,7 @@ void Flx::AnimationController::fromSparrow(const char* path, const char* default
     } while((subTexture = subTexture->NextSiblingElement("SubTexture")) != nullptr);
     curAnim = &animations[defaultAnim];
     animated = true;
+    #endif
 }
 
 void Flx::AnimationController::play(const char* name){

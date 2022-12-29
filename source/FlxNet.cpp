@@ -1,5 +1,6 @@
 #include "flixel++/FlxNet.hpp"
 
+#ifdef USE_SOCKETS
 Flx::Net::Net(const char* host, int port) {
     #ifdef _WIN32
     #else
@@ -66,3 +67,4 @@ void Flx::Net::connect() {
     ::connect(sock, (sockaddr*)&addr, sizeof(addr));
     #endif
 }
+#endif

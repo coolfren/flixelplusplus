@@ -12,6 +12,7 @@
 #endif
 
 #define OPENAL
+#define USE_SOCKETS
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <vorbis/vorbisfile.h>

@@ -3,6 +3,7 @@
 
 #define SDL_LEGACY
 #define TREMOR
+#define USE_SOCKETS
 
 #include <3ds.h>
 #include "SDL/SDL.h"

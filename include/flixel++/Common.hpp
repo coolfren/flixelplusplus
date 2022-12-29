@@ -13,9 +13,14 @@
 #include "platform/platform.h"
 
 #ifdef SDL_LEGACY
+#include "flixel++/SDL_Backports.hpp"
 typedef SDL_Surface Bitmap;
 #else
 typedef SDL_Texture Bitmap;
+#endif
+
+#ifdef TINYXML2_INCLUDED
+#define TINYXML2
 #endif
 
 #endif

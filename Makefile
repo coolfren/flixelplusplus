@@ -4,7 +4,7 @@ all:
 pc:
 ifeq ($(SDL_LEGACY),1)
 	@mkdir -p build
-	@cd build && cmake -DSDL_LEGACY .. && make
+	@cd build && cmake -DSDL_LEGACY=1 .. && make
 else
 	@mkdir -p build
 	@cd build && cmake .. && make
@@ -13,6 +13,8 @@ switch:
 	@make -f mk/switch.mk
 3ds:
 	@make -f mk/3ds.mk
+wii:
+	@make -f mk/wii.mk
 clean:
 	rm -rf build/
 	rm -rf obj/

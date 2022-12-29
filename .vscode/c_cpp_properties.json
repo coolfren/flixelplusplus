@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/include",
-                "/opt/devkitpro/portlibs/3ds/include",
+                "/opt/devkitpro/portlibs/ppc/include",
                 "/opt/devkitpro/libctru/include"
             ],
             "defines": [],

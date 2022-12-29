@@ -29,14 +29,6 @@ class PlayState : public Flx::State
     virtual void update(){
         sprite->x += cos(time) + offsetX;
         sprite->y += sin(time) + offsetY;
-        if(Flx::Globals::keys->pressed('a'))
-            offsetX -= 0.1;
-        if(Flx::Globals::keys->pressed('d'))
-            offsetX += 0.1;
-        if(Flx::Globals::keys->pressed('w'))
-            offsetY -= 0.1;
-        if(Flx::Globals::keys->pressed('s'))
-            offsetY += 0.1;
 
         time += 0.05f;
         Flx::State::update();
