@@ -14,7 +14,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 # DATA is a list of directories containing data files
 # INCLUDES is a list of directories containing header files
 #---------------------------------------------------------------------------------
-TARGET		:=	flixel++
+TARGET		:=	switch/libflixel++
 SOURCES		:=	source
 DATA		:=	data
 INCLUDES	:=	include
@@ -83,7 +83,7 @@ export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 .PHONY: clean all
 
 #---------------------------------------------------------------------------------
-all: build/lib$(TARGET).a build/lib$(TARGET)d.a
+all: build/$(TARGET).a build/$(TARGET)d.a
 
 lib:
 	@[ -d $@ ] || mkdir -p build/
@@ -94,14 +94,14 @@ release:
 debug:
 	@[ -d $@ ] || mkdir -p $@
 
-build/lib$(TARGET).a : lib release $(SOURCES) $(INCLUDES)
+build/$(TARGET).a : lib release $(SOURCES) $(INCLUDES)
 	@$(MAKE) BUILD=release OUTPUT=$(CURDIR)/$@ \
 	BUILD_CFLAGS="-DNDEBUG=1 -O2" \
 	DEPSDIR=$(CURDIR)/release \
 	--no-print-directory -C release \
 	-f $(CURDIR)/mk/switch.mk
 
-build/lib$(TARGET)d.a : lib debug $(SOURCES) $(INCLUDES)
+build/$(TARGET)d.a : lib debug $(SOURCES) $(INCLUDES)
 	@$(MAKE) BUILD=debug OUTPUT=$(CURDIR)/$@ \
 	BUILD_CFLAGS="-DDEBUG=1 -Og" \
 	DEPSDIR=$(CURDIR)/debug \

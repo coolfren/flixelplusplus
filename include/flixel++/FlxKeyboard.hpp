@@ -8,8 +8,8 @@ namespace Flx
         public:
         Keyboard();
         bool* keys;
-        bool pressed(const char key);
-        bool justPressed(const char key);
+        bool pressed(const unsigned char key);
+        bool justPressed(const unsigned char key);
     };
 }
 

@@ -1,5 +1,6 @@
 #ifndef SDL_BACKPORTS_HPP
 #define SDL_BACKPORTS_HPP
+#ifdef SDL_LEGACY
 #include <SDL/SDL.h>
 #define SDL_RectEmpty(X)    ((!(X)) || ((X)->w <= 0) || ((X)->h <= 0))
 
@@ -15,4 +16,5 @@ SDL_LowerBlitScaled(SDL_Surface * src, SDL_Rect * srcrect,
 int
 SDL_UpperBlitScaled(SDL_Surface * src, const SDL_Rect * srcrect,
               SDL_Surface * dst, SDL_Rect * dstrect);
+#endif
 #endif
