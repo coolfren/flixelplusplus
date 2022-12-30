@@ -11,6 +11,12 @@ namespace Flx
         std::string text;
         Text(float x, float y, const std::string& text);
         ~Text();
+
+        void setText(std::string newText);
+        void drawText();
+
+        SDL_Color color;
+        TTF_Font* font;
     };
 }
 

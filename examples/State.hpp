@@ -22,13 +22,16 @@ class PlayState : public Flx::State
         sprite->screenCenter();
         add(sprite);
 
-        auto text = new Flx::Text(0,0, "i am a piece of text!");
+        Flx::Text* text = new Flx::Text(0,100, "i am a piece of text!");
         text->screenCenter();
+        text->setText("i am a piece of new text!");
         add(text);
+
     };
     virtual void update(){
         sprite->x += cos(time) + offsetX;
         sprite->y += sin(time) + offsetY;
+        
 
         time += 0.05f;
         Flx::State::update();
