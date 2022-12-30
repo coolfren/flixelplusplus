@@ -1,4 +1,5 @@
 #include "flixel++/SDL_Backports.hpp"
+
 #ifdef SDL_LEGACY
 int
 SDL_LowerBlitScaled(SDL_Surface * src, SDL_Rect * srcrect,
