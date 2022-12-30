@@ -15,9 +15,9 @@ include $(DEVKITPPC)/wii_rules
 # SOURCES is a list of directories containing source code
 # INCLUDES is a list of directories containing extra header files
 #---------------------------------------------------------------------------------
-TARGET		:=	libflixel++
+TARGET		:=	wii/libflixel++
 BUILD		:=	obj
-SOURCES		:=	source
+SOURCES		:=	source bundles/tinyxml2/tinyxml2.cpp
 DATA		:=	data  
 INCLUDES	:=  include
 
@@ -93,7 +93,8 @@ export INCLUDE	:=	$(foreach dir,$(INCLUDES), -iquote $(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 					-I$(CURDIR)/include \
 					-I$(CURDIR)/$(BUILD) \
-					-I$(LIBOGC_INC)
+					-I$(LIBOGC_INC) \
+					-I../bundles/tinyxml2/
 
 #---------------------------------------------------------------------------------
 # build a list of library paths

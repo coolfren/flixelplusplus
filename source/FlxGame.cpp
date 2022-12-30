@@ -93,7 +93,8 @@ void Flx::Game::runEvents()
         switch(e.type)
         {
             case SDL_KEYDOWN:
-                Flx::Globals::keys->keys[e.key.keysym.sym % 255] = true;
+                if(e.key.repeat == 0)
+                    Flx::Globals::keys->keys[e.key.keysym.sym % 255] = true;
                 break;
             case SDL_KEYUP:
                 Flx::Globals::keys->keys[e.key.keysym.sym % 255] = false;

@@ -26,7 +26,6 @@ Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
 
 Flx::Sprite* Flx::Sprite::makeGraphic(float width, float height, int color)
 {
-    #ifdef SDL_LEGACY
     Uint32 rmask, gmask, bmask, amask;
     #if SDL_BYTEORDER == SDL_BIG_ENDIAN
     rmask = 0xff000000;
@@ -39,24 +38,15 @@ Flx::Sprite* Flx::Sprite::makeGraphic(float width, float height, int color)
     bmask = 0x00ff0000;
     amask = 0xff000000;
     #endif
-    auto tex = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, rmask, gmask, bmask, amask);
-    SDL_FillRect(tex, nullptr, color);
+    auto textemp = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, rmask, gmask, bmask, amask);
+    SDL_FillRect(textemp, nullptr, color);
+    
+    #ifdef SDL_LEGACY
+    auto tex = textemp;
     #else
-    auto tex = SDL_CreateTexture(Flx::Globals::_curGame->renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STATIC, width, height);
-    int pitch = 4;
-    int size = (width*height) * pitch;
-    uint8_t* pixels = new uint8_t[size];
-    Flx::Color colors = Flx::Color::fromHex(color);
-    for(int i=0; i<size; i++){
-        pixels[0 + i] = colors.r;
-        pixels[1 + i] = colors.g;
-        pixels[2 + i] = colors.b;
-        pixels[3 + i] = colors.a;
-        i += 3;
-    };
-    SDL_UpdateTexture(tex, NULL, pixels, pitch);
-    delete pixels;
+    auto tex = SDL_CreateTextureFromSurface(Flx::Globals::_curGame->renderer, textemp);
     #endif
+
     graphic = new Flx::Graphic(width, height, tex);
     updatePosition();
     return this;
