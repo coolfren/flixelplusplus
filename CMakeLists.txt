@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.14)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_SOURCE_DIR}/mk")
 
@@ -30,6 +30,9 @@ else()
     include_directories(${SDL2_INCLUDE_DIRS})
 endif()
 
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIRS})
+
 find_package(OpenAL REQUIRED)
 include_directories(${OPENAL_INCLUDE_DIR})
 
@@ -48,6 +51,7 @@ else()
     target_link_libraries(flixel++ ${SDL2_TTF_LIBRARIES})
 endif()
 
+target_link_libraries(flixel++ ${CURL_LIBRARIES})
 target_link_libraries(flixel++ ${OPENAL_LIBRARY})
 target_link_libraries(flixel++ ${VORBISFILE_LIBRARY})
 
