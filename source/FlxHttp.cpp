@@ -1,9 +1,9 @@
 #include "flixel++/FlxHttp.hpp"
-#include <curl/curl.h>
-
+#include "flixel++/FlxMacros.hpp"
 
 Flx::Http::Http(std::string url){
-    requestURL(url);
+    received = true;
+    storage = requestURLtext(url);
 }
 
 Flx::Http::~Http()
@@ -11,27 +11,30 @@ Flx::Http::~Http()
 
 }
 
-void Flx::Http::requestURL(std::string url)
-{
+std::string Flx::Http::requestURLtext(std::string url)
+{   
+    std::string result;
+    CURLcode exit;
+
     curl = curl_easy_init();
+    curl_easy_setopt(curl, CURLOPT_URL,url.c_str());
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &result);
 
-    curl_easy_setopt(curl,CURLOPT_URL,url.c_str());
-
-    request = curl_easy_perform(curl);
+    exit = curl_easy_perform(curl);
 
     curl_easy_cleanup(curl);
 
-    if(request == CURLE_OK){
-        storage = std::to_string(request);
-        storage.pop_back();
-
+    if(exit == CURLE_OK){
         onData = true;
         onError = false;
+        received = false;
     }
     else{
         onError = true;
         onData = false;
     }
 
-}
 
+    return result;
+}

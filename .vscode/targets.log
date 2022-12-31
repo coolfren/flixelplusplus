@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Dec 30 18:23:38 2022
+# Make data base, printed on Sat Dec 31 00:11:45 2022
 
 # Variables
 
@@ -83,7 +83,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 140602
+VSCODE_PID = 173977
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -175,7 +175,7 @@ LC_MEASUREMENT = pt_PT.UTF-8
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 140502
+GIO_LAUNCHED_DESKTOP_FILE_PID = 173959
 # environment
 _ = /usr/bin/make
 # environment
@@ -241,7 +241,7 @@ wii:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-12-30 15:30:25.1443141
+#  Last modified 2022-12-31 00:07:43.1697419
 #  File has been updated.
 #  Successfully updated.
 
@@ -285,10 +285,10 @@ all:
 # automatic
 # * := 
 # automatic
- 
 # < := 
 # automatic
 # + := 
+ 
 # automatic
 # % := 
 # automatic
@@ -346,6 +346,6 @@ example:
 # strcache performance: lookups = 44 / hit rate = 31%
 # hash-table stats:
 # Load=30/8192=0%, Rehash=0, Collisions=0/44=0%
-# Finished Make data base on Fri Dec 30 18:23:38 2022
+# Finished Make data base on Sat Dec 31 00:11:45 2022
 
  

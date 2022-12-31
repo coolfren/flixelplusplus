@@ -1,4 +1,4 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/run/media/g/9A30C50530C4E979/Works/C++/flixelplusplus'
 echo "Specify what platform you want to build"
 make: Leaving directory '/run/media/g/9A30C50530C4E979/Works/C++/flixelplusplus'

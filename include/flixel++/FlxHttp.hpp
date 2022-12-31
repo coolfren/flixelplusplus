@@ -5,22 +5,29 @@
 
 #include <curl/curl.h>
 
-namespace Flx{
-    class Http{
-        public:
+namespace Flx
+{
+    class Http
+    {
+    public:
         Http(std::string url);
         ~Http();
 
         CURL *curl;
-        CURLcode request;
 
-        void requestURL(std::string url);
+        std::string requestURLtext(std::string url);
 
         std::string storage;
         bool onData;
         bool onError;
+        bool received;
+
+        static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+        {
+            ((std::string *)userp)->append((char *)contents, size * nmemb);
+            return size * nmemb;
+        }
     };
 }
-
 
 #endif
