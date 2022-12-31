@@ -5,12 +5,12 @@ Flx::Keyboard::Keyboard()
 {
 }
 
-bool Flx::Keyboard::pressed(const char key)
+bool Flx::Keyboard::pressed(const unsigned  char key)
 {
     return keys[key];
 }
 
-bool Flx::Keyboard::justPressed(const char key){
+bool Flx::Keyboard::justPressed(const unsigned char key){
     bool pressed = keys[key];
     keys[key] = false;
     return pressed;

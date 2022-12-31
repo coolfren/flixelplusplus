@@ -15,7 +15,7 @@ include $(DEVKITARM)/3ds_rules
 # DATA is a list of directories containing data files
 # INCLUDES is a list of directories containing header files
 #---------------------------------------------------------------------------------
-TARGET		:=	flixel++
+TARGET		:=	3ds/libflixel++
 BUILD		:=	obj
 SOURCES		:=	source
 DATA		:=	data
@@ -48,7 +48,7 @@ LIBDIRS	:=	$(PORTLIBS) $(CTRULIB)
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 #---------------------------------------------------------------------------------
 
-export OUTPUT	:=	$(CURDIR)/build/lib$(TARGET).a
+export OUTPUT	:=	$(CURDIR)/build/$(TARGET).a
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
 			$(foreach dir,$(DATA),$(CURDIR)/$(dir))

@@ -1,5 +1,6 @@
 #ifndef SDL_BACKPORTS_HPP
 #define SDL_BACKPORTS_HPP
+#ifdef SDL_LEGACY
 #include <SDL/SDL.h>
 
 #ifdef SDL_LEGACY
