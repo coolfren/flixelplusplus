@@ -8,7 +8,6 @@
 #include <cmath>
 #include <memory>
 #define SDL_MAIN_HANDLED
-//#define SDL_LEGACY
 
 #include "platform/platform.h"
 

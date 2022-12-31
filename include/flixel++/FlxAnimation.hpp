@@ -6,10 +6,15 @@ namespace Flx
 {
     class Sprite;
 
+    /**
+     * The basic frame class used for animation.
+     * @extends Flx::Rect
+    */
     struct Frame : public Flx::Rect
     {
         float frameX = 0, frameY = 0;
     };
+
 
     class Animation
     {
