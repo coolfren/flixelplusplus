@@ -36,6 +36,9 @@ include_directories(${OPENAL_INCLUDE_DIR})
 find_package(LibVorbisfile REQUIRED)
 include_directories(${VORBIS_INCLUDE_DIR})
 
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
+
 add_library(flixel++ SHARED ${FLIXEL_FILES})
 
 if(DEFINED SDL_LEGACY)
@@ -50,5 +53,6 @@ endif()
 
 target_link_libraries(flixel++ ${OPENAL_LIBRARY})
 target_link_libraries(flixel++ ${VORBISFILE_LIBRARY})
+target_link_libraries(flixel++ ${CURL_LIBRARY})
 
 install(TARGETS flixel++ DESTINATION lib)
