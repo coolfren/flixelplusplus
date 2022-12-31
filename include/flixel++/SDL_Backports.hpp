@@ -3,7 +3,6 @@
 #ifdef SDL_LEGACY
 #include <SDL/SDL.h>
 
-#ifdef SDL_LEGACY
 #define SDL_RectEmpty(X)    ((!(X)) || ((X)->w <= 0) || ((X)->h <= 0))
 
 bool SDL_IntersectRect(const SDL_Rect * A, const SDL_Rect * B, SDL_Rect * result);
