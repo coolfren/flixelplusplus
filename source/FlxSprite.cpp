@@ -106,7 +106,6 @@ void Flx::Sprite::draw() {
     SDL_UpperBlitScaled(graphic->bitmap, NULL, Flx::Globals::_curGame->window, &dst);
 #else
     SDL_FRect dst = SDL_FRect{
-        //NEED TO CHANGE IT LATER IF RECUSED
         x - (width / 2),
         y - (height / 2), 
         width * scale.x, 

@@ -10,6 +10,7 @@ Flx::Game* Flx::Globals::_curGame = nullptr;
 Flx::Random* Flx::Globals::random = nullptr;
 Flx::SoundManager* Flx::Globals::sound = nullptr;
 Flx::Keyboard* Flx::Globals::keys = nullptr;
+Flx::Mouse* Flx::Globals::mouse = nullptr;
 
 Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState)
     : framerate(framerate)
@@ -34,10 +35,12 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 #endif
     setupGlobals();
+    SDL_ShowCursor(0);
 
     Flx::Globals::width = width;
     Flx::Globals::height = height;
 
+    Flx::Globals::mouse = new Flx::Mouse();
     switchState(initialState);
 }
 
@@ -135,6 +138,8 @@ void Flx::Game::run()
     SDL_RenderClear(renderer);
 
     curState->draw();
+    Flx::Globals::mouse->update();
+    Flx::Globals::mouse->draw();
     SDL_RenderPresent(renderer);
 
 #endif
@@ -148,5 +153,6 @@ void Flx::Game::start()
         if(!paused)
             run();
         SDL_Delay(1000.0f / framerate);
+        
     }
 }

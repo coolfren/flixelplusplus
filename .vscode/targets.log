@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Dec 31 00:11:45 2022
+# Make data base, printed on Sun Jan  1 18:50:52 2023
 
 # Variables
 
@@ -23,7 +23,7 @@ LC_NUMERIC = pt_PT.UTF-8
 # environment
 VSCODE_CWD = /home/g
 # environment
-WINDOWPATH = 3
+WINDOWPATH = 2
 # environment
 LC_ADDRESS = pt_PT.UTF-8
 # environment
@@ -83,7 +83,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 173977
+VSCODE_PID = 12107
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -91,7 +91,7 @@ XDG_SESSION_TYPE = x11
 # environment
 VCPKG_ROOT = /opt/vcpkg
 # environment
-SESSION_MANAGER = local/g-g:@/tmp/.ICE-unix/138978,unix/g-g:/tmp/.ICE-unix/138978
+SESSION_MANAGER = local/g-g:@/tmp/.ICE-unix/1285,unix/g-g:/tmp/.ICE-unix/1285
 # automatic
 *F = $(notdir $*)
 # environment
@@ -159,11 +159,11 @@ TERMINAL = xfce4-terminal
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 138862
+SYSTEMD_EXEC_PID = 1172
 # environment
 EDITOR = nano
 # environment
-DISPLAY = :2
+DISPLAY = :1
 # environment
 GTK_MODULES = canberra-gtk-module
 # environment
@@ -175,7 +175,7 @@ LC_MEASUREMENT = pt_PT.UTF-8
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 173959
+GIO_LAUNCHED_DESKTOP_FILE_PID = 12089
 # environment
 _ = /usr/bin/make
 # environment
@@ -235,13 +235,14 @@ wii:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 17):
+#  recipe to execute (from 'Makefile', line 19):
+	@mkdir -p build/wii
 	@make -f mk/wii.mk
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-12-31 00:07:43.1697419
+#  Last modified 2022-12-31 00:24:54.7539792
 #  File has been updated.
 #  Successfully updated.
 
@@ -249,22 +250,25 @@ Makefile:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 15):
+#  recipe to execute (from 'Makefile', line 16):
+	@mkdir -p build/3ds
 	@make -f mk/3ds.mk
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 19):
+#  recipe to execute (from 'Makefile', line 22):
 	rm -rf build/
 	rm -rf obj/
+	@make -f mk/switch.mk clean
 
 switch:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 13):
+	@mkdir -p build/switch
 	@make -f mk/switch.mk
 
 # Not a target:
@@ -314,7 +318,7 @@ install:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 22):
+#  recipe to execute (from 'Makefile', line 26):
 	cp -r build/*.so /usr/lib/libflixel++.so
 	cp -r include/flixel++ /usr/include/flixel++
 
@@ -322,7 +326,7 @@ example:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 25):
+#  recipe to execute (from 'Makefile', line 29):
 	@make -f examples/Makefile
 	LD_LIBRARY_PATH="./build/" examples/example
 
@@ -346,6 +350,6 @@ example:
 # strcache performance: lookups = 44 / hit rate = 31%
 # hash-table stats:
 # Load=30/8192=0%, Rehash=0, Collisions=0/44=0%
-# Finished Make data base on Sat Dec 31 00:11:45 2022
+# Finished Make data base on Sun Jan  1 18:50:52 2023
 
  
