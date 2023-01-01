@@ -4,6 +4,7 @@
 
 Flx::Sprite::Sprite(float x, float y)
     : Object(x, y), 
+    angle(0),
     alpha(100),
     clipRect(0, 0, 0, 0), 
     hitbox(0, 0, 0, 0), 
@@ -81,6 +82,7 @@ void Flx::Sprite::updateHitbox()
     hitbox.y = y;
     hitbox.width = width;
     hitbox.height = height;
+    origin.set(width/2, height/2);
 }
 
 void Flx::Sprite::update() {
@@ -100,7 +102,7 @@ void Flx::Sprite::draw() {
         (Uint16)height * (Uint16)scale.y
     };
 
-    SDL_SetSurfaceAlphaMod(graphic->bitmap, (alpha % 101) * 255 / 100);
+    SDL_SetAlpha(graphic->bitmap, SDL_SRCALPHA, (alpha % 101) * 255 / 100);
     SDL_UpperBlitScaled(graphic->bitmap, NULL, Flx::Globals::_curGame->window, &dst);
 #else
     SDL_FRect dst = SDL_FRect{
@@ -111,6 +113,7 @@ void Flx::Sprite::draw() {
         height * scale.y
     };
     auto stuff = clipRect.toSDLRect();
+    auto originF = origin.toSDLFPoint();
     if(animation->animated)
     {
         auto anim = animation->getCurAnim();
@@ -121,6 +124,6 @@ void Flx::Sprite::draw() {
     }
 
     SDL_SetTextureAlphaMod(graphic->bitmap, (alpha % 101) * 255 / 100);
-    SDL_RenderCopyF(Flx::Globals::_curGame->renderer, graphic->bitmap, &stuff, &dst);
+    SDL_RenderCopyExF(Flx::Globals::_curGame->renderer, graphic->bitmap, &stuff, &dst, angle, &originF, SDL_FLIP_NONE);
 #endif
 }

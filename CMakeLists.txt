@@ -9,8 +9,6 @@ include_directories("include/")
 include_directories("bundles/tinyxml2/")
 file (GLOB_RECURSE FLIXEL_FILES CONFIGURE_DEPENDS "source/*.cpp" "bundles/tinyxml2/tinyxml2.cpp")
 
-add_definitions(-DUSE_CURL)
-
 if(DEFINED SDL_LEGACY)
     add_definitions(-DSDL_LEGACY)
     find_package(SDL_image REQUIRED)

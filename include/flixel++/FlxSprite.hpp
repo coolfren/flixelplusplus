@@ -12,7 +12,8 @@ namespace Flx
     {
     public:
         int alpha;
-
+        int angle;
+        
         Flx::Graphic* graphic;
         Flx::Rect clipRect;
         Flx::Rect hitbox;

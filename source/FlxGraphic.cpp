@@ -16,6 +16,10 @@ Flx::Graphic::~Graphic(){
     #endif
 };
 
+uint32_t Flx::Graphic::getPixel32(int x, int y){
+    throw("Not implemented");
+}
+
 Flx::Graphic* Flx::Graphic::loadFromPath(const char* path){
     return loadFromSurface(IMG_Load(path));
 }

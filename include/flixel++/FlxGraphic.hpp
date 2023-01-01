@@ -12,6 +12,7 @@ namespace Flx
         ~Graphic();
         int width, height;
         Bitmap* bitmap;
+        uint32_t getPixel32(int x, int y);
         static Flx::Graphic* loadFromPath(const char* path);
         static Flx::Graphic* loadFromSurface(SDL_Surface* surface);
         friend class Sprite;
