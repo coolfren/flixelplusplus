@@ -3,8 +3,6 @@
 
 #include "flixel++/Common.hpp"
 
-#include <curl/curl.h>
-
 namespace Flx
 {
     class Http

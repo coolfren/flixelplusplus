@@ -1,8 +1,10 @@
 #include "flixel++/FlxSprite.hpp"
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxColor.hpp"
+
 Flx::Sprite::Sprite(float x, float y)
     : Object(x, y), 
+    alpha(100),
     clipRect(0, 0, 0, 0), 
     hitbox(0, 0, 0, 0), 
     animation(new Flx::AnimationController),
@@ -97,6 +99,8 @@ void Flx::Sprite::draw() {
         (Uint16)width * (Uint16)scale.x,
         (Uint16)height * (Uint16)scale.y
     };
+
+    SDL_SetSurfaceAlphaMod(graphic->bitmap, (alpha % 101) * 255 / 100);
     SDL_UpperBlitScaled(graphic->bitmap, NULL, Flx::Globals::_curGame->window, &dst);
 #else
     SDL_FRect dst = SDL_FRect{
@@ -115,6 +119,8 @@ void Flx::Sprite::draw() {
         stuff.w = anim->width;
         stuff.h = anim->height;
     }
+
+    SDL_SetTextureAlphaMod(graphic->bitmap, (alpha % 101) * 255 / 100);
     SDL_RenderCopyF(Flx::Globals::_curGame->renderer, graphic->bitmap, &stuff, &dst);
 #endif
 }

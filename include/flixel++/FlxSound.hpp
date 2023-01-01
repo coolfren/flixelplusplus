@@ -10,7 +10,7 @@ namespace Flx
         Uint32 startTime;
 
         OggVorbis_File vorbis;
-        vorbis_info*info;
+        vorbis_info* info;
         #ifdef OPENAL
         ALuint buffer;
         ALuint source;

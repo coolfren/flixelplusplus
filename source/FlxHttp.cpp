@@ -1,5 +1,7 @@
+#ifdef USE_CURL
 #include "flixel++/FlxHttp.hpp"
 #include "flixel++/FlxMacros.hpp"
+
 
 Flx::Http::Http(std::string url){
     received = true;
@@ -38,3 +40,5 @@ std::string Flx::Http::requestURLtext(std::string url)
 
     return result;
 }
+
+#endif

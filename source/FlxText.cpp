@@ -11,8 +11,7 @@ Flx::Text::Text(float x, float y, const std::string& text)
     this->color = {255,255,255,255};
 
     this->drawText();
-    /*auto ttf = TTF_RenderText_Solid(Flx::Assets::defaultFont, text.c_str(), {255,255,255,255});
-    graphic = Flx::Graphic::loadFromSurface(ttf);*/
+
     updatePosition();
 }
 
@@ -22,8 +21,8 @@ Flx::Text::~Text()
 
 void Flx::Text::setText(std::string newText){
     this->text = newText;
-    trace(this->text);
     drawText();
+    updatePosition();
 }
 
 void Flx::Text::drawText()

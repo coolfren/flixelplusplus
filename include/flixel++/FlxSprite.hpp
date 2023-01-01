@@ -11,14 +11,19 @@ namespace Flx
     class Sprite : public Flx::Object
     {
     public:
+        int alpha;
+
         Flx::Graphic* graphic;
         Flx::Rect clipRect;
         Flx::Rect hitbox;
         Flx::AnimationController* animation;
+        
         Sprite(float x, float y);
         ~Sprite();
+
         Flx::Sprite* loadGraphic(const char* path);
         Flx::Sprite* makeGraphic(float width, float height, int color);
+
         void setGraphicSize(float width, float height);
         void screenCenter();
         void updatePosition();
