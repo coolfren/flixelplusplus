@@ -1,6 +1,7 @@
 #pragma once
 #include "flixel++/FlxState.hpp"
 #include "flixel++/FlxSprite.hpp"
+#include "flixel++/FlxAssets.hpp"
 #include "flixel++/FlxSound.hpp"
 #include "flixel++/FlxNet.hpp"
 #include "flixel++/FlxG.hpp"
@@ -10,50 +11,63 @@
 
 class PlayState : public Flx::State
 {
-    public:
+public:
     PlayState(){};
     ~PlayState(){};
-    Flx::Sprite* sprite;
-    Flx::Text* text;
-    Flx::Http* http;
+    Flx::Sprite *sprite;
+    Flx::Text *text;
+    Flx::Http *http;
+
     float time = 0.0f;
     float offsetX = 0.0f, offsetY = 0.0f;
-    void create(){
+    void create()
+    {
         http = new Flx::Http("https://pastebin.com/raw/j9cs4GWP");
         trace(http->storage);
 
-        sprite = new Flx::Sprite(0,0);
-        if(http->storage == "saul goodman"){
+        sprite = new Flx::Sprite(0, 0);
+        if (http->storage == "saul goodman")
+        {
             sprite->loadGraphic("examples/assets/Saul.png");
-            sprite->setGraphicSize(800,800);
+            sprite->setGraphicSize(800, 800);
         }
-        else{
-            sprite->loadGraphic("assets/logo.png");
-            sprite->setGraphicSize(240,240);
+        else
+        {
+            sprite->loadGraphic("assets/logo/logo.png");
+            sprite->setGraphicSize(240, 240);
         }
 
         sprite->screenCenter();
         add(sprite);
 
-        text = new Flx::Text(0,100, "i am a piece of text!");
-        if(http->storage == "saul goodman"){
+        text = new Flx::Text(0, 100, "i am a piece of text!");
+        if (http->storage == "saul goodman")
+        {
             text->screenCenter();
             text->setText(http->storage + " V1.0");
         }
-        else{
+        else
+        {
             text->x = (Flx::Globals::width / 2);
             text->setText("i am a piece of new text!");
         }
         add(text);
 
+        if (http->storage == "saul goodman")
+        {
+            Flx::Globals::mouse->loadGraphic("examples/assets/troll.png");
+        }
+
     };
-    virtual void update(){
+    virtual void update()
+    {
         sprite->x += cos(time) + offsetX * 2;
         sprite->y += sin(time) + offsetY * 2;
         text->x -= cos(time) - offsetX * 2;
         text->y -= sin(time) - offsetY * 2;
 
-          time += 0.05f;
+        time += 0.05f;
+
         Flx::State::update();
     }
 };

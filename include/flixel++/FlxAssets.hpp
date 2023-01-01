@@ -7,6 +7,7 @@ namespace Flx
     namespace Assets
     {
         extern TTF_Font* defaultFont;
+        extern Bitmap* defaultCursor;
 
         void initialize();
     }

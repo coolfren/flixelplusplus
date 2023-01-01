@@ -21,6 +21,8 @@ namespace Flx {
         #endif
 
 		float x, y;
+		int _x,_y;
+		int w,h;
 		float angle;
 		float scale;
 	};
