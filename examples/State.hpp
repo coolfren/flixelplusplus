@@ -24,7 +24,7 @@ class PlayState : public Flx::State
 
         sprite = new Flx::Sprite(0,0);
         if(http->storage == "saul goodman"){
-            sprite->loadGraphic("assets/Saul.png");
+            sprite->loadGraphic("examples/assets/Saul.png");
             sprite->setGraphicSize(800,800);
         }
         else{

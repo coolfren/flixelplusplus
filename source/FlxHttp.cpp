@@ -1,9 +1,10 @@
+#include "flixel++/Common.hpp"
 #ifdef USE_CURL
 #include "flixel++/FlxHttp.hpp"
 #include "flixel++/FlxMacros.hpp"
+#include "curl/curl.h"
 
-
-Flx::Http::Http(std::string url){
+Flx::Http::Http(const std::string& url){
     received = true;
     storage = requestURLtext(url);
 }
@@ -13,7 +14,7 @@ Flx::Http::~Http()
 
 }
 
-std::string Flx::Http::requestURLtext(std::string url)
+std::string Flx::Http::requestURLtext(const std::string& url)
 {   
     std::string result;
     CURLcode exit;
@@ -39,6 +40,12 @@ std::string Flx::Http::requestURLtext(std::string url)
 
 
     return result;
+}
+
+size_t Flx::Http::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+    ((std::string *)userp)->append((char *)contents, size * nmemb);
+    return size * nmemb;
 }
 
 #endif

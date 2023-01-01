@@ -17,8 +17,11 @@
 #include <AL/alc.h>
 #include <vorbis/vorbisfile.h>
 #include "tinyxml2.h"
+
 #ifdef __SWITCH__
 #include <switch.h> // Switch uses the same libraries as PC, no need for a new file
+#else
+#define USE_CURL
 #endif
 
 #endif
