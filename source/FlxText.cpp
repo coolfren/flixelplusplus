@@ -7,6 +7,10 @@ Flx::Text::Text(float x, float y, const std::string& text)
     : Flx::Sprite::Sprite(x,y)
 {
     this->text = text;
+    if(this->text == ""){
+        this->text = " ";
+    }
+
     this->font = Flx::Assets::defaultFont;
     this->color = {255,255,255,255};
 

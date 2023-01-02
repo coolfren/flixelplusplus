@@ -15,6 +15,7 @@ Flx::Sprite::Sprite(float x, float y)
     origin(x, y),
     graphic(nullptr)
 {
+    visible = true;
 }
 
 Flx::Sprite::~Sprite()
@@ -32,6 +33,13 @@ Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
         return nullptr;
     }
     graphic = Flx::Graphic::loadFromPath(path);
+    updatePosition();
+    return this;
+}
+
+//Ability to load a Raw Header file
+Flx::Sprite* Flx::Sprite::loadRAWGraphic(SDL_RWops* path) {
+    graphic = Flx::Graphic::loadFromRAWPath(path);
     updatePosition();
     return this;
 }
@@ -105,14 +113,15 @@ void Flx::Sprite::update() {
 }
 
 void Flx::Sprite::draw() {
-    if(!graphic)
-        return;
-    #ifdef SDL_LEGACY
-    SDL_Rect dst = SDL_Rect{
-        (Sint16)x - (Sint16)(width / 2),
-        (Sint16)y - (Sint16)(height / 2),
-        (Uint16)width * (Uint16)scale.x,
-        (Uint16)height * (Uint16)scale.y
+    if(visible)
+      if(!graphic)
+          return;
+      #ifdef SDL_LEGACY
+      SDL_Rect dst = SDL_Rect{
+          (Sint16)x - (Sint16)(width / 2),
+          (Sint16)y - (Sint16)(height / 2),
+          (Uint16)width * (Uint16)scale.x,
+          (Uint16)height * (Uint16)scale.y
     };
 
     //SDL_SetAlpha(graphic->bitmap, SDL_SRCALPHA, 255 - (alpha % 101) * 255 / 100);
@@ -128,14 +137,36 @@ void Flx::Sprite::draw() {
     auto originF = origin.toSDLFPoint();
     if(animation->animated)
     {
-        auto anim = animation->getCurAnim();
-        stuff.x = anim->x;
-        stuff.y = anim->y;
-        stuff.w = anim->width;
-        stuff.h = anim->height;
-    }
+        #ifdef SDL_LEGACY
+            SDL_Rect dst = SDL_Rect{
+                (Sint16)x - (Sint16)(width / 2),
+                (Sint16)y - (Sint16)(height / 2),
+                (Uint16)width * (Uint16)scale.x,
+                (Uint16)height * (Uint16)scale.y
+            };
 
-    SDL_SetTextureAlphaMod(graphic->bitmap, (alpha % 101) * 255 / 100);
-    SDL_RenderCopyExF(Flx::Globals::_curGame->renderer, graphic->bitmap, &stuff, &dst, angle, &originF, SDL_FLIP_NONE);
-#endif
+            SDL_SetAlpha(graphic->bitmap, SDL_SRCALPHA, (alpha % 101) * 255 / 100);
+            SDL_UpperBlitScaled(graphic->bitmap, NULL, Flx::Globals::_curGame->window, &dst);
+        #else
+            SDL_FRect dst = SDL_FRect{
+                x - (width / 2),
+                y - (height / 2), 
+                width * scale.x, 
+                height * scale.y
+            };
+            auto stuff = clipRect.toSDLRect();
+            auto originF = origin.toSDLFPoint();
+            if(animation->animated)
+            {
+                auto anim = animation->getCurAnim();
+                stuff.x = anim->x;
+                stuff.y = anim->y;
+                stuff.w = anim->width;
+                stuff.h = anim->height;
+            }
+
+            SDL_SetTextureAlphaMod(graphic->bitmap, (alpha % 101) * 255 / 100);
+            SDL_RenderCopyExF(Flx::Globals::_curGame->renderer, graphic->bitmap, &stuff, &dst, angle, &originF, SDL_FLIP_NONE);
+        #endif
+    }
 }

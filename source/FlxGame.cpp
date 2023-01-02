@@ -2,6 +2,7 @@
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxAssets.hpp"
 #include "flixel++/FlxMacros.hpp"
+#include "flixel++/FlxSplash.hpp"
 
 float Flx::Globals::width = 0;
 float Flx::Globals::height = 0;
@@ -12,6 +13,7 @@ Flx::SoundManager* Flx::Globals::sound = nullptr;
 Flx::Keyboard* Flx::Globals::keys = nullptr;
 Flx::Mouse* Flx::Globals::mouse = nullptr;
 
+Flx::State* splashState = new Flx::Splash();
 
 Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState)
     : framerate(framerate)
@@ -35,6 +37,7 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
 #endif
     setupGlobals();
     SDL_ShowCursor(0);
@@ -42,7 +45,9 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     Flx::Globals::width = width;
     Flx::Globals::height = height;
 
-    switchState(initialState);
+    Flx::Globals::mouse = new Flx::Mouse();
+    switchState(splashState);
+
 }
 
 Flx::Game::~Game()

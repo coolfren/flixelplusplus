@@ -17,6 +17,7 @@ public:
     Flx::Sprite *sprite;
     Flx::Text *text;
     Flx::Http *http;
+    Flx::Sound* flixelSound;
 
     float time = 0.0f;
     float offsetX = 0.0f, offsetY = 0.0f;
@@ -33,7 +34,7 @@ public:
         }
         else
         {
-            sprite->loadGraphic("assets/logo/logo.png");
+            sprite->loadGraphic("assets/images/logo/logo.png");
             sprite->setGraphicSize(240, 240);
         }
 
@@ -57,6 +58,10 @@ public:
         {
             Flx::Globals::mouse->loadGraphic("examples/assets/troll.png");
         }
+
+        flixelSound = new Flx::Sound();
+        flixelSound->load("assets/sounds/flixel.ogg");
+        flixelSound->play();
 
     };
     virtual void update()

@@ -30,6 +30,11 @@ Flx::Graphic* Flx::Graphic::loadFromPath(const char* path){
     return loadFromSurface(img);
 }
 
+Flx::Graphic* Flx::Graphic::loadFromRAWPath(SDL_RWops* raw){
+    return loadFromSurface(IMG_Load_RW(raw,1));
+}
+
+
 Flx::Graphic* Flx::Graphic::loadFromSurface(SDL_Surface* surface){
     SDL_Rect tempQ{0,0,0,0};
     tempQ.w = surface->w;
