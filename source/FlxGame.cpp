@@ -12,6 +12,7 @@ Flx::SoundManager* Flx::Globals::sound = nullptr;
 Flx::Keyboard* Flx::Globals::keys = nullptr;
 Flx::Mouse* Flx::Globals::mouse = nullptr;
 
+
 Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState)
     : framerate(framerate)
 {
@@ -24,6 +25,7 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     romfsInit();
 #endif
     SDL_Init(SDL_INIT_EVERYTHING);
+    IMG_Init(IMG_INIT_PNG);
     TTF_Init();
 #ifdef SDL_LEGACY
     window = SDL_SetVideoMode(width, height, 0, 0);
@@ -40,7 +42,6 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     Flx::Globals::width = width;
     Flx::Globals::height = height;
 
-    Flx::Globals::mouse = new Flx::Mouse();
     switchState(initialState);
 }
 
@@ -69,23 +70,27 @@ void Flx::Game::setupGlobals()
     Flx::Globals::keys = new Flx::Keyboard();
 
     Flx::Assets::initialize();
+
+    Flx::Globals::mouse = new Flx::Mouse();
 }
 
 void Flx::Game::destroyGlobals()
 {
     delete Flx::Globals::random;
     delete Flx::Globals::sound;
+    delete Flx::Globals::keys;
+    delete Flx::Globals::mouse;
 }
 
-void Flx::Game::switchState(Flx::State* state)
+bool Flx::Game::switchState(Flx::State* state)
 {
-
     if (curState != nullptr)
     {
         delete curState;
     }
     curState = state;
     curState->create();
+    return true;
 }
 
 void Flx::Game::runEvents()
@@ -131,6 +136,8 @@ void Flx::Game::run()
     curState->update();
     SDL_FillRect(window, NULL, 0x000000);
     curState->draw();
+    Flx::Globals::mouse->update();
+    Flx::Globals::mouse->draw();
     SDL_Flip(window);
 #else
     curState->update();

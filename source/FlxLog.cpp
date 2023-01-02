@@ -1,21 +1,27 @@
 #include "flixel++/FlxLog.hpp"
-#include <iostream>
+
+using namespace std::literals::string_literals;
+
+std::vector<std::string> Flx::Log::logs = std::vector<std::string>();
 
 template<typename T>
 bool Flx::Log::assert(T* type, const char* name)
 {
-    bool result = type == nullptr;
-    if(result)
-        warn("type is null!");
-    return !result;
+    if(!type)
+        warn("Type is null!");
+    return type == nullptr;
 }
 
 void Flx::Log::warn(const char* msg)
 {
-
+    logs.push_back("Warning: "s + msg);
 }
 
 void Flx::Log::error(const char* msg)
 {
+    logs.push_back("Error: "s + msg);
+}
 
+const char* Flx::Log::recent(){
+    return logs[logs.size()].c_str();
 }

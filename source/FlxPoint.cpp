@@ -25,6 +25,8 @@ void Flx::Point::subtract(float x, float y) {
 	this->y -= y;
 }
 
+#ifndef SDL_LEGACY
+
 const SDL_Point Flx::Point::toSDLPoint()
 {
     return SDL_Point{
@@ -33,7 +35,6 @@ const SDL_Point Flx::Point::toSDLPoint()
     };
 }
 
-#ifndef SDL_LEGACY
 const SDL_FPoint Flx::Point::toSDLFPoint()
 {
     return SDL_FPoint{

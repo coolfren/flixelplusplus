@@ -11,8 +11,11 @@
             "program": "${workspaceFolder}/examples/example",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
+            "cwd": "${workspaceFolder}",
+            "environment": [{
+                "name": "LD_LIBRARY_PATH",
+                "value": "${workspaceFolder}/build"
+            }],
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [
