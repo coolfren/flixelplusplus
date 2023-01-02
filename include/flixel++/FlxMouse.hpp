@@ -1,7 +1,7 @@
 #ifndef FLXMOUSE_HPP
 #define FLXMOUSE_HPP
 
-#include "Common.hpp"
+#include "flixel++/Common.hpp"
 #include "flixel++/FlxBasic.hpp"
 #include "flixel++/FlxAssets.hpp"
 #include "flixel++/FlxRect.hpp"
@@ -11,12 +11,8 @@ namespace Flx {
     class Mouse
     {
         public:
-            Mouse();
-            ~Mouse() {};
-
-        #if SDL_LEGACY
-            SDL_Cursor* cursor;
-        #endif
+        Mouse();
+        ~Mouse();
 
         void draw();
         void update();

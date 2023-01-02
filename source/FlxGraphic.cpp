@@ -1,6 +1,7 @@
 #include "flixel++/FlxGraphic.hpp"
 #include "flixel++/FlxGame.hpp"
 #include "flixel++/FlxG.hpp"
+#include "flixel++/FlxLog.hpp"
 
 Flx::Graphic::Graphic(int width, int height, Bitmap* tex)
     : width(width), height(height), bitmap(tex)
@@ -17,11 +18,16 @@ Flx::Graphic::~Graphic(){
 };
 
 uint32_t Flx::Graphic::getPixel32(int x, int y){
-    throw("Not implemented");
+    return 0;
 }
 
 Flx::Graphic* Flx::Graphic::loadFromPath(const char* path){
-    return loadFromSurface(IMG_Load(path));
+    SDL_Surface* img = IMG_Load(path);
+    if(!img){
+        Flx::Log::warn(SDL_GetError());
+        return nullptr;
+    }
+    return loadFromSurface(img);
 }
 
 Flx::Graphic* Flx::Graphic::loadFromRAWPath(SDL_RWops* raw){

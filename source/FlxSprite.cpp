@@ -1,6 +1,7 @@
 #include "flixel++/FlxSprite.hpp"
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxColor.hpp"
+#include <fstream>
 
 Flx::Sprite::Sprite(float x, float y)
     : Object(x, y), 
@@ -11,7 +12,8 @@ Flx::Sprite::Sprite(float x, float y)
     animation(new Flx::AnimationController),
     offset(0, 0),
     scale(1, 1),
-    origin(x, y)
+    origin(x, y),
+    graphic(nullptr)
 {
     visible = true;
 }
@@ -23,6 +25,13 @@ Flx::Sprite::~Sprite()
 }
 
 Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
+    std::ifstream file;
+    file.open(path);
+    if(!file){
+        std::cout << "file does not exist!\n" << path << '\n';
+        file.close();
+        return nullptr;
+    }
     graphic = Flx::Graphic::loadFromPath(path);
     updatePosition();
     return this;
@@ -78,6 +87,8 @@ void Flx::Sprite::screenCenter()
 
 void Flx::Sprite::updatePosition()
 {
+    if(!graphic)
+        return;
     this->width = graphic->width;
     this->height = graphic->height;
     this->clipRect.width = graphic->width;
@@ -103,6 +114,28 @@ void Flx::Sprite::update() {
 
 void Flx::Sprite::draw() {
     if(visible)
+      if(!graphic)
+          return;
+      #ifdef SDL_LEGACY
+      SDL_Rect dst = SDL_Rect{
+          (Sint16)x - (Sint16)(width / 2),
+          (Sint16)y - (Sint16)(height / 2),
+          (Uint16)width * (Uint16)scale.x,
+          (Uint16)height * (Uint16)scale.y
+    };
+
+    //SDL_SetAlpha(graphic->bitmap, SDL_SRCALPHA, 255 - (alpha % 101) * 255 / 100);
+    SDL_UpperBlitScaled(graphic->bitmap, NULL, Flx::Globals::_curGame->window, &dst);
+#else
+    SDL_FRect dst = SDL_FRect{
+        x - (width / 2),
+        y - (height / 2), 
+        width * scale.x, 
+        height * scale.y
+    };
+    auto stuff = clipRect.toSDLRect();
+    auto originF = origin.toSDLFPoint();
+    if(animation->animated)
     {
         #ifdef SDL_LEGACY
             SDL_Rect dst = SDL_Rect{
