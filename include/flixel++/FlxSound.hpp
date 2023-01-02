@@ -6,7 +6,7 @@ namespace Flx
 {
     class Sound : public Basic
     {
-        private:
+        public:
         Uint32 startTime;
 
         OggVorbis_File vorbis;

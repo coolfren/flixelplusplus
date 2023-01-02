@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jan  1 18:50:52 2023
+# Make data base, printed on Mon Jan  2 19:39:30 2023
 
 # Variables
 
@@ -83,7 +83,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 12107
+VSCODE_PID = 5946
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -91,7 +91,7 @@ XDG_SESSION_TYPE = x11
 # environment
 VCPKG_ROOT = /opt/vcpkg
 # environment
-SESSION_MANAGER = local/g-g:@/tmp/.ICE-unix/1285,unix/g-g:/tmp/.ICE-unix/1285
+SESSION_MANAGER = local/g-g:@/tmp/.ICE-unix/1284,unix/g-g:/tmp/.ICE-unix/1284
 # automatic
 *F = $(notdir $*)
 # environment
@@ -159,7 +159,7 @@ TERMINAL = xfce4-terminal
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1172
+SYSTEMD_EXEC_PID = 1166
 # environment
 EDITOR = nano
 # environment
@@ -175,7 +175,7 @@ LC_MEASUREMENT = pt_PT.UTF-8
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 12089
+GIO_LAUNCHED_DESKTOP_FILE_PID = 5929
 # environment
 _ = /usr/bin/make
 # environment
@@ -221,9 +221,9 @@ LC_IDENTIFICATION = pt_PT.UTF-8
 
 # Directories
 
-# . (device 66309, inode 12194): 18 files, no impossibilities.
+# . (device 66309, inode 12194): 19 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 19 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -292,11 +292,11 @@ all:
 # < := 
 # automatic
 # + := 
- 
 # automatic
 # % := 
 # automatic
 # ^ := 
+ 
 # automatic
 # ? := 
 # automatic
@@ -344,12 +344,12 @@ example:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 30 / storage = 239 B / avg = 7 B
-# current buf: size = 8162 B / used = 239 B / count = 30 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 31 / storage = 254 B / avg = 8 B
+# current buf: size = 8162 B / used = 254 B / count = 31 / avg = 8 B
 
-# strcache performance: lookups = 44 / hit rate = 31%
+# strcache performance: lookups = 45 / hit rate = 31%
 # hash-table stats:
-# Load=30/8192=0%, Rehash=0, Collisions=0/44=0%
-# Finished Make data base on Sun Jan  1 18:50:52 2023
+# Load=31/8192=0%, Rehash=0, Collisions=0/45=0%
+# Finished Make data base on Mon Jan  2 19:39:30 2023
 
  

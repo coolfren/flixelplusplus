@@ -13,7 +13,8 @@ namespace Flx
     public:
         int alpha;
         int angle;
-        
+        bool visible;
+
         Flx::Graphic* graphic;
         Flx::Rect clipRect;
         Flx::Rect hitbox;
@@ -23,6 +24,7 @@ namespace Flx
         ~Sprite();
 
         Flx::Sprite* loadGraphic(const char* path);
+        Flx::Sprite* loadRAWGraphic(SDL_RWops* path);
         Flx::Sprite* makeGraphic(float width, float height, int color);
 
         void setGraphicSize(float width, float height);
