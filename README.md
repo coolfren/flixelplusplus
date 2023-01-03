@@ -1,5 +1,5 @@
 <p align="center">
-<img src="assets/logo/logo.png", width="25%", height="25%">
+<img src="assets/images/logo/logo.png", width="25%", height="25%">
 </p>
 <p align="center">
 <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/coolfren/flixelplusplus?style=plastic">
