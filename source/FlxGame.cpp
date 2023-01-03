@@ -13,9 +13,11 @@ Flx::SoundManager* Flx::Globals::sound = nullptr;
 Flx::Keyboard* Flx::Globals::keys = nullptr;
 Flx::Mouse* Flx::Globals::mouse = nullptr;
 
-Flx::State* splashState = new Flx::Splash();
+bool Flx::Globals::switchState(Flx::State* state){
+    return _curGame->switchState(state);
+}
 
-Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState)
+Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState, bool skipSplash)
     : framerate(framerate)
 {
 #if defined(__SWITCH__)
@@ -46,7 +48,10 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     Flx::Globals::height = height;
 
     Flx::Globals::mouse = new Flx::Mouse();
-    switchState(splashState);
+    if(skipSplash)
+        switchState(initialState);
+    else
+        switchState(new Flx::Splash(initialState));
 
 }
 

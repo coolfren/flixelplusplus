@@ -31,7 +31,7 @@ Flx::Graphic* Flx::Graphic::loadFromPath(const char* path){
 }
 
 Flx::Graphic* Flx::Graphic::loadFromRAWPath(SDL_RWops* raw){
-    return loadFromSurface(IMG_Load_RW(raw,1));
+    return loadFromSurface(IMG_Load_RW(raw,0));
 }
 
 

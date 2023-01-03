@@ -18,7 +18,9 @@ namespace Flx
 
         extern Flx::Keyboard* keys;
 
-        extern Flx::Mouse* mouse; 
+        extern Flx::Mouse* mouse;
+
+        extern bool switchState(Flx::State* state);
     }
 }
 

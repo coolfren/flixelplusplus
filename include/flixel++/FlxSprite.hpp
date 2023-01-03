@@ -24,7 +24,7 @@ namespace Flx
         ~Sprite();
 
         Flx::Sprite* loadGraphic(const char* path);
-        Flx::Sprite* loadRAWGraphic(SDL_RWops* path);
+        Flx::Sprite* loadRAWGraphic(const void* data, const size_t size);
         Flx::Sprite* makeGraphic(float width, float height, int color);
 
         void setGraphicSize(float width, float height);

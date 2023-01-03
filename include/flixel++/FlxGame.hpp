@@ -19,7 +19,7 @@ namespace Flx
 #endif
         float framerate;
         Flx::State* curState = nullptr;
-        Game(const char* title, int width, int height, int framerate, Flx::State* initialState);
+        Game(const char* title, int width, int height, int framerate, Flx::State* initialState, bool skipSplash);
         ~Game();
         void setupGlobals();
         void destroyGlobals();

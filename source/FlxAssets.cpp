@@ -15,10 +15,8 @@ void Flx::Assets::initialize(){
     auto temp = IMG_Load("assets/images/ui/cursor.png");
 
     #ifdef SDL_LEGACY
-    defaultCursor = IMG_Load("assets/ui/cursor.png");
+    defaultCursor = temp;
     #else
-    auto temp = IMG_Load("assets/ui/cursor.png");
-
     defaultCursor = SDL_CreateTextureFromSurface(Flx::Globals::_curGame->renderer, temp);
     SDL_FreeSurface(temp);
     #endif

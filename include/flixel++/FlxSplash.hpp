@@ -10,8 +10,8 @@ namespace Flx{
     class Splash : public Flx::State
     {
         public:
-        Splash() {};
-        ~Splash() {};
+        Splash(Flx::State* state);
+        Flx::State* nextState;
 
         Flx::Sprite* green;
         Flx::Sprite* blue;
