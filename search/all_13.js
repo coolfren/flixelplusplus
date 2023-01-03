@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['scale_127',['scale',['../classFlx_1_1Point.html#ab1e3505c1dcb221b1c6928b18c4fe95a',1,'Flx::Point::scale()'],['../classFlx_1_1Sprite.html#ab74f394bf92d45672145ad372cf75a3c',1,'Flx::Sprite::scale()']]],
+  ['screencenter_128',['screenCenter',['../classFlx_1_1Sprite.html#a13cbbb5592496c6d04f4618a74f286d2',1,'Flx::Sprite']]],
+  ['sdl_5fbackports_2ehpp_129',['SDL_Backports.hpp',['../SDL__Backports_8hpp.html',1,'']]],
+  ['sdl_5flegacy_130',['SDL_LEGACY',['../wii_8h.html#a8b8e789d4ff2face341d5154f57f31af',1,'SDL_LEGACY():&#160;wii.h'],['../3ds_8h.html#a8b8e789d4ff2face341d5154f57f31af',1,'SDL_LEGACY():&#160;3ds.h']]],
+  ['sdl_5fmain_5fhandled_131',['SDL_MAIN_HANDLED',['../Common_8hpp.html#a51f528deaaeb973f417b46a2ec36f850',1,'Common.hpp']]],
+  ['set_132',['set',['../classFlx_1_1Point.html#aa639f92b65d5dc9baae9a5a83a05677c',1,'Flx::Point']]],
+  ['setgraphicsize_133',['setGraphicSize',['../classFlx_1_1Sprite.html#ac26fa4fa860a8d9ac0414ab253f45b41',1,'Flx::Sprite']]],
+  ['settext_134',['setText',['../classFlx_1_1Text.html#af88e2afc4a2e2a2be1758d5f6788026d',1,'Flx::Text']]],
+  ['setupglobals_135',['setupGlobals',['../classFlx_1_1Game.html#ab4f978d8286415f4599d05039ab8f350',1,'Flx::Game']]],
+  ['size_136',['size',['../classFlx_1_1Animation.html#ac27adc7ca65d1757ab848f68439d7d37',1,'Flx::Animation']]],
+  ['sound_137',['Sound',['../classFlx_1_1Sound.html',1,'Flx']]],
+  ['sound_138',['sound',['../namespaceFlx_1_1Globals.html#a4f760d3b8941878bb87e77c893536de6',1,'Flx::Globals']]],
+  ['sound_139',['Sound',['../classFlx_1_1Sound.html#a36904420879634a5ff7b14016399155c',1,'Flx::Sound']]],
+  ['soundmanager_140',['SoundManager',['../classFlx_1_1SoundManager.html',1,'Flx::SoundManager'],['../classFlx_1_1SoundManager.html#a951fad695b68ad7a7c8202189c71ea30',1,'Flx::SoundManager::SoundManager()']]],
+  ['splash_141',['Splash',['../classFlx_1_1Splash.html',1,'Flx::Splash'],['../classFlx_1_1Splash.html#a873afdb30353c61db241160fb023fc93',1,'Flx::Splash::Splash()']]],
+  ['sprite_142',['Sprite',['../classFlx_1_1Sprite.html',1,'Flx::Sprite'],['../classFlx_1_1Graphic.html#a3292175d54d93d126ba2829249316344',1,'Flx::Graphic::Sprite()'],['../classFlx_1_1Sprite.html#aecf9c25d8f8060c0301ea4e8e2e7391c',1,'Flx::Sprite::Sprite()']]],
+  ['start_143',['start',['../classFlx_1_1Game.html#ac8f9f707319415bc491479a33872a8d6',1,'Flx::Game']]],
+  ['starttime_144',['startTime',['../classFlx_1_1Sound.html#a3ca5fd7365bb2719117cd6cba06bb4ce',1,'Flx::Sound']]],
+  ['state_145',['State',['../classFlx_1_1State.html',1,'Flx::State'],['../classFlx_1_1State.html#ac8168f536d500dcfc4266b2a1021fcdf',1,'Flx::State::State()']]],
+  ['substate_146',['SubState',['../classFlx_1_1SubState.html',1,'Flx::SubState'],['../classFlx_1_1SubState.html#a589afd000a1f2f06b2f94fea4c8414d0',1,'Flx::SubState::SubState()']]],
+  ['subtract_147',['subtract',['../classFlx_1_1Point.html#a681253ad837a15a1cec9e9f7026e2daf',1,'Flx::Point']]],
+  ['switchstate_148',['switchState',['../classFlx_1_1Game.html#aa7992dba07b9b2bf345704e9ddc4ceda',1,'Flx::Game::switchState()'],['../namespaceFlx_1_1Globals.html#ace4ffb5193bea789f0337bbc6d4968d8',1,'Flx::Globals::switchState()']]]
+];

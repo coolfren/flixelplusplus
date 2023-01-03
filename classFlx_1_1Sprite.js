@@ -1,0 +1,25 @@
+var classFlx_1_1Sprite =
+[
+    [ "Sprite", "classFlx_1_1Sprite.html#aecf9c25d8f8060c0301ea4e8e2e7391c", null ],
+    [ "~Sprite", "classFlx_1_1Sprite.html#a9363c5a39b19d32dd66700d756460cbe", null ],
+    [ "collides", "classFlx_1_1Sprite.html#a5115a331fcbb3abeee8e312d4c0eae6d", null ],
+    [ "draw", "classFlx_1_1Sprite.html#a65f5d304adb29bd5fb6ef1af7f12243d", null ],
+    [ "loadGraphic", "classFlx_1_1Sprite.html#ac6dc0c54b76506fde5847cbdd506cb0c", null ],
+    [ "loadRAWGraphic", "classFlx_1_1Sprite.html#af96d0676536b03a59cba754e5e3b1a68", null ],
+    [ "makeGraphic", "classFlx_1_1Sprite.html#a237d3672c8eba1a048f9cbca5c8fcb41", null ],
+    [ "screenCenter", "classFlx_1_1Sprite.html#a13cbbb5592496c6d04f4618a74f286d2", null ],
+    [ "setGraphicSize", "classFlx_1_1Sprite.html#ac26fa4fa860a8d9ac0414ab253f45b41", null ],
+    [ "update", "classFlx_1_1Sprite.html#a0dab8ab087684d793e88225753dee1e5", null ],
+    [ "updateHitbox", "classFlx_1_1Sprite.html#a552a6e6ff923cf7e6775c8e8a28ae22d", null ],
+    [ "updatePosition", "classFlx_1_1Sprite.html#a4ec35df0c9104c3d9ab3f07f3b470e50", null ],
+    [ "alpha", "classFlx_1_1Sprite.html#a970a9d671ddb64b4a0f2db6cb4d282f0", null ],
+    [ "angle", "classFlx_1_1Sprite.html#ac3f4cba9ac04ee442c74953b5a41cf58", null ],
+    [ "animation", "classFlx_1_1Sprite.html#a3760adeb9c5d21ed113bc16f60cca781", null ],
+    [ "clipRect", "classFlx_1_1Sprite.html#aa41f15be25dbca7e2cfc238e42801a60", null ],
+    [ "graphic", "classFlx_1_1Sprite.html#a5306a98af4469a8dec3b4c6ff50c7e18", null ],
+    [ "hitbox", "classFlx_1_1Sprite.html#abfdae3a3f93a4978f4163b1b1762e430", null ],
+    [ "offset", "classFlx_1_1Sprite.html#ad4edea1f4901d22159ea3a4066039d32", null ],
+    [ "origin", "classFlx_1_1Sprite.html#aae5c4e0549de5bbefba549ba462dae37", null ],
+    [ "scale", "classFlx_1_1Sprite.html#ab74f394bf92d45672145ad372cf75a3c", null ],
+    [ "visible", "classFlx_1_1Sprite.html#a4ffc6c1fefa9a0851850f9423f17260c", null ]
+];
