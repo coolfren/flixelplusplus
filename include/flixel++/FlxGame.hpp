@@ -23,7 +23,7 @@ namespace Flx
         ~Game();
         void setupGlobals();
         void destroyGlobals();
-        bool switchState(Flx::State* state);
+        void switchState(Flx::State* state);
         void runEvents();
         void run();
         void start();

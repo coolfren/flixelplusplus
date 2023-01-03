@@ -102,7 +102,7 @@ void Flx::Splash::update()
 
     elapsedTime += 1;
     if(cpp->alpha < 100 && elapsedTime < 200 )
-        cpp->alpha += 2.5;
+        cpp->alpha += 2.8;
 
     if(elapsedTime >= 200 && cpp->alpha > 0)
     {
@@ -115,7 +115,7 @@ void Flx::Splash::update()
         flixelText->alpha -= 1;
     }
     if(elapsedTime >= 330){
-        Flx::Globals::switchState(nextState);
+        Flx::Globals::_curGame->switchState(nextState);
     }
 }
 
