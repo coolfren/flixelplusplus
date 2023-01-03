@@ -13,6 +13,7 @@ Flx::Sprite::Sprite(float x, float y)
     offset(0, 0),
     scale(1, 1),
     origin(x, y),
+    visible(true),
     graphic(nullptr)
 {
 }
