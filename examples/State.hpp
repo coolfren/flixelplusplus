@@ -2,7 +2,6 @@
 #include "flixel++/FlxState.hpp"
 #include "flixel++/FlxSprite.hpp"
 #include "flixel++/FlxAssets.hpp"
-#include "flixel++/FlxSound.hpp"
 #include "flixel++/FlxNet.hpp"
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxText.hpp"
@@ -17,13 +16,12 @@ public:
     Flx::Sprite *sprite;
     Flx::Text *text;
     Flx::Http *http;
-    Flx::Sound* flixelSound;
 
     float time = 0.0f;
     float offsetX = 0.0f, offsetY = 0.0f;
     void create()
     {
-        http = new Flx::Http("https://pastebin.com/raw/j9cs4GWP");
+        http = new Flx::Http("https://pastebin.com/raw/j9cs4GW");
         trace(http->storage);
 
         sprite = new Flx::Sprite(0, 0);
@@ -58,10 +56,6 @@ public:
         {
             Flx::Globals::mouse->loadGraphic("examples/assets/troll.png");
         }
-
-        flixelSound = new Flx::Sound();
-        flixelSound->load("assets/sounds/flixel.ogg");
-        flixelSound->play();
 
     };
     virtual void update()

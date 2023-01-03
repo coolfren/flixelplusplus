@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jan  2 19:39:30 2023
+# Make data base, printed on Tue Jan  3 18:13:29 2023
 
 # Variables
 
@@ -83,7 +83,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 5946
+VSCODE_PID = 3545
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -91,7 +91,7 @@ XDG_SESSION_TYPE = x11
 # environment
 VCPKG_ROOT = /opt/vcpkg
 # environment
-SESSION_MANAGER = local/g-g:@/tmp/.ICE-unix/1284,unix/g-g:/tmp/.ICE-unix/1284
+SESSION_MANAGER = local/g-g:@/tmp/.ICE-unix/1297,unix/g-g:/tmp/.ICE-unix/1297
 # automatic
 *F = $(notdir $*)
 # environment
@@ -159,7 +159,7 @@ TERMINAL = xfce4-terminal
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1166
+SYSTEMD_EXEC_PID = 1184
 # environment
 EDITOR = nano
 # environment
@@ -175,7 +175,7 @@ LC_MEASUREMENT = pt_PT.UTF-8
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5929
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3528
 # environment
 _ = /usr/bin/make
 # environment
@@ -281,6 +281,7 @@ all:
 #  Command line target.
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
+ 
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
@@ -296,7 +297,6 @@ all:
 # % := 
 # automatic
 # ^ := 
- 
 # automatic
 # ? := 
 # automatic
@@ -350,6 +350,6 @@ example:
 # strcache performance: lookups = 45 / hit rate = 31%
 # hash-table stats:
 # Load=31/8192=0%, Rehash=0, Collisions=0/45=0%
-# Finished Make data base on Mon Jan  2 19:39:30 2023
+# Finished Make data base on Tue Jan  3 18:13:29 2023
 
  

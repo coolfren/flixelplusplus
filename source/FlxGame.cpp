@@ -13,10 +13,6 @@ Flx::SoundManager* Flx::Globals::sound = nullptr;
 Flx::Keyboard* Flx::Globals::keys = nullptr;
 Flx::Mouse* Flx::Globals::mouse = nullptr;
 
-bool Flx::Globals::switchState(Flx::State* state){
-    return _curGame->switchState(state);
-}
-
 Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState, bool skipSplash)
     : framerate(framerate)
 {
@@ -92,7 +88,7 @@ void Flx::Game::destroyGlobals()
     delete Flx::Globals::mouse;
 }
 
-bool Flx::Game::switchState(Flx::State* state)
+void Flx::Game::switchState(Flx::State* state)
 {
     if (curState != nullptr)
     {
@@ -100,7 +96,6 @@ bool Flx::Game::switchState(Flx::State* state)
     }
     curState = state;
     curState->create();
-    return true;
 }
 
 void Flx::Game::runEvents()
