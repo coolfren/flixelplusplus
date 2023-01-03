@@ -27,6 +27,7 @@ namespace Flx
         Flx::Sprite* loadRAWGraphic(const void* data, const size_t size);
         Flx::Sprite* makeGraphic(float width, float height, int color);
 
+        bool collides(Flx::Sprite* sprite);
         void setGraphicSize(float width, float height);
         void screenCenter();
         void updatePosition();

@@ -1,6 +1,7 @@
 #include "flixel++/FlxSprite.hpp"
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxColor.hpp"
+#include "flixel++/FlxLog.hpp"
 #include <fstream>
 
 Flx::Sprite::Sprite(float x, float y)
@@ -28,7 +29,7 @@ Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
     std::ifstream file;
     file.open(path);
     if(!file){
-        std::cout << "file does not exist!\n" << path << '\n';
+        Flx::Log::warn(path);
         file.close();
         return nullptr;
     }
@@ -69,6 +70,17 @@ Flx::Sprite* Flx::Sprite::makeGraphic(float width, float height, int color)
     graphic = new Flx::Graphic(width, height, tex);
     updatePosition();
     return this;
+}
+
+bool Flx::Sprite::collides(Flx::Sprite * sprite)
+{
+    auto rect1 = this->hitbox.toSDLRect();
+    rect1.x = x;
+    rect1.y = y;
+    auto rect2 = sprite->hitbox.toSDLRect();
+    rect2.x = sprite->x;
+    rect2.y = sprite->y;
+    return SDL_IntersectRect(&rect1, &rect2, nullptr);
 }
 
 void Flx::Sprite::setGraphicSize(float width, float height)
