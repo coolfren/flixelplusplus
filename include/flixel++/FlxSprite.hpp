@@ -14,7 +14,7 @@ namespace Flx
         int alpha;
         int angle;
         bool visible;
-
+        
         Flx::Graphic* graphic;
         Flx::Rect clipRect;
         Flx::Rect hitbox;

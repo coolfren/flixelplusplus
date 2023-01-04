@@ -23,10 +23,14 @@ void Flx::Log::error(const char* msg)
 }
 
 const char* Flx::Log::recent(){
+    #if __cpp_exceptions
     try{
         return logs.at(logs.size()).c_str();
     }
     catch(std::exception& e){
         return "No recent logs";
     }
+    #else
+    return "No recent logs";
+    #endif
 }

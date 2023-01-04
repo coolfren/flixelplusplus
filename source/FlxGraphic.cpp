@@ -42,7 +42,7 @@ Flx::Graphic* Flx::Graphic::loadFromSurface(SDL_Surface* surface){
     #ifdef SDL_LEGACY
     auto temp = surface;
     #else
-    auto temp = SDL_CreateTextureFromSurface(Flx::Globals::_curGame->renderer, surface);
+    auto temp = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, surface);
     SDL_FreeSurface(surface);
     #endif
 

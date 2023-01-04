@@ -10,7 +10,7 @@ namespace Flx
     {
         extern float width, height;
 
-        extern Flx::Game* _curGame;
+        extern Flx::Game* game;
 
         extern Flx::Random* random;
 

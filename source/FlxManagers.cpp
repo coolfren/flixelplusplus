@@ -28,6 +28,7 @@ bool Flx::Random::boolean(float chance)
 }
 
 Flx::SoundManager::SoundManager()
+    : music(nullptr)
 {
     #ifdef OPENAL
     device = alcOpenDevice(NULL);

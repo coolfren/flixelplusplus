@@ -15,6 +15,7 @@ namespace Flx
         SDL_Surface* window;
 #else
         SDL_Window* window;
+        SDL_Surface* winSurface;
         SDL_Renderer* renderer;
 #endif
         float framerate;

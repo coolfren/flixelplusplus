@@ -1,10 +1,10 @@
 #include "flixel++/FlxSplash.hpp"
-#include "logoGreen.h"
-#include "logoBlue.h"
-#include "logoCyan.h"
-#include "logoYellow.h"
-#include "logoRed.h"
-#include "logoC.h"
+#include "assets/logoGreen.h"
+#include "assets/logoBlue.h"
+#include "assets/logoCyan.h"
+#include "assets/logoYellow.h"
+#include "assets/logoRed.h"
+#include "assets/logoC.h"
 #include "flixel++/FlxMacros.hpp"
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxColor.hpp"
@@ -72,9 +72,9 @@ void Flx::Splash::create()
     flixelText->y += 150;
     add(flixelText);
 
-    flixelSound = new Flx::Sound();
-    flixelSound->load("assets/sounds/flixel.ogg");
-    flixelSound->play();
+    //flixelSound = new Flx::Sound();
+    //flixelSound->load("assets/sounds/flixel.ogg");
+    //flixelSound->play();
 }
 
 void Flx::Splash::update()

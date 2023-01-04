@@ -9,6 +9,15 @@ else
 	@mkdir -p build
 	@cd build && cmake .. && make
 endif
+
+install:
+	rm -rf /usr/include/flixel++
+	rm -rf /usr/lib/libflixel++.so
+	cp -r include/flixel++/ /usr/include
+	cp -r build/libflixel++.so /usr/lib/libflixel++.so
+uninstall:
+	rm -rf /usr/include/flixel++
+	rm -rf /usr/lib/libflixel++.so
 switch:
 	@mkdir -p build/switch
 	@make -f mk/switch.mk
@@ -22,9 +31,6 @@ clean:
 	rm -rf build/
 	rm -rf obj/
 	@make -f mk/switch.mk clean
-install:
-	cp -r build/*.so /usr/lib/libflixel++.so
-	cp -r include/flixel++ /usr/include/flixel++
 example:
 	@make -f examples/Makefile
 	LD_LIBRARY_PATH="./build/" examples/example

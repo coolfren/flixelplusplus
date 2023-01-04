@@ -1,6 +1,7 @@
 #ifndef FLXMANAGERS_HPP
 #define FLXMANAGERS_HPP
 #include "flixel++/Common.hpp"
+#include "flixel++/FlxSound.hpp"
 namespace Flx
 {
     class Random
@@ -24,6 +25,7 @@ namespace Flx
         ALCcontext *context;
         #endif
         public:
+        Flx::Sound* music;
         SoundManager();
         ~SoundManager();
     };

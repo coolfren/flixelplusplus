@@ -28,7 +28,8 @@ CFLAGS	:=	-g -Wall -Werror -Wno-unused-variable \
 			-ffunction-sections \
 			-fdata-sections \
 			$(ARCH) \
-			$(BUILD_CFLAGS)
+			$(BUILD_CFLAGS) \
+			-D__SWITCH__
 
 CFLAGS	+=	$(INCLUDE)
 

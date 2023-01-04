@@ -6,16 +6,16 @@
 
 Flx::Sprite::Sprite(float x, float y)
     : Object(x, y), 
-    angle(0),
     alpha(100),
+    angle(0),
+    visible(true),
+    graphic(nullptr),
     clipRect(0, 0, 0, 0), 
     hitbox(0, 0, 0, 0), 
     animation(new Flx::AnimationController),
     offset(0, 0),
     scale(1, 1),
-    origin(x, y),
-    visible(true),
-    graphic(nullptr)
+    origin(x, y)
 {
 }
 
@@ -64,7 +64,7 @@ Flx::Sprite* Flx::Sprite::makeGraphic(float width, float height, int color)
     #ifdef SDL_LEGACY
     auto tex = textemp;
     #else
-    auto tex = SDL_CreateTextureFromSurface(Flx::Globals::_curGame->renderer, textemp);
+    auto tex = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, textemp);
     #endif
 
     graphic = new Flx::Graphic(width, height, tex);
@@ -144,7 +144,7 @@ void Flx::Sprite::draw() {
     };
 
     //SDL_SetAlpha(graphic->bitmap, SDL_SRCALPHA, 255 - (alpha % 101) * 255 / 100);
-    SDL_UpperBlitScaled(graphic->bitmap, NULL, Flx::Globals::_curGame->window, &dst);
+    SDL_UpperBlitScaled(graphic->bitmap, NULL, Flx::Globals::game->window, &dst);
     #else
     SDL_FRect dst = SDL_FRect{
         x - (width / 2),
@@ -155,6 +155,6 @@ void Flx::Sprite::draw() {
 
     auto originF = origin.toSDLFPoint();
     SDL_SetTextureAlphaMod(graphic->bitmap, (alpha % 101) * 255 / 100);
-    SDL_RenderCopyExF(Flx::Globals::_curGame->renderer, graphic->bitmap, &stuff, &dst, angle, &originF, SDL_FLIP_NONE);
+    SDL_RenderCopyExF(Flx::Globals::game->renderer, graphic->bitmap, &stuff, &dst, angle, &originF, SDL_FLIP_NONE);
 #endif
 }

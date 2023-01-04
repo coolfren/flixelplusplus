@@ -19,18 +19,22 @@ Flx::Mouse::~Mouse(){
 
 void Flx::Mouse::draw()
 {
-    if (enable)
-    {
-        SDL_Rect dest = {this->x, this->y, clipRect.width, clipRect.height};
+    if (!enable)
+        return;
+    SDL_Rect dest = {
+        static_cast<int>(this->x), 
+        static_cast<int>(this->y), 
+        static_cast<int>(clipRect.width), 
+        static_cast<int>(clipRect.height)
+    };
 
-        auto src = clipRect.toSDLRect();
+    auto src = clipRect.toSDLRect();
 
-        #ifdef SDL_LEGACY
-        SDL_UpperBlitScaled(cursor, &src, Flx::Globals::_curGame->window, &dest);
-        #else
-        SDL_RenderCopy(Flx::Globals::_curGame->renderer, cursor, &src, &dest);
-        #endif
-    }
+    #ifdef SDL_LEGACY
+    SDL_UpperBlitScaled(cursor, &src, Flx::Globals::game->window, &dest);
+    #else
+    SDL_RenderCopy(Flx::Globals::game->renderer, cursor, &src, &dest);
+    #endif
 }
 
 void Flx::Mouse::setGraphic()
@@ -41,7 +45,7 @@ void Flx::Mouse::setGraphic()
     Flx::Point size;
     SDL_QueryTexture(cursor, NULL, NULL, &size.w, &size.h);
 
-    clipRect = {0, 0, size.w, size.h};
+    clipRect = {0, 0, static_cast<float>(size.w), static_cast<float>(size.h)};
     #endif
 }
 
@@ -51,7 +55,7 @@ void Flx::Mouse::loadGraphic(const char* path)
     cursor = IMG_Load(path);
     #else
     auto surface = IMG_Load(path);
-    cursor = SDL_CreateTextureFromSurface(Flx::Globals::_curGame->renderer, surface);
+    cursor = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, surface);
     SDL_FreeSurface(surface);
     #endif
     setGraphic();

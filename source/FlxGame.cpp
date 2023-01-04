@@ -7,14 +7,14 @@
 float Flx::Globals::width = 0;
 float Flx::Globals::height = 0;
 
-Flx::Game* Flx::Globals::_curGame = nullptr;
+Flx::Game* Flx::Globals::game = nullptr;
 Flx::Random* Flx::Globals::random = nullptr;
 Flx::SoundManager* Flx::Globals::sound = nullptr;
 Flx::Keyboard* Flx::Globals::keys = nullptr;
 Flx::Mouse* Flx::Globals::mouse = nullptr;
 
 bool Flx::Globals::switchState(Flx::State* state){
-    return _curGame->switchState(state);
+    return game->switchState(state);
 }
 
 Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState, bool skipSplash)
@@ -52,7 +52,6 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
         switchState(initialState);
     else
         switchState(new Flx::Splash(initialState));
-
 }
 
 Flx::Game::~Game()
@@ -71,7 +70,7 @@ Flx::Game::~Game()
 
 void Flx::Game::setupGlobals()
 {
-    Flx::Globals::_curGame = this;
+    Flx::Globals::game = this;
 
     Flx::Globals::random = new Flx::Random();
 
@@ -106,7 +105,7 @@ bool Flx::Game::switchState(Flx::State* state)
 void Flx::Game::runEvents()
 {
     SDL_Event e;
-    while (SDL_PollEvent(&e) != 0)
+    while (SDL_PollEvent(&e))
     {
         switch(e.type)
         {
@@ -158,7 +157,6 @@ void Flx::Game::run()
     Flx::Globals::mouse->update();
     Flx::Globals::mouse->draw();
     SDL_RenderPresent(renderer);
-
 #endif
 }
 
@@ -170,6 +168,5 @@ void Flx::Game::start()
         if(!paused)
             run();
         SDL_Delay(1000.0f / framerate);
-        
     }
 }
