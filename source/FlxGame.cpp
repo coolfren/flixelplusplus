@@ -4,8 +4,8 @@
 #include "flixel++/FlxMacros.hpp"
 #include "flixel++/FlxSplash.hpp"
 
-float Flx::Globals::width = 0;
-float Flx::Globals::height = 0;
+int Flx::Globals::width = 0;
+int Flx::Globals::height = 0;
 
 Flx::Game* Flx::Globals::game = nullptr;
 Flx::Random* Flx::Globals::random = nullptr;
@@ -29,7 +29,7 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     romfsInit();
 #endif
     SDL_Init(SDL_INIT_EVERYTHING);
-    IMG_Init(IMG_INIT_PNG);
+    IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
     TTF_Init();
 #ifdef SDL_LEGACY
     window = SDL_SetVideoMode(width, height, 0, 0);
@@ -40,6 +40,7 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
+    SDL_SetWindowResizable(window, SDL_TRUE);
 #endif
     setupGlobals();
     SDL_ShowCursor(0);
@@ -121,6 +122,9 @@ void Flx::Game::runEvents()
             #ifndef SDL_LEGACY
             case SDL_WINDOWEVENT:
                 switch(e.window.event){
+                    case SDL_WINDOWEVENT_RESIZED:
+                        SDL_GetWindowSize(window, &Flx::Globals::width, &Flx::Globals::height);
+                        curState->onResize(Flx::Globals::width, Flx::Globals::height);
                     case SDL_WINDOWEVENT_FOCUS_GAINED:
                         paused = false;
                             break;
@@ -141,11 +145,11 @@ void Flx::Game::runEvents()
 
 void Flx::Game::run()
 {
+    Flx::Globals::mouse->update();
 #ifdef SDL_LEGACY
     curState->update();
     SDL_FillRect(window, NULL, 0x000000);
     curState->draw();
-    Flx::Globals::mouse->update();
     Flx::Globals::mouse->draw();
     SDL_Flip(window);
 #else
@@ -154,7 +158,6 @@ void Flx::Game::run()
     SDL_RenderClear(renderer);
 
     curState->draw();
-    Flx::Globals::mouse->update();
     Flx::Globals::mouse->draw();
     SDL_RenderPresent(renderer);
 #endif

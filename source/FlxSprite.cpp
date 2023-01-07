@@ -19,6 +19,18 @@ Flx::Sprite::Sprite(float x, float y)
 {
 }
 
+Flx::Sprite::Sprite(const char* path)
+    : Sprite(0,0)
+{
+    loadGraphic(path);
+}
+
+Flx::Sprite::Sprite()
+    : Sprite(0,0)
+{
+
+};
+
 Flx::Sprite::~Sprite()
 {
     delete graphic;
@@ -33,6 +45,7 @@ Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
         file.close();
         return nullptr;
     }
+    file.close();
     graphic = Flx::Graphic::loadFromPath(path);
     updatePosition();
     return this;

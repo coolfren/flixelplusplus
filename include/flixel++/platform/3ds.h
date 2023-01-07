@@ -10,6 +10,5 @@
 #include "SDL/SDL_image.h"
 #include "SDL/SDL_ttf.h"
 #include "tremor/ivorbisfile.h"
-#include "tinyxml2.h"
 
 #endif

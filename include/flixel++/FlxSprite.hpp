@@ -21,6 +21,8 @@ namespace Flx
         Flx::AnimationController* animation;
         
         Sprite(float x, float y);
+        Sprite(const char* path);
+        Sprite();
         ~Sprite();
 
         Flx::Sprite* loadGraphic(const char* path);

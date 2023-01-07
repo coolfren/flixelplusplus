@@ -36,9 +36,6 @@ Flx::Graphic* Flx::Graphic::loadFromRAWPath(SDL_RWops* raw){
 
 
 Flx::Graphic* Flx::Graphic::loadFromSurface(SDL_Surface* surface){
-    SDL_Rect tempQ{0,0,0,0};
-    tempQ.w = surface->w;
-    tempQ.h = surface->h;
     #ifdef SDL_LEGACY
     auto temp = surface;
     #else
@@ -46,6 +43,6 @@ Flx::Graphic* Flx::Graphic::loadFromSurface(SDL_Surface* surface){
     SDL_FreeSurface(surface);
     #endif
 
-    Flx::Graphic* a = new Flx::Graphic(tempQ.w, tempQ.h, temp);
+    Flx::Graphic* a = new Flx::Graphic(surface->w, surface->h, temp);
     return a;
 }

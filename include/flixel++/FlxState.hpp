@@ -13,6 +13,7 @@ namespace Flx
         State();
         virtual void create();
         virtual void update();
+        virtual void onResize(int width, int height);
         void draw();
     };
     class SubState : public Flx::State

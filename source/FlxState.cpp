@@ -13,7 +13,13 @@ void Flx::State::update(){
     Flx::Group::update();
 }
 
-void Flx::State::draw(){
+void Flx::State::onResize(int width, int height)
+{
+
+}
+
+void Flx::State::draw()
+{
     Flx::Group::draw();
 }
 

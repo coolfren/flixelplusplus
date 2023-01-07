@@ -18,8 +18,6 @@ typedef SDL_Surface Bitmap;
 typedef SDL_Texture Bitmap;
 #endif
 
-#ifdef TINYXML2_INCLUDED
-#define TINYXML2
-#endif
+#include "tinyxml2.h"
 
 #endif

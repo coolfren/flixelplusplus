@@ -8,7 +8,7 @@ namespace Flx
 {
     namespace Globals
     {
-        extern float width, height;
+        extern int width, height;
 
         extern Flx::Game* game;
 
