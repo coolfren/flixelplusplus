@@ -1,7 +1,1 @@
-source/assets/vcr.h linguist-vendored
-source/assets/logoBlue.h linguist-vendored
-source/assets/logoC.h linguist-vendored
-source/assets/logoGreen.h linguist-vendored
-source/assets/logoRed.h linguist-vendored
-source/assets/logoYellow.h linguist-vendored
-source/assets/logoCyan.h linguist-vendored
+source/assets/* linguist-vendored
