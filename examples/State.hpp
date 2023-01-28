@@ -8,7 +8,6 @@
 #include "flixel++/FlxText.hpp"
 #include "flixel++/FlxMacros.hpp"
 #include "flixel++/FlxHttp.hpp"
-
 class PlayState : public Flx::State
 {
 public:

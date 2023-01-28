@@ -2,7 +2,7 @@
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxColor.hpp"
 #include "flixel++/FlxLog.hpp"
-#include <fstream>
+#include "flixel++/FlxUtils.hpp"
 
 Flx::Sprite::Sprite(float x, float y)
     : Object(x, y), 
@@ -38,14 +38,10 @@ Flx::Sprite::~Sprite()
 }
 
 Flx::Sprite* Flx::Sprite::loadGraphic(const char* path) {
-    std::ifstream file;
-    file.open(path);
-    if(!file){
+    if(!Flx::Utils::fileExists(path)){
         Flx::Log::warn(path);
-        file.close();
         return nullptr;
     }
-    file.close();
     graphic = Flx::Graphic::loadFromPath(path);
     updatePosition();
     return this;
