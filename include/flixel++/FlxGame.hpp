@@ -14,13 +14,11 @@ namespace Flx
 #ifdef SDL_LEGACY
         SDL_Surface* window;
 #else
-        SDL_Window* window;
-        SDL_Surface* winSurface;
-        SDL_Renderer* renderer;
+        GLFWwindow* window;
 #endif
         float framerate;
         Flx::State* curState = nullptr;
-        Game(const char* title, int width, int height, int framerate, Flx::State* initialState, bool skipSplash);
+        Game(const char* title, int width, int height, int framerate, Flx::State* initialState, bool skipSplash = false);
         ~Game();
         void setupGlobals();
         void destroyGlobals();
@@ -28,6 +26,13 @@ namespace Flx
         void runEvents();
         void run();
         void start();
+
+
+        static void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+        static void glfwError(int id, const char* description)
+        {
+            std::cout << description << std::endl;
+        }
     };
 }
 

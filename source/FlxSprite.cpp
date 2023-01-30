@@ -73,10 +73,10 @@ Flx::Sprite* Flx::Sprite::makeGraphic(float width, float height, int color)
     #ifdef SDL_LEGACY
     auto tex = textemp;
     #else
-    auto tex = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, textemp);
+    //auto tex = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, textemp);
     #endif
 
-    graphic = new Flx::Graphic(width, height, tex);
+    //graphic = new Flx::Graphic(width, height, tex);
     updatePosition();
     return this;
 }
@@ -164,6 +164,6 @@ void Flx::Sprite::draw() {
 
     auto originF = origin.toSDLFPoint();
     SDL_SetTextureAlphaMod(graphic->bitmap, (alpha % 101) * 255 / 100);
-    SDL_RenderCopyExF(Flx::Globals::game->renderer, graphic->bitmap, &stuff, &dst, angle, &originF, SDL_FLIP_NONE);
+    //SDL_RenderCopyExF(Flx::Globals::game->renderer, graphic->bitmap, &stuff, &dst, angle, &originF, SDL_FLIP_NONE);
 #endif
 }

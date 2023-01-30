@@ -6,7 +6,8 @@
                 "${workspaceFolder}/include",
                 "/opt/devkitpro/portlibs/ppc/include",
                 "/opt/devkitpro/libctru/include",
-                "${workspaceFolder}/bundles/simple-opengl-loader"
+                "${workspaceFolder}/bundles/simple-opengl-loader",
+                "${workspaceFolder}/bundles/tinyxml2"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
