@@ -17,7 +17,7 @@
 #include <AL/alc.h>
 #include <vorbis/vorbisfile.h>
 //#include "tinyxml2.h"
-
+#include "simple-opengl-loader.h"
 #ifdef __SWITCH__
 #include <switch.h> // Switch uses the same libraries as PC, no need for a new file
 #else

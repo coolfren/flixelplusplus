@@ -8,9 +8,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 message(STATUS "Source dir: ${CMAKE_SOURCE_DIR}")
 
 project(flixel++, VERSION 0.1.0)
-include_directories("include/")
-include_directories("bundles/tinyxml2/")
-file (GLOB_RECURSE FLIXEL_FILES CONFIGURE_DEPENDS "source/*.cpp" "bundles/tinyxml2/tinyxml2.cpp")
+include_directories("include/" "bundles/tinyxml2/" "bundles/simple-opengl-loader/")
+file (GLOB_RECURSE FLIXEL_FILES CONFIGURE_DEPENDS "source/*.cpp" "bundles/tinyxml2/tinyxml2.cpp" )
 
 if(DEFINED SDL_LEGACY)
     add_definitions(-DSDL_LEGACY)
@@ -45,6 +44,10 @@ include_directories(${VORBIS_INCLUDE_DIR})
 find_package(CURL REQUIRED)
 include_directories(${CURL_INCLUDE_DIR})
 
+find_package(OpenGL REQUIRED)
+
+find_package(GLEW REQUIRED)
+include_directories(${GLEW_INCLUDE_DIRS})
 add_library(flixel++ SHARED ${FLIXEL_FILES})
 
 if(DEFINED SDL_LEGACY)
@@ -61,5 +64,6 @@ target_link_libraries(flixel++ ${CURL_LIBRARIES})
 target_link_libraries(flixel++ ${OPENAL_LIBRARY})
 target_link_libraries(flixel++ ${VORBISFILE_LIBRARY})
 target_link_libraries(flixel++ ${CURL_LIBRARY})
-
+target_link_libraries(flixel++ ${GLEW_LIBRARIES})
+target_link_libraries(flixel++ ${OPENGL_LIBRARY})
 install(TARGETS flixel++ DESTINATION lib)
