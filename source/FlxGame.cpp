@@ -28,9 +28,11 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
 	consoleInit(GFX_TOP, NULL);
     romfsInit();
 #endif
+
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
     TTF_Init();
+
 #ifdef SDL_LEGACY
     window = SDL_SetVideoMode(width, height, 0, 0);
     SDL_WM_SetCaption(title, NULL);
@@ -38,6 +40,7 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
 #else
     window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_GL_CreateContext(window);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
     SDL_SetWindowResizable(window, SDL_TRUE);

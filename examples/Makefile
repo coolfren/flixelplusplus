@@ -1,3 +1,3 @@
 all:
-	g++ examples/main.cpp -Lbuild/ -lflixel++ -o examples/example -Iexamples/ -Iinclude/ -O3
+	g++ examples/main.cpp -Lbuild/ -lflixel++ -o examples/example -Iexamples/ -Iinclude/ -O3 -lGL -lGLEW
 
