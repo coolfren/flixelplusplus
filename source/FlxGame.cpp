@@ -7,25 +7,26 @@
 int Flx::Globals::width = 0;
 int Flx::Globals::height = 0;
 
-Flx::Game* Flx::Globals::game = nullptr;
-Flx::Random* Flx::Globals::random = nullptr;
-Flx::SoundManager* Flx::Globals::sound = nullptr;
-Flx::Keyboard* Flx::Globals::keys = nullptr;
-Flx::Mouse* Flx::Globals::mouse = nullptr;
+Flx::Game *Flx::Globals::game = nullptr;
+Flx::Random *Flx::Globals::random = nullptr;
+Flx::SoundManager *Flx::Globals::sound = nullptr;
+Flx::Keyboard *Flx::Globals::keys = nullptr;
+Flx::Mouse *Flx::Globals::mouse = nullptr;
 
-bool Flx::Globals::switchState(Flx::State* state){
+bool Flx::Globals::switchState(Flx::State *state)
+{
     return game->switchState(state);
 }
 
-Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState, bool skipSplash)
+Flx::Game::Game(const char *title, int width, int height, int framerate, Flx::State *initialState, bool skipSplash)
     : framerate(framerate)
 {
 #if defined(__SWITCH__)
     consoleInit(NULL);
     romfsInit();
 #elif defined(__3DS__)
-	gfxInitDefault();
-	consoleInit(GFX_TOP, NULL);
+    gfxInitDefault();
+    consoleInit(GFX_TOP, NULL);
     romfsInit();
 #endif
 
@@ -33,17 +34,27 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
     TTF_Init();
 
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 #ifdef SDL_LEGACY
     window = SDL_SetVideoMode(width, height, 0, 0);
     SDL_WM_SetCaption(title, NULL);
     SDL_FillRect(window, NULL, SDL_MapRGB(window->format, 0, 0, 0));
 #else
-    window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    SDL_GL_CreateContext(window);
-    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-    SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
-    SDL_SetWindowResizable(window, SDL_TRUE);
+    window = glfwCreateWindow(width, height, title, NULL, NULL);
+    if (window == nullptr)
+    {
+        std::cout << "Failed to load the gl Window!" << std::endl;
+        glfwSetErrorCallback(&glfwError);
+        glfwInit();
+    }
+    glfwMakeContextCurrent(window);
+
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
 #endif
     setupGlobals();
     SDL_ShowCursor(0);
@@ -52,7 +63,7 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     Flx::Globals::height = height;
 
     Flx::Globals::mouse = new Flx::Mouse();
-    if(skipSplash)
+    if (skipSplash)
         switchState(initialState);
     else
         switchState(new Flx::Splash(initialState));
@@ -65,8 +76,7 @@ Flx::Game::~Game()
 #ifdef SDL_LEGACY
     SDL_FreeSurface(window);
 #else
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    glfwTerminate();
 #endif
     TTF_Quit();
     SDL_Quit();
@@ -95,7 +105,7 @@ void Flx::Game::destroyGlobals()
     delete Flx::Globals::mouse;
 }
 
-bool Flx::Game::switchState(Flx::State* state)
+bool Flx::Game::switchState(Flx::State *state)
 {
     if (curState != nullptr)
     {
@@ -108,42 +118,43 @@ bool Flx::Game::switchState(Flx::State* state)
 
 void Flx::Game::runEvents()
 {
-    SDL_Event e;
-    while (SDL_PollEvent(&e))
+    /*SDL_Event e;
+    while (!glfwWindowShouldClose(window))
     {
-        switch(e.type)
+        switch (e.type)
         {
-            case SDL_KEYDOWN:
-            #ifndef SDL_LEGACY
-                if(e.key.repeat == 0)
-            #endif
-                    Flx::Globals::keys->keys[e.key.keysym.sym % 255] = true;
+        case SDL_KEYDOWN:
+#ifndef SDL_LEGACY
+            if (e.key.repeat == 0)
+#endif
+                Flx::Globals::keys->keys[e.key.keysym.sym % 255] = true;
+            break;
+        case SDL_KEYUP:
+            Flx::Globals::keys->keys[e.key.keysym.sym % 255] = false;
+            break;
+#ifndef SDL_LEGACY
+        case SDL_WINDOWEVENT:
+            switch (e.window.event)
+            {
+            case SDL_WINDOWEVENT_RESIZED:
+                // SDL_GetWindowSize(window, &Flx::Globals::width, &Flx::Globals::height);
+                curState->onResize(Flx::Globals::width, Flx::Globals::height);
+            case SDL_WINDOWEVENT_FOCUS_GAINED:
+                paused = false;
                 break;
-            case SDL_KEYUP:
-                Flx::Globals::keys->keys[e.key.keysym.sym % 255] = false;
+            case SDL_WINDOWEVENT_FOCUS_LOST:
+                paused = true;
                 break;
-            #ifndef SDL_LEGACY
-            case SDL_WINDOWEVENT:
-                switch(e.window.event){
-                    case SDL_WINDOWEVENT_RESIZED:
-                        SDL_GetWindowSize(window, &Flx::Globals::width, &Flx::Globals::height);
-                        curState->onResize(Flx::Globals::width, Flx::Globals::height);
-                    case SDL_WINDOWEVENT_FOCUS_GAINED:
-                        paused = false;
-                            break;
-                    case SDL_WINDOWEVENT_FOCUS_LOST:
-                        paused = true;
-                        break;
-                }
-                break;
-            #endif
-            case SDL_QUIT:
-                quitting = true;
-                break;
-            default:
-                break;
+            }
+            break;
+#endif
+        case SDL_QUIT:
+            quitting = true;
+            break;
+        default:
+            break;
         }
-    }
+    }*/
 }
 
 void Flx::Game::run()
@@ -157,22 +168,45 @@ void Flx::Game::run()
     SDL_Flip(window);
 #else
     curState->update();
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
+    //SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    //SDL_RenderClear(renderer);
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     curState->draw();
     Flx::Globals::mouse->draw();
-    SDL_RenderPresent(renderer);
+   //SDL_RenderPresent(renderer);
 #endif
 }
 
 void Flx::Game::start()
 {
-    while (!quitting)
+    /*while (!quitting)
     {
         runEvents();
-        if(!paused)
+        if (!paused)
             run();
         SDL_Delay(1000.0f / framerate);
+    }*/
+    while (!glfwWindowShouldClose(window))
+    {
+        if (glfwGetKey(window, GLFW_KEY_ESCAPE))
+        {
+            glfwSetWindowShouldClose(window, true);
+        }
+
+        runEvents();
+        if (!paused)
+            run();
+
+        // Swap the buffers
+        glfwSwapBuffers(window);
+        // Processes the window
+        glfwPollEvents();
     }
+}
+
+void Flx::Game::framebuffer_size_callback(GLFWwindow *window, int width, int height)
+{
+    glViewport(0, 0, width, height);
 }

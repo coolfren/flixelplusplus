@@ -23,7 +23,7 @@ Flx::Splash::Splash(Flx::State* state)
 void Flx::Splash::create()
 {
 
-    yellow = new Flx::Sprite(0, 0);
+    /*yellow = new Flx::Sprite(0, 0);
     yellow->loadRAWGraphic((void *)logoYellow_png, logoYellow_png_length);
     yellow->setGraphicSize((yellow->graphic->width / 9), (yellow->graphic->height / 9));
     add(yellow);
@@ -70,16 +70,16 @@ void Flx::Splash::create()
     flixelText = new Text(0,0,"");
     flixelText->screenCenter();
     flixelText->y += 150;
-    add(flixelText);
+    add(flixelText);*/
 
-    //flixelSound = new Flx::Sound();
-    //flixelSound->load("assets/sounds/flixel.ogg");
-    //flixelSound->play();
+    flixelSound = new Flx::Sound();
+    flixelSound->load("assets/sounds/flixel.ogg");
+    flixelSound->play();
 }
 
 void Flx::Splash::update()
 {
-    if(elapsedTime >= 7){
+    /*if(elapsedTime >= 7){
         yellow->visible = true;
     }
     if(elapsedTime >= 14){
@@ -100,7 +100,6 @@ void Flx::Splash::update()
         flixelText->setText(flixelText->text + flixel[(elapsedTime - 100) / 5]);
     }
 
-    elapsedTime += 1;
     if(cpp->alpha < 100 && elapsedTime < 200 )
         cpp->alpha += 2.5;
 
@@ -113,7 +112,9 @@ void Flx::Splash::update()
         green->alpha -= 1;
         cpp->alpha -= 1;
         flixelText->alpha -= 1;
-    }
+    }*/
+    
+    elapsedTime += 1;
     if(elapsedTime >= 330){
         Flx::Globals::switchState(nextState);
     }

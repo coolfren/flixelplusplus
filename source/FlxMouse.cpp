@@ -31,9 +31,9 @@ void Flx::Mouse::draw()
     auto src = clipRect.toSDLRect();
 
     #ifdef SDL_LEGACY
-    SDL_UpperBlitScaled(cursor, &src, Flx::Globals::game->window, &dest);
+    //SDL_UpperBlitScaled(cursor, &src, Flx::Globals::game->window, &dest);
     #else
-    SDL_RenderCopy(Flx::Globals::game->renderer, cursor, &src, &dest);
+    //SDL_RenderCopy(Flx::Globals::game->renderer, cursor, &src, &dest);
     #endif
 }
 
@@ -55,7 +55,7 @@ void Flx::Mouse::loadGraphic(const char* path)
     cursor = IMG_Load(path);
     #else
     auto surface = IMG_Load(path);
-    cursor = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, surface);
+    //cursor = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, surface);
     SDL_FreeSurface(surface);
     #endif
     setGraphic();

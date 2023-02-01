@@ -17,7 +17,7 @@ void Flx::Assets::initialize(){
     #ifdef SDL_LEGACY
     defaultCursor = temp;
     #else
-    defaultCursor = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, temp);
+    //defaultCursor = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, temp);
     SDL_FreeSurface(temp);
     #endif
 }
