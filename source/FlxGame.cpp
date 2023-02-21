@@ -35,25 +35,32 @@ Flx::Game::Game(const char *title, int width, int height, int framerate, Flx::St
     TTF_Init();
 
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
 #ifdef SDL_LEGACY
     window = SDL_SetVideoMode(width, height, 0, 0);
     SDL_WM_SetCaption(title, NULL);
     SDL_FillRect(window, NULL, SDL_MapRGB(window->format, 0, 0, 0));
 #else
-    window = glfwCreateWindow(width, height, title, NULL, NULL);
+    window = SDL_CreateWindow(title,SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,width,height,SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (window == nullptr)
     {
-        std::cout << "Failed to load the gl Window!" << std::endl;
-        glfwSetErrorCallback(&glfwError);
-        glfwInit();
+        std::cout << "Failed to load the sdl/gl Window!" << std::endl;
+        SDL_GetError();
     }
-    glfwMakeContextCurrent(window);
+    GLenum verifyGlew = glewInit();
+    if (verifyGlew != GLEW_OK)
+    {
+        fprintf(stderr, "Error: %s\n", glewGetErrorString(verifyGlew));
+    }
 
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glContext = SDL_GL_CreateContext(window);
+    if(glContext != nullptr){
+        std::cout << "Failed to create a GL context" << std::endl;
+        SDL_GetError();
+    }
 
 #endif
     setupGlobals();
@@ -118,8 +125,8 @@ bool Flx::Game::switchState(Flx::State *state)
 
 void Flx::Game::runEvents()
 {
-    /*SDL_Event e;
-    while (!glfwWindowShouldClose(window))
+    SDL_Event e;
+    while (SDL_PollEvent(&e))
     {
         switch (e.type)
         {
@@ -154,7 +161,7 @@ void Flx::Game::runEvents()
         default:
             break;
         }
-    }*/
+    }
 }
 
 void Flx::Game::run()
@@ -167,15 +174,17 @@ void Flx::Game::run()
     Flx::Globals::mouse->draw();
     SDL_Flip(window);
 #else
-    curState->update();
-    //SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    //SDL_RenderClear(renderer);
+    glClearColor(1.0f,0.5f,0.35f,1.0f);
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    perspective = glm::ortho(0.0f, (float)Flx::Globals::width, (float)Flx::Globals::height, 0.0f, -1.0f, 1.0f);
+
+    curState->update();
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     curState->draw();
     Flx::Globals::mouse->draw();
-   //SDL_RenderPresent(renderer);
+    // SDL_RenderPresent(renderer);
 #endif
 }
 
@@ -188,21 +197,13 @@ void Flx::Game::start()
             run();
         SDL_Delay(1000.0f / framerate);
     }*/
-    while (!glfwWindowShouldClose(window))
+    while (!quitting)
     {
-        if (glfwGetKey(window, GLFW_KEY_ESCAPE))
-        {
-            glfwSetWindowShouldClose(window, true);
-        }
-
         runEvents();
         if (!paused)
             run();
 
-        // Swap the buffers
-        glfwSwapBuffers(window);
-        // Processes the window
-        glfwPollEvents();
+        SDL_GL_SwapWindow(window);
     }
 }
 

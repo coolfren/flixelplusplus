@@ -12,12 +12,11 @@
 
 int elapsedTime = 0;
 int result = 0;
-const char flixel[8] = {'F','l','i','x','e','l','+','+'};
+const char flixel[8] = {'F', 'l', 'i', 'x', 'e', 'l', '+', '+'};
 
-Flx::Splash::Splash(Flx::State* state)
+Flx::Splash::Splash(Flx::State *state)
     : nextState(state)
 {
-
 }
 
 void Flx::Splash::create()
@@ -72,9 +71,17 @@ void Flx::Splash::create()
     flixelText->y += 150;
     add(flixelText);*/
 
+    Sprite *sprite = new Flx::Sprite(0, 0);
+    sprite->loadGraphic("assets/images/logo/logo.png");
+    sprite->setGraphicSize(240, 240);
+
+    sprite->screenCenter();
+    add(sprite);
+
     flixelSound = new Flx::Sound();
     flixelSound->load("assets/sounds/flixel.ogg");
     flixelSound->play();
+    trace("TRIGGER");
 }
 
 void Flx::Splash::update()
@@ -113,10 +120,10 @@ void Flx::Splash::update()
         cpp->alpha -= 1;
         flixelText->alpha -= 1;
     }*/
-    
+
     elapsedTime += 1;
-    if(elapsedTime >= 330){
+    if (elapsedTime >= 330)
+    {
         Flx::Globals::switchState(nextState);
     }
 }
-
