@@ -1,7 +1,7 @@
 #include "flixel++/FlxColor.hpp"
 
 Flx::Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
-    : SDL_Color{red, green, blue, alpha}
+    : r(red), g(green), b(blue), a(alpha)
 {}
 
 Flx::Color Flx::Color::fromHex(int color)

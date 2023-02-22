@@ -24,21 +24,3 @@ void Flx::Point::subtract(float x, float y) {
 	this->x -= x;
 	this->y -= y;
 }
-
-#ifndef SDL_LEGACY
-
-const SDL_Point Flx::Point::toSDLPoint()
-{
-    return SDL_Point{
-        static_cast<int>(x),
-		static_cast<int>(y)
-    };
-}
-
-const SDL_FPoint Flx::Point::toSDLFPoint()
-{
-    return SDL_FPoint{
-        x,y
-    };
-}
-#endif

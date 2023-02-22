@@ -1,4 +1,5 @@
 #include "flixel++/FlxSound.hpp"
+#include "flixel++/FlxG.hpp"
 
 Flx::Sound::Sound()
 {
@@ -15,7 +16,7 @@ Flx::Sound::~Sound()
 
 void Flx::Sound::play()
 {
-    startTime = SDL_GetTicks();
+    startTime = Flx::Globals::game->backend->getTicks();
     #ifdef OPENAL
     alSourcePlay(source);
     #endif
