@@ -9,27 +9,30 @@ namespace Flx
     {
         bool quitting = false;
         bool paused = false;
-    public:
 
+    public:
 #ifdef SDL_LEGACY
-        SDL_Surface* window;
+        SDL_Surface *window;
 #else
-        GLFWwindow* window;
+        SDL_Window *window;
+        SDL_GLContext glContext;
+
 #endif
         float framerate;
-        Flx::State* curState = nullptr;
-        Game(const char* title, int width, int height, int framerate, Flx::State* initialState, bool skipSplash = false);
+        Flx::State *curState = nullptr;
+        Game(const char *title, int width, int height, int framerate, Flx::State *initialState, bool skipSplash = false);
         ~Game();
         void setupGlobals();
         void destroyGlobals();
-        bool switchState(Flx::State* state);
+        bool switchState(Flx::State *state);
         void runEvents();
         void run();
         void start();
 
+        glm::mat4 perspective = glm::mat4(1.0f);
 
         static void framebuffer_size_callback(GLFWwindow *window, int width, int height);
-        static void glfwError(int id, const char* description)
+        static void glfwError(int id, const char *description)
         {
             std::cout << description << std::endl;
         }

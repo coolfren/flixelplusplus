@@ -15,7 +15,6 @@ namespace Flx
         uint32_t getPixel32(int x, int y);
         static Flx::Graphic* loadFromPath(const char* path);
         static Flx::Graphic* loadFromSurface(SDL_Surface* surface);
-        static Flx::Graphic* loadFromRAWPath(SDL_RWops* raw);
         friend class Sprite;
     };
 }

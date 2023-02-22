@@ -135,14 +135,22 @@ void Flx::Sprite::update() {
 void Flx::Sprite::draw() {
     if(!graphic || !visible)
         return;
-    auto stuff = clipRect.toSDLRect();
     if(animation->animated)
     {
         auto anim = animation->getCurAnim();
-        stuff.x = anim->x;
-        stuff.y = anim->y;
-        stuff.w = anim->width;
-        stuff.h = anim->height;
+        clipRect.x = anim->x;
+        clipRect.y = anim->y;
+        clipRect.width = anim->width;
+        clipRect.height = anim->height;
+
+        float vertices[] = {
+            0.0f,0.0f,0.0f,
+            (float)clipRect.width,0.0f,0.0f,
+            (float)clipRect.width,(float)clipRect.height,0.0f,
+            0.0f,(float)clipRect.height,0.0f
+        };
+
+        
     }
     #ifdef SDL_LEGACY
     SDL_Rect dst = SDL_Rect{

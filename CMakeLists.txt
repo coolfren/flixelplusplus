@@ -54,6 +54,7 @@ include_directories(${SOIL_INCLUDE_DIRS})
 
 find_package(GLEW REQUIRED)
 include_directories(${GLEW_INCLUDE_DIRS})
+
 add_library(flixel++ SHARED ${FLIXEL_FILES})
 
 if(DEFINED SDL_LEGACY)

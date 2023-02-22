@@ -40,6 +40,9 @@ namespace Flx
         Flx::Point offset;
         Flx::Point scale;
         Flx::Point origin;
+
+        unsigned int VAO,VBO,EBO;;
+        
     };
 }
 

@@ -11,6 +11,7 @@
 #include <SDL2/SDL_ttf.h>
 #endif
 
+#define STB_IMAGE_IMPLEMENTATION
 #define OPENAL
 #define USE_SOCKETS
 #include <AL/al.h>
@@ -20,6 +21,7 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <GLFW/glfw3.h>
 
 #ifdef __SWITCH__
