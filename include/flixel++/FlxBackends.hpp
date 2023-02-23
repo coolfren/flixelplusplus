@@ -23,8 +23,8 @@ namespace Flx::Backends
         virtual void runEvents();
         virtual void update();
         virtual void render(Flx::Sprite* spr);
-        virtual inline uint32_t getTicks();
-        virtual inline void delay(uint32_t ms);
+        virtual uint32_t getTicks();
+        virtual void delay(uint32_t ms);
     };
 
 #ifdef FLIXEL_SDL
