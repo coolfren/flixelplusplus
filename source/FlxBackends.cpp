@@ -28,6 +28,7 @@ Flx::Backends::Backend::~Backend(){}
 Flx::Graphic* Flx::Backends::Backend::requestTexture(const char* path){ return nullptr; }
 Flx::Graphic* Flx::Backends::Backend::requestTexture(const void* data, const size_t size){ return nullptr; }
 Flx::Graphic* Flx::Backends::Backend::requestText(const char* text){ return nullptr; }
+Flx::Graphic* Flx::Backends::Backend::requestRectangle(float width, float height, int color){ return nullptr; }
 bool Flx::Backends::Backend::deleteTexture(void* spr){ return false; }
 void Flx::Backends::Backend::runEvents(){}
 void Flx::Backends::Backend::update(){}
@@ -45,13 +46,17 @@ Flx::Backends::SDL::SDL()
     IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
     TTF_Init();
 
-
+    #ifdef SDL_LEGACY
+        window = SDL_SetVideoMode(width, height, 0, 0);
+        SDL_WM_SetCaption(title, NULL);
+        SDL_FillRect(window, NULL, SDL_MapRGB(window->format, 0, 0, 0));
+    #else
     window = SDL_CreateWindow(game->title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
     SDL_SetWindowResizable(window, SDL_TRUE);
+    #endif
 
     SDL_ShowCursor(1);
 
@@ -110,6 +115,26 @@ Flx::Graphic* Flx::Backends::SDL::requestTexture(SDL_Surface* surface)
 Flx::Graphic* Flx::Backends::SDL::requestText(const char* text)
 {
     return requestTexture(TTF_RenderText_Solid((TTF_Font*)Flx::Assets::defaultFont, text, {255,255,255,255}));
+}
+
+Flx::Graphic* Flx::Backends::SDL::requestRectangle(float width, float height, int color)
+{
+        Uint32 rmask, gmask, bmask, amask;
+    #if SDL_BYTEORDER == SDL_BIG_ENDIAN
+    rmask = 0xff000000;
+    gmask = 0x00ff0000;
+    bmask = 0x0000ff00;
+    amask = 0x000000ff;
+    #else
+    rmask = 0x000000ff;
+    gmask = 0x0000ff00;
+    bmask = 0x00ff0000;
+    amask = 0xff000000;
+    #endif
+    auto textemp = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, rmask, gmask, bmask, amask);
+    SDL_FillRect(textemp, nullptr, color);
+    
+    return requestTexture(textemp);
 }
 
 void Flx::Backends::SDL::runEvents()
@@ -235,21 +260,3 @@ void Flx::Backends::SDL::delay(uint32_t ms)
 }
 #endif
 // -------------------------------------
-
-/*
-#if defined(__3DS__)
-	gfxInitDefault();
-	consoleInit(GFX_TOP, NULL);
-    romfsInit();
-#endif
-    #ifdef __SWITCH__
-    romfsInit();
-    #endif
-#ifdef SDL_LEGACY
-    window = SDL_SetVideoMode(width, height, 0, 0);
-    SDL_WM_SetCaption(title, NULL);
-    SDL_FillRect(window, NULL, SDL_MapRGB(window->format, 0, 0, 0));
-#else
-
-#endif
-*/

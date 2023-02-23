@@ -17,6 +17,12 @@ bool Flx::Globals::switchState(Flx::State* state){
     return game->switchState(state);
 }
 
+void initializeConsoles()
+{
+    #if defined(__3DS__) || defined(__SWITCH__)
+    romfsInit();
+    #endif
+}
 
 Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::State* initialState, bool skipSplash)
     : title(),
@@ -32,6 +38,8 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     Flx::Globals::height = height;
 
     this->backend = new Flx::Backends::SDL();
+
+    initializeConsoles();
 
     setupGlobals();
 

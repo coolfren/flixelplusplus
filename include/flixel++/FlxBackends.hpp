@@ -19,6 +19,7 @@ namespace Flx::Backends
         virtual Flx::Graphic* requestTexture(const char* path);
         virtual Flx::Graphic* requestTexture(const void* data, const size_t size);
         virtual Flx::Graphic* requestText(const char* text);
+        virtual Flx::Graphic* requestRectangle(float width, float height, int color);
         virtual bool deleteTexture(void* tex);
         virtual void runEvents();
         virtual void update();
@@ -41,6 +42,7 @@ namespace Flx::Backends
         Flx::Graphic* requestTexture(const void* data, const size_t size);
         Flx::Graphic* requestTexture(SDL_Surface* surface);
         Flx::Graphic* requestText(const char* text);
+        Flx::Graphic* requestRectangle(float width, float height, int color);
         bool deleteTexture(void* tex);
         void runEvents();
         void update();

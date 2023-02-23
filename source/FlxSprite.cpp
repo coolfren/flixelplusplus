@@ -58,31 +58,8 @@ Flx::Sprite* Flx::Sprite::loadGraphic(const void* data, const size_t size)
 
 Flx::Sprite* Flx::Sprite::makeGraphic(float width, float height, int color)
 {
-    /*
-    Uint32 rmask, gmask, bmask, amask;
-    #if SDL_BYTEORDER == SDL_BIG_ENDIAN
-    rmask = 0xff000000;
-    gmask = 0x00ff0000;
-    bmask = 0x0000ff00;
-    amask = 0x000000ff;
-    #else
-    rmask = 0x000000ff;
-    gmask = 0x0000ff00;
-    bmask = 0x00ff0000;
-    amask = 0xff000000;
-    #endif
-    auto textemp = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, rmask, gmask, bmask, amask);
-    SDL_FillRect(textemp, nullptr, color);
-    
-    #ifdef SDL_LEGACY
-    auto tex = textemp;
-    #else
-    auto tex = SDL_CreateTextureFromSurface(Flx::Globals::game->renderer, textemp);
-    #endif
-
-    graphic = new Flx::Graphic(width, height, tex);
+    graphic = Flx::Globals::game->backend->requestRectangle(width, height, color);
     updatePosition();
-    */
     return this;
 }
 
