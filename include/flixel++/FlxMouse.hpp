@@ -19,7 +19,7 @@ namespace Flx {
         void loadGraphic(const char* path);
 
         Flx::Rect clipRect;
-        Bitmap* cursor;
+        void* cursor;
         Flx::Point pos;
 
         bool enable;

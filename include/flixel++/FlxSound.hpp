@@ -8,11 +8,11 @@ namespace Flx
     class Sound : public Basic
     {
         public:
-        Uint32 startTime;
+        uint32_t startTime;
 
         OggVorbis_File vorbis;
         vorbis_info* info;
-        #ifdef OPENAL
+        #ifdef FLIXEL_OPENAL
         ALuint buffer;
         ALuint source;
         #endif

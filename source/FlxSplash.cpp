@@ -22,15 +22,16 @@ Flx::Splash::Splash(Flx::State *state)
 void Flx::Splash::create()
 {
 
-    /*yellow = new Flx::Sprite(0, 0);
-    yellow->loadRAWGraphic((void *)logoYellow_png, logoYellow_png_length);
+    yellow = new Flx::Sprite(0, 0);
+
+    yellow->loadGraphic((void *)logoYellow_png, logoYellow_png_length);
     yellow->setGraphicSize((yellow->graphic->width / 9), (yellow->graphic->height / 9));
     add(yellow);
     yellow->screenCenter();
     yellow->visible = false;
 
     red = new Flx::Sprite(0, 0);
-    red->loadRAWGraphic((void *)logoRed_png, logoRed_png_length);
+    red->loadGraphic((void *)logoRed_png, logoRed_png_length);
     red->setGraphicSize((red->graphic->width / 9), (red->graphic->height / 9) + 3);
     add(red);
     red->screenCenter();
@@ -38,14 +39,14 @@ void Flx::Splash::create()
 
 
     blue = new Flx::Sprite(0, 0);
-    blue->loadRAWGraphic((void *)logoBlue_png, logoBlue_png_length);
+    blue->loadGraphic((void *)logoBlue_png, logoBlue_png_length);
     blue->setGraphicSize((blue->graphic->width / 9), (blue->graphic->height / 9) +2 );
     add(blue);
     blue->screenCenter();
     blue->visible = false;
 
     cyan = new Flx::Sprite(0, 0);
-    cyan->loadRAWGraphic((void *)logoCyan_png, logoCyan_png_length);
+    cyan->loadGraphic((void *)logoCyan_png, logoCyan_png_length);
     cyan->setGraphicSize((cyan->graphic->width / 9), (cyan->graphic->height / 9));
     add(cyan);
     cyan->screenCenter();
@@ -53,13 +54,13 @@ void Flx::Splash::create()
 
 
     green = new Flx::Sprite(0, 0);
-    green->loadRAWGraphic((void *)logoGreen_png, logoGreen_png_length);
+    green->loadGraphic((void *)logoGreen_png, logoGreen_png_length);
     green->setGraphicSize((green->graphic->width / 9) + 5, (green->graphic->height / 9) + 5);
     add(green);
     green->screenCenter();
 
     cpp = new Flx::Sprite(0, 0);
-    cpp->loadRAWGraphic((void *)logoC_png, logoC_png_length);
+    cpp->loadGraphic((void *)logoC_png, logoC_png_length);
     cpp->setGraphicSize((cpp->graphic->width / 9), (cpp->graphic->height / 9));
     add(cpp);
     cpp->screenCenter();
@@ -69,7 +70,7 @@ void Flx::Splash::create()
     flixelText = new Text(0,0,"");
     flixelText->screenCenter();
     flixelText->y += 150;
-    add(flixelText);*/
+    add(flixelText);
 
     Sprite *sprite = new Flx::Sprite(0, 0);
     sprite->loadGraphic("assets/images/logo/logo.png");

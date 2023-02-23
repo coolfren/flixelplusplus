@@ -15,8 +15,8 @@ namespace Flx
         void setText(std::string newText);
         void drawText();
 
-        SDL_Color color;
-        TTF_Font* font;
+        // TODO: FlxFont
+        void* font;
     };
 }
 

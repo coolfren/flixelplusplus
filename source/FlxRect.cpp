@@ -14,18 +14,3 @@ Flx::Rect::~Rect()
 {
 
 }
-
-const SDL_Rect Flx::Rect::toSDLRect()
-{
-    return SDL_Rect{
-        (Sint16)x,(Sint16)y,(Uint16)width,(Uint16)height
-    };
-}
-#ifndef SDL_LEGACY
-const SDL_FRect Flx::Rect::toSDLFRect()
-{
-    return SDL_FRect{
-        x,y,width,height
-    };
-}
-#endif

@@ -14,12 +14,6 @@ namespace Flx {
 		void set(float x, float y);
 		void subtract(float x, float y);
 
-        #ifndef SDL_LEGACY
-        const SDL_Point toSDLPoint();
-
-        const SDL_FPoint toSDLFPoint();
-        #endif
-
 		float x, y;
 		int _x,_y;
 		int w,h;

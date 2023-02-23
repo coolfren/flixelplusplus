@@ -9,7 +9,7 @@
                 "${workspaceFolder}/bundles/simple-opengl-loader",
                 "${workspaceFolder}/bundles/tinyxml2"
             ],
-            "defines": [],
+            "defines": ["FLIXEL_SDL"],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++14",

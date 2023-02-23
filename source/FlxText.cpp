@@ -12,7 +12,6 @@ Flx::Text::Text(float x, float y, const std::string& text)
     }
 
     this->font = Flx::Assets::defaultFont;
-    this->color = {255,255,255,255};
 
     this->drawText();
 
@@ -21,6 +20,7 @@ Flx::Text::Text(float x, float y, const std::string& text)
 
 Flx::Text::~Text()
 {
+    Flx::Sprite::~Sprite();
 }
 
 void Flx::Text::setText(std::string newText){
@@ -31,6 +31,7 @@ void Flx::Text::setText(std::string newText){
 
 void Flx::Text::drawText()
 {
-    auto ttf = TTF_RenderText_Solid(Flx::Assets::defaultFont, text.c_str(), {255,255,255,255});
-    Flx::Sprite::graphic = Flx::Graphic::loadFromSurface(ttf);
+    if(graphic != nullptr)
+        delete graphic;
+    graphic = Flx::Globals::game->backend->requestText(text.c_str());
 }
