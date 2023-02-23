@@ -38,7 +38,7 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     Flx::Globals::width = width;
     Flx::Globals::height = height;
 
-    this->backend = new Flx::Backends::SDL();
+    this->backend = new Flx::Backends::OpenGL();
 
     initializeConsoles();
 
@@ -114,7 +114,3 @@ void Flx::Game::start()
     }
 }
 
-void Flx::Game::framebuffer_size_callback(GLFWwindow *window, int width, int height)
-{
-    glViewport(0, 0, width, height);
-}

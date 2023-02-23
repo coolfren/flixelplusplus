@@ -9,6 +9,10 @@ struct SDL_Renderer;
 struct SDL_Surface;
 #endif
 
+#ifdef FLIXEL_OPENGL
+struct GLFWwindow;
+#endif
+
 namespace Flx::Backends
 {
     class Backend
@@ -52,8 +56,26 @@ namespace Flx::Backends
     };
 #endif
 
+#ifdef FLIXEL_OPENGL
     class OpenGL : public Backend
-    {};
+    {
+        private:
+        GLFWwindow* window;
+        public:
+        OpenGL();
+        ~OpenGL();
+        Flx::Graphic* requestTexture(const char* path);
+        Flx::Graphic* requestTexture(const void* data, const size_t size);
+        Flx::Graphic* requestText(const char* text);
+        Flx::Graphic* requestRectangle(float width, float height, int color);
+        bool deleteTexture(void* tex);
+        void runEvents();
+        void update();
+        void render(Flx::Sprite* spr);
+        uint32_t getTicks();
+        void delay(uint32_t ms);
+    };
+#endif
 }
 
 #endif

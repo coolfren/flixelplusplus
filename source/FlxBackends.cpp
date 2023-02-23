@@ -5,20 +5,6 @@
 #include "assets/vcr.h"
 #include "assets/cursor.h"
 
-#ifdef FLIXEL_SDL
-
-#ifdef SDL_LEGACY
-#include <SDL/SDL.h>
-#include <SDL/SDL_image.h>
-#include <SDL/SDL_ttf.h>
-#include "flixel++/SDL_Backports.hpp"
-#else
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#endif
-
-#endif
 using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
 
 // -------------------------------------
@@ -37,6 +23,18 @@ uint32_t Flx::Backends::Backend::getTicks(){ return 0; }
 void Flx::Backends::Backend::delay(uint32_t ms){}
 
 #ifdef FLIXEL_SDL
+
+#ifdef SDL_LEGACY
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
+#include "flixel++/SDL_Backports.hpp"
+#else
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#endif
+
 // -------------------------------------
 Flx::Backends::SDL::SDL()
     : window(nullptr),
@@ -260,3 +258,64 @@ void Flx::Backends::SDL::delay(uint32_t ms)
 }
 #endif
 // -------------------------------------
+#ifdef FLIXEL_OPENGL
+
+#define SOGL_IMPLEMENTATION_X11
+#include "simple-opengl-loader.h"
+#include <GL/freeglut.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <GLFW/glfw3.h>
+
+glm::mat4 perspective = glm::mat4(1.0f);
+
+Flx::Backends::OpenGL::OpenGL()
+{
+    glfwInit();
+    sogl_loadOpenGL();
+    window = glfwCreateWindow(width, height, game->title.c_str(), NULL, NULL);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+    glfwMakeContextCurrent(window);
+}
+
+Flx::Backends::OpenGL::~OpenGL()
+{
+    glfwDestroyWindow(window);
+}
+
+Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const char* path){ return nullptr; }
+
+Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const void* data, const size_t size){ return nullptr; }
+
+Flx::Graphic* Flx::Backends::OpenGL::requestText(const char* text){ return nullptr; }
+
+Flx::Graphic* Flx::Backends::OpenGL::requestRectangle(float width, float height, int color){ return nullptr; }
+
+bool Flx::Backends::OpenGL::deleteTexture(void* spr){ return false; }
+
+void Flx::Backends::OpenGL::runEvents(){
+    Flx::Globals::game->quitting = glfwWindowShouldClose(window);
+}
+
+void Flx::Backends::OpenGL::update(){
+    glfwSwapBuffers(window);
+}
+
+void Flx::Backends::OpenGL::render(Flx::Sprite* spr){}
+
+uint32_t Flx::Backends::OpenGL::getTicks(){ return 0; }
+
+void Flx::Backends::OpenGL::delay(uint32_t ms){}
+
+void framebuffer_size_callback(GLFWwindow *window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+}
+
+static void glfwError(int id, const char *description)
+{
+    std::cout << description << std::endl;
+}
+
+#endif
