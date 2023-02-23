@@ -2,7 +2,7 @@
 #define FLIXEL_HTTP
 
 #include "flixel++/Common.hpp"
-#ifdef USE_CURL
+#ifdef FLIXEL_USE_CURL
 #include "curl/curl.h"
 
 namespace Flx

@@ -55,8 +55,6 @@ void Flx::Game::setupGlobals()
 
     Flx::Globals::keys = new Flx::Keyboard();
 
-    Flx::Assets::initialize();
-
     Flx::Globals::mouse = new Flx::Mouse();
 }
 
@@ -96,6 +94,6 @@ void Flx::Game::start()
         runEvents();
         if(!paused)
             run();
-        SDL_Delay(1000.0f / framerate);
+        backend->delay(1000.0f / framerate);
     }
 }

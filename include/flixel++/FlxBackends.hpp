@@ -3,6 +3,12 @@
 #include "flixel++/FlxSprite.hpp"
 #include "flixel++/FlxGraphic.hpp"
 
+#ifdef FLIXEL_SDL
+struct SDL_Window;
+struct SDL_Renderer;
+struct SDL_Surface;
+#endif
+
 namespace Flx::Backends
 {
     class Backend
@@ -12,16 +18,20 @@ namespace Flx::Backends
         virtual ~Backend();
         virtual Flx::Graphic* requestTexture(const char* path);
         virtual Flx::Graphic* requestTexture(const void* data, const size_t size);
+        virtual Flx::Graphic* requestText(const char* text);
         virtual bool deleteTexture(void* tex);
         virtual void runEvents();
         virtual void update();
         virtual void render(Flx::Sprite* spr);
-        virtual uint32_t getTicks();
+        virtual inline uint32_t getTicks();
+        virtual inline void delay(uint32_t ms);
     };
 
+#ifdef FLIXEL_SDL
     class SDL : public Backend
     {
         private:
+
         SDL_Window* window;
         SDL_Renderer* renderer;
         public:
@@ -30,12 +40,15 @@ namespace Flx::Backends
         Flx::Graphic* requestTexture(const char* path);
         Flx::Graphic* requestTexture(const void* data, const size_t size);
         Flx::Graphic* requestTexture(SDL_Surface* surface);
+        Flx::Graphic* requestText(const char* text);
         bool deleteTexture(void* tex);
         void runEvents();
         void update();
         void render(Flx::Sprite* spr);
-        uint32_t getTicks();
+        inline uint32_t getTicks();
+        inline void delay(uint32_t ms);
     };
+#endif
 
     class OpenGL : public Backend
     {};

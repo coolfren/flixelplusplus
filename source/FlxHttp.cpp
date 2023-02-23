@@ -1,5 +1,5 @@
 #include "flixel++/Common.hpp"
-#ifdef USE_CURL
+#ifdef FLIXEL_USE_CURL
 #include "flixel++/FlxHttp.hpp"
 #include "flixel++/FlxMacros.hpp"
 #include "curl/curl.h"

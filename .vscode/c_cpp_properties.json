@@ -7,7 +7,7 @@
                 "/opt/devkitpro/portlibs/ppc/include",
                 "/opt/devkitpro/libctru/include"
             ],
-            "defines": [],
+            "defines": ["FLIXEL_SDL"],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++14",

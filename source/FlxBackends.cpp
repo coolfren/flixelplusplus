@@ -2,6 +2,23 @@
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxLog.hpp"
 #include "flixel++/FlxMacros.hpp"
+#include "assets/vcr.h"
+#include "assets/cursor.h"
+
+#ifdef FLIXEL_SDL
+
+#ifdef SDL_LEGACY
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
+#include "flixel++/SDL_Backports.hpp"
+#else
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#endif
+
+#endif
 using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
 
 // -------------------------------------
@@ -10,12 +27,15 @@ Flx::Backends::Backend::Backend(){}
 Flx::Backends::Backend::~Backend(){}
 Flx::Graphic* Flx::Backends::Backend::requestTexture(const char* path){ return nullptr; }
 Flx::Graphic* Flx::Backends::Backend::requestTexture(const void* data, const size_t size){ return nullptr; }
+Flx::Graphic* Flx::Backends::Backend::requestText(const char* text){ return nullptr; }
 bool Flx::Backends::Backend::deleteTexture(void* spr){ return false; }
 void Flx::Backends::Backend::runEvents(){}
 void Flx::Backends::Backend::update(){}
 void Flx::Backends::Backend::render(Flx::Sprite* spr){}
 uint32_t Flx::Backends::Backend::getTicks(){ return 0; }
+void Flx::Backends::Backend::delay(uint32_t ms){}
 
+#ifdef FLIXEL_SDL
 // -------------------------------------
 Flx::Backends::SDL::SDL()
     : window(nullptr),
@@ -28,11 +48,24 @@ Flx::Backends::SDL::SDL()
 
     window = SDL_CreateWindow(game->title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
     SDL_SetWindowResizable(window, SDL_TRUE);
 
-    SDL_ShowCursor(0);
+    SDL_ShowCursor(1);
+
+    SDL_RWops* rw = SDL_RWFromConstMem((void*)vcr_ttf, vcr_ttf_size);
+    Flx::Assets::defaultFont = TTF_OpenFontRW(rw, 1, 24);
+
+    SDL_Surface* temp = IMG_LoadPNG_RW(SDL_RWFromConstMem((void*)cursor_png, cursor_png_size));
+
+    #ifdef SDL_LEGACY
+    Flx::Assets::defaultCursor = temp;
+    #else
+    Flx::Assets::defaultCursor = SDL_CreateTextureFromSurface(renderer, temp);
+    SDL_FreeSurface(temp);
+    #endif
 }
 
 Flx::Backends::SDL::~SDL()
@@ -72,6 +105,11 @@ Flx::Graphic* Flx::Backends::SDL::requestTexture(SDL_Surface* surface)
     Flx::Graphic* tex = new Flx::Graphic(surface->w, surface->h, (void*)SDL_CreateTextureFromSurface(renderer, surface));
     SDL_FreeSurface(surface);
     return tex;
+}
+
+Flx::Graphic* Flx::Backends::SDL::requestText(const char* text)
+{
+    return requestTexture(TTF_RenderText_Solid((TTF_Font*)Flx::Assets::defaultFont, text, {255,255,255,255}));
 }
 
 void Flx::Backends::SDL::runEvents()
@@ -191,6 +229,11 @@ uint32_t Flx::Backends::SDL::getTicks()
     return SDL_GetTicks();
 }
 
+void Flx::Backends::SDL::delay(uint32_t ms)
+{
+    SDL_Delay(ms);
+}
+#endif
 // -------------------------------------
 
 /*

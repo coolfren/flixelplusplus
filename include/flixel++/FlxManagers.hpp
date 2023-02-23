@@ -20,7 +20,7 @@ namespace Flx
     class SoundManager
     {
         private:
-        #ifdef OPENAL
+        #ifdef FLIXEL_OPENAL
         ALCdevice *device;
         ALCcontext *context;
         #endif

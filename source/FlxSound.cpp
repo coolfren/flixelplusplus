@@ -7,7 +7,7 @@ Flx::Sound::Sound()
 
 Flx::Sound::~Sound()
 {
-    #ifdef OPENAL
+    #ifdef FLIXEL_OPENAL
     alDeleteSources(1, &source);
     alDeleteBuffers(1, &buffer);
     vorbis_info_clear(info);
@@ -17,7 +17,7 @@ Flx::Sound::~Sound()
 void Flx::Sound::play()
 {
     startTime = Flx::Globals::game->backend->getTicks();
-    #ifdef OPENAL
+    #ifdef FLIXEL_OPENAL
     alSourcePlay(source);
     #endif
 }
@@ -32,7 +32,7 @@ void Flx::Sound::load(const char *path)
 
     info = ov_info(&vorbis, -1);
 
-    #ifdef OPENAL
+    #ifdef FLIXEL_OPENAL
     alGenBuffers(1, &buffer);
     #endif
 
@@ -57,7 +57,7 @@ void Flx::Sound::load(const char *path)
 
         bufferData.insert(bufferData.end(), pcm.begin(), pcm.begin() + result);
     }
-    #ifdef OPENAL
+    #ifdef FLIXEL_OPENAL
     alBufferData(buffer, AL_FORMAT_STEREO16, bufferData.data(), bufferData.size(), info->rate);
     alGenSources(1, &source);
     alSourcei(source, AL_BUFFER, buffer);
@@ -67,7 +67,7 @@ void Flx::Sound::load(const char *path)
 float Flx::Sound::getPosition()
 {
     float val = 0;
-    #ifdef OPENAL
+    #ifdef FLIXEL_OPENAL
     alGetSourcef(buffer, AL_SEC_OFFSET, &val);
     #endif
     return val * 1000;

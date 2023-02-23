@@ -21,13 +21,14 @@ void Flx::Mouse::draw()
 {
     if (!enable)
         return;
+    /*
     SDL_Rect dest = {
         static_cast<int>(this->x), 
         static_cast<int>(this->y), 
         static_cast<int>(clipRect.width), 
         static_cast<int>(clipRect.height)
     };
-
+    */
     //auto src = clipRect.toSDLRect();
 
     #ifdef SDL_LEGACY
@@ -65,7 +66,7 @@ void Flx::Mouse::update()
 {
     if (enable)
     {
-        SDL_GetMouseState(&pos._x, &pos._y);
+        //SDL_GetMouseState(&pos._x, &pos._y);
         this->x = pos._x;
         this->y = pos._y;
     }

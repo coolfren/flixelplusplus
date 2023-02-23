@@ -30,7 +30,7 @@ bool Flx::Random::boolean(float chance)
 Flx::SoundManager::SoundManager()
     : music(nullptr)
 {
-    #ifdef OPENAL
+    #ifdef FLIXEL_OPENAL
     device = alcOpenDevice(NULL);
     context = alcCreateContext(device, NULL);
     alcMakeContextCurrent(context);
@@ -39,7 +39,7 @@ Flx::SoundManager::SoundManager()
 
 Flx::SoundManager::~SoundManager()
 {
-    #ifdef OPENAL
+    #ifdef FLIXEL_OPENAL
     alcDestroyContext (context);
     alcCloseDevice (device);
     #endif

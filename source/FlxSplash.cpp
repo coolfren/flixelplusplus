@@ -26,7 +26,6 @@ void Flx::Splash::create()
     yellow = new Flx::Sprite(0, 0);
 
     yellow->loadGraphic((void *)logoYellow_png, logoYellow_png_length);
-    trace(SDL_GetError());
     yellow->setGraphicSize((yellow->graphic->width / 9), (yellow->graphic->height / 9));
     add(yellow);
     yellow->screenCenter();
