@@ -16,4 +16,10 @@
 #define FLIXEL_USE_CURL
 #endif
 
+#ifdef _WIN32
+#include <synchapi.h>
+#else
+#include <unistd.h>
+#endif
+
 #endif

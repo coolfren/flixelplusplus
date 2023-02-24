@@ -35,6 +35,46 @@ void Flx::Backends::Backend::delay(uint32_t ms){}
 #include <SDL2/SDL_ttf.h>
 #endif
 
+inline void sdlEvents(SDL_Window* window)
+{
+    SDL_Event e;
+    while (SDL_PollEvent(&e))
+    {
+        switch(e.type)
+        {
+            case SDL_KEYDOWN:
+            #ifndef SDL_LEGACY
+                if(e.key.repeat == 0)
+            #endif
+                    Flx::Globals::keys->keys[e.key.keysym.sym % 255] = true;
+                break;
+            case SDL_KEYUP:
+                Flx::Globals::keys->keys[e.key.keysym.sym % 255] = false;
+                break;
+            #ifndef SDL_LEGACY
+            case SDL_WINDOWEVENT:
+                switch(e.window.event){
+                    case SDL_WINDOWEVENT_RESIZED:
+                        SDL_GetWindowSize(window, &Flx::Globals::width, &Flx::Globals::height);
+                        game->curState->onResize(Flx::Globals::width, Flx::Globals::height);
+                    case SDL_WINDOWEVENT_FOCUS_GAINED:
+                        game->paused = false;
+                            break;
+                    case SDL_WINDOWEVENT_FOCUS_LOST:
+                        game->paused = true;
+                        break;
+                }
+                break;
+            #endif
+            case SDL_QUIT:
+                game->quitting = true;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 // -------------------------------------
 Flx::Backends::SDL::SDL()
     : window(nullptr),
@@ -137,42 +177,7 @@ Flx::Graphic* Flx::Backends::SDL::requestRectangle(float width, float height, in
 
 void Flx::Backends::SDL::runEvents()
 {
-    SDL_Event e;
-    while (SDL_PollEvent(&e))
-    {
-        switch(e.type)
-        {
-            case SDL_KEYDOWN:
-            #ifndef SDL_LEGACY
-                if(e.key.repeat == 0)
-            #endif
-                    Flx::Globals::keys->keys[e.key.keysym.sym % 255] = true;
-                break;
-            case SDL_KEYUP:
-                Flx::Globals::keys->keys[e.key.keysym.sym % 255] = false;
-                break;
-            #ifndef SDL_LEGACY
-            case SDL_WINDOWEVENT:
-                switch(e.window.event){
-                    case SDL_WINDOWEVENT_RESIZED:
-                        SDL_GetWindowSize(window, &Flx::Globals::width, &Flx::Globals::height);
-                        game->curState->onResize(Flx::Globals::width, Flx::Globals::height);
-                    case SDL_WINDOWEVENT_FOCUS_GAINED:
-                        game->paused = false;
-                            break;
-                    case SDL_WINDOWEVENT_FOCUS_LOST:
-                        game->paused = true;
-                        break;
-                }
-                break;
-            #endif
-            case SDL_QUIT:
-                game->quitting = true;
-                break;
-            default:
-                break;
-        }
-    }
+    sdlEvents(window);
 }
 
 inline const SDL_FRect toSDLFRect(Flx::Rect& rect){
@@ -260,28 +265,32 @@ void Flx::Backends::SDL::delay(uint32_t ms)
 // -------------------------------------
 #ifdef FLIXEL_OPENGL
 
+#define SOGL_MAJOR_VERSION 3
+#define SOGL_MINOR_VERSION 3
 #define SOGL_IMPLEMENTATION_X11
 #include "simple-opengl-loader.h"
+#include <SDL2/SDL.h>
 #include <GL/freeglut.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <GLFW/glfw3.h>
 
 glm::mat4 perspective = glm::mat4(1.0f);
 
 Flx::Backends::OpenGL::OpenGL()
 {
-    glfwInit();
     sogl_loadOpenGL();
-    window = glfwCreateWindow(width, height, game->title.c_str(), NULL, NULL);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-    glfwMakeContextCurrent(window);
+
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
+    window = SDL_CreateWindow(game->title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
+    SDL_GL_CreateContext(window);
 }
 
 Flx::Backends::OpenGL::~OpenGL()
 {
-    glfwDestroyWindow(window);
+    SDL_DestroyWindow(window);
 }
 
 Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const char* path){ return nullptr; }
@@ -295,27 +304,23 @@ Flx::Graphic* Flx::Backends::OpenGL::requestRectangle(float width, float height,
 bool Flx::Backends::OpenGL::deleteTexture(void* spr){ return false; }
 
 void Flx::Backends::OpenGL::runEvents(){
-    Flx::Globals::game->quitting = glfwWindowShouldClose(window);
+    sdlEvents(window);
 }
 
 void Flx::Backends::OpenGL::update(){
-    glfwSwapBuffers(window);
+    SDL_GL_SwapWindow(window);
 }
 
 void Flx::Backends::OpenGL::render(Flx::Sprite* spr){}
 
 uint32_t Flx::Backends::OpenGL::getTicks(){ return 0; }
 
-void Flx::Backends::OpenGL::delay(uint32_t ms){}
-
-void framebuffer_size_callback(GLFWwindow *window, int width, int height)
-{
-    glViewport(0, 0, width, height);
-}
-
-static void glfwError(int id, const char *description)
-{
-    std::cout << description << std::endl;
+void Flx::Backends::OpenGL::delay(uint32_t ms){
+    #ifdef _WIN32
+    Sleep(ms);
+    #else
+    usleep(ms / 1000);
+    #endif
 }
 
 #endif

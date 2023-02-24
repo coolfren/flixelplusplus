@@ -10,7 +10,7 @@ struct SDL_Surface;
 #endif
 
 #ifdef FLIXEL_OPENGL
-struct GLFWwindow;
+struct SDL_Window;
 #endif
 
 namespace Flx::Backends
@@ -60,7 +60,7 @@ namespace Flx::Backends
     class OpenGL : public Backend
     {
         private:
-        GLFWwindow* window;
+        SDL_Window* window;
         public:
         OpenGL();
         ~OpenGL();

@@ -46,9 +46,6 @@ include_directories(${CURL_INCLUDE_DIR})
 
 find_package(OpenGL REQUIRED)
 
-find_package(glfw3 3.3 REQUIRED)
-include_directories(${GLFW_INCLUDE_DIRS})
-
 find_package(SOIL REQUIRED)
 include_directories(${SOIL_INCLUDE_DIRS})
 
@@ -73,7 +70,6 @@ target_link_libraries(flixel++ ${VORBISFILE_LIBRARY})
 target_link_libraries(flixel++ ${CURL_LIBRARY})
 target_link_libraries(flixel++ ${GLEW_LIBRARIES})
 target_link_libraries(flixel++ ${OPENGL_LIBRARY})
-target_link_libraries(flixel++ ${GLFW_LIBRARY})
 target_link_libraries(flixel++ ${SOIL_LIBRARY})
 
 install(TARGETS flixel++ DESTINATION lib)
