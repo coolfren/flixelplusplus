@@ -2,12 +2,19 @@
 all:
 	@echo "Specify what platform you want to build"
 pc:
-ifeq ($(SDL_LEGACY),1)
+ifeq ($(PLATFORM),1)
 	@mkdir -p build
 	@cd build && cmake -DSDL_LEGACY=1 .. && make
-else
+
+else ifeq ($(PLATFORM),2)
 	@mkdir -p build
-	@cd build && cmake .. && make
+	@cd build && cmake -DSDL=1 .. && make
+
+else ifeq ($(PLATFORM),3)
+	@mkdir -p build
+	@cd build && cmake -DOPENGL=1 .. && make
+
+
 endif
 
 install:
