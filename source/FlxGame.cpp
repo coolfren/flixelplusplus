@@ -7,13 +7,14 @@
 int Flx::Globals::width = 0;
 int Flx::Globals::height = 0;
 
-Flx::Game* Flx::Globals::game = nullptr;
-Flx::Random* Flx::Globals::random = nullptr;
-Flx::SoundManager* Flx::Globals::sound = nullptr;
-Flx::Keyboard* Flx::Globals::keys = nullptr;
-Flx::Mouse* Flx::Globals::mouse = nullptr;
+Flx::Game *Flx::Globals::game = nullptr;
+Flx::Random *Flx::Globals::random = nullptr;
+Flx::SoundManager *Flx::Globals::sound = nullptr;
+Flx::Keyboard *Flx::Globals::keys = nullptr;
+Flx::Mouse *Flx::Globals::mouse = nullptr;
 
-bool Flx::Globals::switchState(Flx::State* state){
+bool Flx::Globals::switchState(Flx::State *state)
+{
     return game->switchState(state);
 }
 
@@ -37,11 +38,13 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     Flx::Globals::width = width;
     Flx::Globals::height = height;
 
-    this->backend = new Flx::Backends::SDL();
+    this->backend = new Flx::Backends::OpenGL();
 
     initializeConsoles();
 
     setupGlobals();
+
+    backend->requestTexture("assets/images/logo.png");
 
     if(skipSplash)
         switchState(initialState);
@@ -74,7 +77,7 @@ void Flx::Game::destroyGlobals()
     delete Flx::Globals::mouse;
 }
 
-bool Flx::Game::switchState(Flx::State* state)
+bool Flx::Game::switchState(Flx::State *state)
 {
     if (curState != nullptr)
     {
@@ -97,11 +100,19 @@ void Flx::Game::run()
 
 void Flx::Game::start()
 {
+    /*while (!quitting)
+    {
+        runEvents();
+        if (!paused)
+            run();
+        SDL_Delay(1000.0f / framerate);
+    }*/
     while (!quitting)
     {
         runEvents();
-        if(!paused)
+        if (!paused)
             run();
         backend->delay(1000.0f / framerate);
     }
 }
+

@@ -5,6 +5,24 @@
 #include "assets/vcr.h"
 #include "assets/cursor.h"
 
+using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
+
+// -------------------------------------
+
+Flx::Backends::Backend::Backend(){}
+Flx::Backends::Backend::~Backend(){}
+Flx::Graphic* Flx::Backends::Backend::requestTexture(const char* path){ return nullptr; }
+Flx::Graphic* Flx::Backends::Backend::requestTexture(const void* data, const size_t size){ return nullptr; }
+Flx::Graphic* Flx::Backends::Backend::requestText(const char* text){ return nullptr; }
+Flx::Graphic* Flx::Backends::Backend::requestRectangle(float width, float height, int color){ return nullptr; }
+Flx::Shader* Flx::Backends::Backend::compileShader(Flx::Shader* shader){ return nullptr; }
+bool Flx::Backends::Backend::deleteTexture(void* spr){ return false; }
+void Flx::Backends::Backend::runEvents(){}
+void Flx::Backends::Backend::update(){}
+void Flx::Backends::Backend::render(Flx::Sprite* spr){}
+uint32_t Flx::Backends::Backend::getTicks(){ return 0; }
+void Flx::Backends::Backend::delay(uint32_t ms){}
+
 #ifdef FLIXEL_SDL
 
 #ifdef SDL_LEGACY
@@ -18,25 +36,46 @@
 #include <SDL2/SDL_ttf.h>
 #endif
 
-#endif
-using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
+inline void sdlEvents(SDL_Window* window)
+{
+    SDL_Event e;
+    while (SDL_PollEvent(&e))
+    {
+        switch(e.type)
+        {
+            case SDL_KEYDOWN:
+            #ifndef SDL_LEGACY
+                if(e.key.repeat == 0)
+            #endif
+                    Flx::Globals::keys->keys[e.key.keysym.sym % 255] = true;
+                break;
+            case SDL_KEYUP:
+                Flx::Globals::keys->keys[e.key.keysym.sym % 255] = false;
+                break;
+            #ifndef SDL_LEGACY
+            case SDL_WINDOWEVENT:
+                switch(e.window.event){
+                    case SDL_WINDOWEVENT_RESIZED:
+                        SDL_GetWindowSize(window, &Flx::Globals::width, &Flx::Globals::height);
+                        game->curState->onResize(Flx::Globals::width, Flx::Globals::height);
+                    case SDL_WINDOWEVENT_FOCUS_GAINED:
+                        game->paused = false;
+                            break;
+                    case SDL_WINDOWEVENT_FOCUS_LOST:
+                        game->paused = true;
+                        break;
+                }
+                break;
+            #endif
+            case SDL_QUIT:
+                game->quitting = true;
+                break;
+            default:
+                break;
+        }
+    }
+}
 
-// -------------------------------------
-
-Flx::Backends::Backend::Backend(){}
-Flx::Backends::Backend::~Backend(){}
-Flx::Graphic* Flx::Backends::Backend::requestTexture(const char* path){ return nullptr; }
-Flx::Graphic* Flx::Backends::Backend::requestTexture(const void* data, const size_t size){ return nullptr; }
-Flx::Graphic* Flx::Backends::Backend::requestText(const char* text){ return nullptr; }
-Flx::Graphic* Flx::Backends::Backend::requestRectangle(float width, float height, int color){ return nullptr; }
-bool Flx::Backends::Backend::deleteTexture(void* spr){ return false; }
-void Flx::Backends::Backend::runEvents(){}
-void Flx::Backends::Backend::update(){}
-void Flx::Backends::Backend::render(Flx::Sprite* spr){}
-uint32_t Flx::Backends::Backend::getTicks(){ return 0; }
-void Flx::Backends::Backend::delay(uint32_t ms){}
-
-#ifdef FLIXEL_SDL
 // -------------------------------------
 Flx::Backends::SDL::SDL()
     : window(nullptr),
@@ -139,42 +178,7 @@ Flx::Graphic* Flx::Backends::SDL::requestRectangle(float width, float height, in
 
 void Flx::Backends::SDL::runEvents()
 {
-    SDL_Event e;
-    while (SDL_PollEvent(&e))
-    {
-        switch(e.type)
-        {
-            case SDL_KEYDOWN:
-            #ifndef SDL_LEGACY
-                if(e.key.repeat == 0)
-            #endif
-                    Flx::Globals::keys->keys[e.key.keysym.sym % 255] = true;
-                break;
-            case SDL_KEYUP:
-                Flx::Globals::keys->keys[e.key.keysym.sym % 255] = false;
-                break;
-            #ifndef SDL_LEGACY
-            case SDL_WINDOWEVENT:
-                switch(e.window.event){
-                    case SDL_WINDOWEVENT_RESIZED:
-                        SDL_GetWindowSize(window, &Flx::Globals::width, &Flx::Globals::height);
-                        game->curState->onResize(Flx::Globals::width, Flx::Globals::height);
-                    case SDL_WINDOWEVENT_FOCUS_GAINED:
-                        game->paused = false;
-                            break;
-                    case SDL_WINDOWEVENT_FOCUS_LOST:
-                        game->paused = true;
-                        break;
-                }
-                break;
-            #endif
-            case SDL_QUIT:
-                game->quitting = true;
-                break;
-            default:
-                break;
-        }
-    }
+    sdlEvents(window);
 }
 
 inline const SDL_FRect toSDLFRect(Flx::Rect& rect){
@@ -258,5 +262,127 @@ void Flx::Backends::SDL::delay(uint32_t ms)
 {
     SDL_Delay(ms);
 }
+
+Flx::Shader* Flx::Backends::SDL::compileShader(Flx::Shader* shader)
+{ 
+    return nullptr; //shaders are unsupported
+}
+
 #endif
 // -------------------------------------
+#ifdef FLIXEL_OPENGL
+
+#define SOGL_MAJOR_VERSION 3
+#define SOGL_MINOR_VERSION 3
+#define SOGL_IMPLEMENTATION_X11
+#include <SDL2/SDL.h>
+#include <GL/glew.h>
+#include <GL/freeglut.h>
+#include <SOIL/SOIL.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <GLFW/glfw3.h>
+        
+glm::mat4 perspective = glm::mat4(1.0f);
+int nChannels;
+
+
+Flx::Backends::OpenGL::OpenGL()
+{
+    SDL_Init(SDL_INIT_EVERYTHING);
+    glfwInit();
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
+  window = SDL_CreateWindow(game->title.c_str(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,width,height,SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+    if (window == nullptr)
+    {
+        std::cout << "Failed to load the sdl/gl Window!" << std::endl;
+        SDL_GetError();
+    }
+    GLenum verifyGlew = glewInit();
+    if (verifyGlew != GLEW_OK)
+    {
+        fprintf(stderr, "Error: %s\n", glewGetErrorString(verifyGlew));
+    }
+
+    SDL_GLContext glContext = SDL_GL_CreateContext(window);
+    if(glContext != nullptr){
+        std::cout << "Failed to create a GL context" << std::endl;
+        SDL_GetError();
+    }
+}
+
+Flx::Backends::OpenGL::~OpenGL()
+{
+    SDL_DestroyWindow(window);
+}
+
+Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const char* path){ 
+    unsigned char* data = SOIL_load_image(path,&width,&height,&nChannels,nChannels);
+    std::cout << "\n\n\n" << sizeof(data);
+}
+
+Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const void* data, const size_t size){ return nullptr; }
+
+Flx::Graphic* Flx::Backends::OpenGL::requestText(const char* text){ return nullptr; }
+
+Flx::Graphic* Flx::Backends::OpenGL::requestRectangle(float width, float height, int color){ return nullptr; }
+
+bool Flx::Backends::OpenGL::deleteTexture(void* spr){ return false; }
+
+void Flx::Backends::OpenGL::runEvents(){
+    sdlEvents(window);
+}
+
+void Flx::Backends::OpenGL::update(){
+    glClearColor(1.0f,0.5f,0.35f,1.0f);
+
+    perspective = glm::ortho(0.0f, (float)Flx::Globals::width, (float)Flx::Globals::height, 0.0f, -1.0f, 1.0f);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    SDL_GL_SwapWindow(window);
+}
+
+void Flx::Backends::OpenGL::render(Flx::Sprite* spr){
+
+}
+
+uint32_t Flx::Backends::OpenGL::getTicks(){ return 0; }
+
+void Flx::Backends::OpenGL::delay(uint32_t ms){
+    #ifdef _WIN32
+    Sleep(ms);
+    #else
+    usleep(ms * 1000);
+    #endif
+}
+
+Flx::Shader* Flx::Backends::OpenGL::compileShader(Flx::Shader* shader)
+{
+    shader->program = new GLuint;
+    GLuint* programPtr = (GLuint*)shader->program;
+    *programPtr = glCreateProgram();
+
+
+    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    const char* source = shader->vertexSource.c_str();
+    int size = shader->vertexSource.size();
+    glShaderSource(vs, 1, &source, &size); 
+    glCompileShader(vs);
+ 
+
+    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+    source = shader->fragmentSource.c_str();
+    size = shader->fragmentSource.size();
+    glShaderSource(fs, 1, &source, &size);   
+    glCompileShader(fs);
+
+    glAttachShader(*programPtr, vs);
+    glAttachShader(*programPtr, fs);
+    return shader;
+}
+
+#endif

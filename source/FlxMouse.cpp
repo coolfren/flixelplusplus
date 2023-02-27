@@ -32,7 +32,7 @@ void Flx::Mouse::draw()
     //auto src = clipRect.toSDLRect();
 
     #ifdef SDL_LEGACY
-    SDL_UpperBlitScaled(cursor, &src, Flx::Globals::game->window, &dest);
+    //SDL_UpperBlitScaled(cursor, &src, Flx::Globals::game->window, &dest);
     #else
     //SDL_RenderCopy(Flx::Globals::game->renderer, cursor, &src, &dest);
     #endif
