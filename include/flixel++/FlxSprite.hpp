@@ -6,6 +6,7 @@
 #include "flixel++/FlxPoint.hpp"
 #include "flixel++/FlxAnimation.hpp"
 #include "flixel++/FlxColor.hpp"
+#include "flixel++/FlxShader.hpp"
 namespace Flx
 {
     class Sprite : public Flx::Object
@@ -21,6 +22,8 @@ namespace Flx
         Flx::AnimationController* animation;
         
         Flx::Color color;
+
+        Flx::Shader shader;
 
         Sprite(float x, float y);
         Sprite(const char* path);

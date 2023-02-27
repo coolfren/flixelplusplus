@@ -15,6 +15,7 @@ Flx::Graphic* Flx::Backends::Backend::requestTexture(const char* path){ return n
 Flx::Graphic* Flx::Backends::Backend::requestTexture(const void* data, const size_t size){ return nullptr; }
 Flx::Graphic* Flx::Backends::Backend::requestText(const char* text){ return nullptr; }
 Flx::Graphic* Flx::Backends::Backend::requestRectangle(float width, float height, int color){ return nullptr; }
+Flx::Shader* Flx::Backends::Backend::compileShader(Flx::Shader* shader){ return nullptr; }
 bool Flx::Backends::Backend::deleteTexture(void* spr){ return false; }
 void Flx::Backends::Backend::runEvents(){}
 void Flx::Backends::Backend::update(){}
@@ -261,6 +262,12 @@ void Flx::Backends::SDL::delay(uint32_t ms)
 {
     SDL_Delay(ms);
 }
+
+Flx::Shader* Flx::Backends::SDL::compileShader(Flx::Shader* shader)
+{ 
+    return nullptr; //shaders are unsupported
+}
+
 #endif
 // -------------------------------------
 #ifdef FLIXEL_OPENGL
@@ -319,8 +326,33 @@ void Flx::Backends::OpenGL::delay(uint32_t ms){
     #ifdef _WIN32
     Sleep(ms);
     #else
-    usleep(ms / 1000);
+    usleep(ms * 1000);
     #endif
+}
+
+Flx::Shader* Flx::Backends::OpenGL::compileShader(Flx::Shader* shader)
+{
+    shader->program = new GLuint;
+    GLuint* programPtr = (GLuint*)shader->program;
+    *programPtr = glCreateProgram();
+
+
+    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    const char* source = shader->vertexSource.c_str();
+    int size = shader->vertexSource.size();
+    glShaderSource(vs, 1, &source, &size); 
+    glCompileShader(vs);
+ 
+
+    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+    source = shader->fragmentSource.c_str();
+    size = shader->fragmentSource.size();
+    glShaderSource(fs, 1, &source, &size);   
+    glCompileShader(fs);
+
+    glAttachShader(*programPtr, vs);
+    glAttachShader(*programPtr, fs);
+    return shader;
 }
 
 #endif

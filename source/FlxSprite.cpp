@@ -14,6 +14,7 @@ Flx::Sprite::Sprite(float x, float y)
     hitbox(0, 0, 0, 0), 
     animation(new Flx::AnimationController),
     color(255, 255, 255, 255),
+    shader(),
     offset(0, 0),
     scale(1, 1),
     origin(x, y)
