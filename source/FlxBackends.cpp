@@ -275,6 +275,7 @@ Flx::Shader* Flx::Backends::SDL::compileShader(Flx::Shader* shader)
 #define SOGL_MAJOR_VERSION 3
 #define SOGL_MINOR_VERSION 3
 #define SOGL_IMPLEMENTATION_X11
+
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
@@ -285,11 +286,11 @@ Flx::Shader* Flx::Backends::SDL::compileShader(Flx::Shader* shader)
         
 glm::mat4 perspective = glm::mat4(1.0f);
 
-
 Flx::Backends::OpenGL::OpenGL()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
     glfwInit();
+
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -376,9 +377,8 @@ void Flx::Backends::OpenGL::update(){
     SDL_GL_SwapWindow(window);
 }
 
-void Flx::Backends::OpenGL::render(Flx::Sprite* spr){
+void Flx::Backends::OpenGL::render(Flx::Sprite* spr){}
 
-}
 
 uint32_t Flx::Backends::OpenGL::getTicks(){ return 0; }
 
