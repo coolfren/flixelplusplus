@@ -44,6 +44,8 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
 
     setupGlobals();
 
+    backend->requestTexture("assets/images/logo.png");
+
     if(skipSplash)
         switchState(initialState);
     else

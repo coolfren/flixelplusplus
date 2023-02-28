@@ -275,24 +275,44 @@ Flx::Shader* Flx::Backends::SDL::compileShader(Flx::Shader* shader)
 #define SOGL_MAJOR_VERSION 3
 #define SOGL_MINOR_VERSION 3
 #define SOGL_IMPLEMENTATION_X11
-#include "simple-opengl-loader.h"
+
 #include <SDL2/SDL.h>
+#include <GL/glew.h>
 #include <GL/freeglut.h>
+#include <SOIL/SOIL.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
+#include <GLFW/glfw3.h>
+        
 glm::mat4 perspective = glm::mat4(1.0f);
+int nChannels;
 
 Flx::Backends::OpenGL::OpenGL()
 {
-    sogl_loadOpenGL();
+    SDL_Init(SDL_INIT_EVERYTHING);
+    glfwInit();
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-    window = SDL_CreateWindow(game->title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
-    SDL_GL_CreateContext(window);
+    window = SDL_CreateWindow(game->title.c_str(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,width,height,SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+    if (window == nullptr)
+    {
+        std::cout << "Failed to load the sdl/gl Window!" << std::endl;
+        SDL_GetError();
+    }
+    GLenum verifyGlew = glewInit();
+    if (verifyGlew != GLEW_OK)
+    {
+        fprintf(stderr, "Error: %s\n", glewGetErrorString(verifyGlew));
+    }
+
+    SDL_GLContext glContext = SDL_GL_CreateContext(window);
+    if(glContext != nullptr){
+        std::cout << "Failed to create a GL context" << std::endl;
+        SDL_GetError();
+    }
 }
 
 Flx::Backends::OpenGL::~OpenGL()
@@ -300,7 +320,10 @@ Flx::Backends::OpenGL::~OpenGL()
     SDL_DestroyWindow(window);
 }
 
-Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const char* path){ return nullptr; }
+Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const char* path){ 
+    unsigned char* data = SOIL_load_image(path,&width,&height,&nChannels,nChannels);
+    std::cout << "\n\n\n" << sizeof(data);
+}
 
 Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const void* data, const size_t size){ return nullptr; }
 
@@ -315,10 +338,17 @@ void Flx::Backends::OpenGL::runEvents(){
 }
 
 void Flx::Backends::OpenGL::update(){
+    glClearColor(1.0f,0.5f,0.35f,1.0f);
+
+    perspective = glm::ortho(0.0f, (float)Flx::Globals::width, (float)Flx::Globals::height, 0.0f, -1.0f, 1.0f);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     SDL_GL_SwapWindow(window);
 }
 
 void Flx::Backends::OpenGL::render(Flx::Sprite* spr){}
+
 
 uint32_t Flx::Backends::OpenGL::getTicks(){ return 0; }
 
