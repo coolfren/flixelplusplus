@@ -3,10 +3,14 @@
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxLog.hpp"
 
+int Flx::Graphic::currentID = 0;
+
 Flx::Graphic::Graphic(int width, int height, void* tex)
     : width(width), height(height), bitmap(tex)
 {
-    
+    #ifdef FLIXEL_OPENGL
+        id = currentID++;
+    #endif
 }
 
 Flx::Graphic::~Graphic(){
