@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv)
 {
-    Flx::Game* game = new Flx::Game("Flixel++", 640, 480, 60.0f, new PlayState(), false);
+    Flx::Game* game = new Flx::Game("Flixel++", 640, 480, 60.0f, new PlayState(), true);
     game->start();
     return 0;
 }

@@ -79,12 +79,11 @@ void Flx::Splash::create()
     sprite->screenCenter();
     add(sprite);*/
 
+
     flixelSound = new Flx::Sound();
     flixelSound->load("assets/sounds/flixel.ogg");
     flixelSound->play();
     trace("TRIGGER");
-
-
 }
 
 void Flx::Splash::update()
@@ -127,6 +126,6 @@ void Flx::Splash::update()
     elapsedTime += 1;
     if (elapsedTime >= 330)
     {
-        //Flx::Globals::switchState(nextState);
+        Flx::Globals::switchState(nextState);
     }
 }
