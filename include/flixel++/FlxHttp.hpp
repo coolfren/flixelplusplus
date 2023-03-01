@@ -19,7 +19,6 @@ namespace Flx
 
         CURL *curl;
 
-
         std::string requestURLtext(const std::string&);
 
         std::string storage;
