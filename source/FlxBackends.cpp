@@ -285,7 +285,6 @@ Flx::Shader* Flx::Backends::SDL::compileShader(Flx::Shader* shader)
 #include <GLFW/glfw3.h>
         
 glm::mat4 perspective = glm::mat4(1.0f);
-int nChannels;
 
 Flx::Backends::OpenGL::OpenGL()
 {
@@ -320,18 +319,49 @@ Flx::Backends::OpenGL::~OpenGL()
     SDL_DestroyWindow(window);
 }
 
-Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const char* path){ 
-    unsigned char* data = SOIL_load_image(path,&width,&height,&nChannels,nChannels);
-    std::cout << "\n\n\n" << sizeof(data);
+Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic* graphic)
+{
+    GLuint tempBitmap;
+    glGenTextures(1, &tempBitmap);
+	glBindTexture(GL_TEXTURE_2D, tempBitmap);
+    graphic->bitmap = (void*)tempBitmap;
+
+    return graphic;
+}
+Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path,Flx::Graphic* graphic)
+{
+    int width,height;
+    unsigned char* data = SOIL_load_image(path,&width,&height,&graphic->nChannels,graphic->nChannels);
+    GLenum colorMode = GL_RGB;
+
+    switch(graphic->nChannels){
+        case 1:
+            colorMode = GL_RGB;
+        case 4:
+            colorMode = GL_RGBA;
+    };
+
+    if(data){
+        glBindTexture(GL_TEXTURE_2D, graphic->id);
+        glTexImage2D(GL_TEXTURE_2D,0,colorMode,width,height,0,colorMode,GL_UNSIGNED_BYTE,data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else {
+		trace("Image not loaded at: " + (std::string)path + "/n");
+	}
+
+    return graphic;
 }
 
-Flx::Graphic* Flx::Backends::OpenGL::requestTexture(const void* data, const size_t size){ return nullptr; }
 
 Flx::Graphic* Flx::Backends::OpenGL::requestText(const char* text){ return nullptr; }
 
 Flx::Graphic* Flx::Backends::OpenGL::requestRectangle(float width, float height, int color){ return nullptr; }
 
-bool Flx::Backends::OpenGL::deleteTexture(void* spr){ return false; }
+bool Flx::Backends::OpenGL::deleteTexture(void* spr){ 
+    glDeleteTextures(1,(GLuint*)spr);
+    return true; 
+}
 
 void Flx::Backends::OpenGL::runEvents(){
     sdlEvents(window);
