@@ -17,18 +17,18 @@ namespace Flx::Backends
 {
     class Backend
     {
-        public:
+    public:
         Backend();
         virtual ~Backend();
-        virtual Flx::Graphic* requestTexture(const char* path);
-        virtual Flx::Graphic* requestTexture(const void* data, const size_t size);
-        virtual Flx::Graphic* requestText(const char* text);
-        virtual Flx::Graphic* requestRectangle(float width, float height, int color);
-        virtual Flx::Shader* compileShader(Flx::Shader* shader);
-        virtual bool deleteTexture(void* tex);
+        virtual Flx::Graphic *requestTexture(const char *path);
+        virtual Flx::Graphic *requestTexture(const void *data, const size_t size);
+        virtual Flx::Graphic *requestText(const char *text);
+        virtual Flx::Graphic *requestRectangle(float width, float height, int color);
+        virtual Flx::Shader *compileShader(Flx::Shader *shader);
+        virtual bool deleteTexture(void *tex);
         virtual void runEvents();
         virtual void update();
-        virtual void render(Flx::Sprite* spr);
+        virtual void render(Flx::Sprite *spr);
         virtual uint32_t getTicks();
         virtual void delay(uint32_t ms);
     };
@@ -36,47 +36,60 @@ namespace Flx::Backends
 #ifdef FLIXEL_SDL
     class SDL : public Backend
     {
-        private:
+    private:
+        SDL_Window *window;
+        SDL_Renderer *renderer;
 
-        SDL_Window* window;
-        SDL_Renderer* renderer;
-        public:
+    public:
         SDL();
         ~SDL();
-        Flx::Graphic* requestTexture(const char* path);
-        Flx::Graphic* requestTexture(const void* data, const size_t size);
-        Flx::Graphic* requestTexture(SDL_Surface* surface);
-        Flx::Graphic* requestText(const char* text);
-        Flx::Graphic* requestRectangle(float width, float height, int color);
-        Flx::Shader* compileShader(Flx::Shader* shader);
-        bool deleteTexture(void* tex);
+        Flx::Graphic *requestTexture(const char *path);
+        Flx::Graphic *requestTexture(const void *data, const size_t size);
+        Flx::Graphic *requestTexture(SDL_Surface *surface);
+        Flx::Graphic *requestText(const char *text);
+        Flx::Graphic *requestRectangle(float width, float height, int color);
+        Flx::Shader *compileShader(Flx::Shader *shader);
+        bool deleteTexture(void *tex);
         void runEvents();
         void update();
-        void render(Flx::Sprite* spr);
+        void render(Flx::Sprite *spr);
         inline uint32_t getTicks();
         inline void delay(uint32_t ms);
     };
 #endif
 
 #ifdef FLIXEL_OPENGL
+    struct OpenGL_Rect
+    {
+        float x;
+        float y;
+        float z;
+        float w;
+        float h;
+    };
+
+
     class OpenGL : public Backend
     {
-        private:
-        SDL_Window* window;
-        public:
+    private:
+        SDL_Window *window;
+
+    public:
         OpenGL();
         ~OpenGL();
-        Flx::Graphic* createGraphic(Flx::Graphic* graphic);
-        Flx::Graphic* requestTexture(const char *path,Flx::Graphic* graphic);
-        Flx::Graphic* requestText(const char* text);
-        Flx::Graphic* requestRectangle(float width, float height, int color);
-        Flx::Shader* compileShader(Flx::Shader* shader);
-        bool deleteTexture(void* tex);
+        Flx::Graphic *createGraphic(Flx::Graphic *graphic);
+        Flx::Graphic *requestTexture(const char *path, Flx::Graphic *graphic);
+        Flx::Graphic *requestText(const char *text);
+        Flx::Graphic *requestRectangle(float width, float height, int color);
+        Flx::Shader *compileShader(Flx::Shader *shader);
+        bool deleteTexture(void *tex);
         void runEvents();
         void update();
-        void render(Flx::Sprite* spr);
+        void render(Flx::Sprite *spr);
         uint32_t getTicks();
         void delay(uint32_t ms);
+
+
     };
 #endif
 }

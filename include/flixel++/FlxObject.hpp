@@ -12,6 +12,8 @@ namespace Flx
         
         Object(float x, float y);
         ~Object();
+
+        unsigned int vao,vbo;
     };
 }
 #endif
