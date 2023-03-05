@@ -5,6 +5,9 @@
 #include "flixel++/FlxBackends.hpp"
 namespace Flx
 {
+    /**
+     * The base game class which is used to start the game.
+    */
     class Game
     {
     public:

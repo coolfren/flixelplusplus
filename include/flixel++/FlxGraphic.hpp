@@ -4,7 +4,9 @@
 
 namespace Flx
 {
-
+    /**
+     * The graphic class is a container for bitmaps.
+    */
     class Graphic
     {
         public:

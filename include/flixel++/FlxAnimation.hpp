@@ -15,7 +15,9 @@ namespace Flx
         float frameX = 0, frameY = 0;
     };
 
-
+    /**
+     * Animation class which contains the frames for that animation.
+    */
     class Animation
     {
         public:
@@ -25,6 +27,9 @@ namespace Flx
         int size();
     };
 
+    /**
+     * The animation controller that is used internally.
+    */
     class AnimationController
     {   
         public:
