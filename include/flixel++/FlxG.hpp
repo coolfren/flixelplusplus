@@ -6,6 +6,9 @@
 
 namespace Flx
 {
+    /**
+     * Globals helper class for RNG, sound, keys, gameinfo etc.
+    */
     namespace Globals
     {
         extern int width, height;

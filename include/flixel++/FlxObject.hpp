@@ -7,6 +7,11 @@ namespace Flx
     class Object : public Flx::Basic
     {
         public:
+        /**
+         * Used for persectives on the game stage
+        */
+        float x = 0, y = 0, z = 0;
+        float width = 0, height = 0;
         
         /// @brief X position of an object normally located at the upper left corner of the object
         float x = 0;

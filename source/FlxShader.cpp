@@ -9,5 +9,4 @@ Flx::Shader::Shader(std::string vertexShader, std::string fragmentShader)
 
 Flx::Shader::~Shader()
 {
-    delete program;
 }
