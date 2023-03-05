@@ -5,12 +5,16 @@
 #ifdef FLIXEL_USE_CURL
 #include "curl/curl.h"
 
+//NEED TO REWORK ON THIS
+
 namespace Flx
 {
     class Http
     {
     public:
-        Http(const std::string& url);
+        /// @brief Creates an new Http point
+        Http();
+        
         ~Http();
 
         CURL *curl;
