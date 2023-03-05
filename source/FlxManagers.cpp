@@ -44,3 +44,15 @@ Flx::SoundManager::~SoundManager()
     alcCloseDevice (device);
     #endif
 }
+
+Flx::SoundData Flx::SoundManager::generateBuffers(std::vector<char>& bufferData, size_t rate){
+    #ifdef FLIXEL_OPENAL
+    ALuint buffer;
+    ALuint source;
+    alGenBuffers(1, &buffer);
+    alBufferData(buffer, AL_FORMAT_STEREO16, bufferData.data(), bufferData.size(), rate);
+    alGenSources(1, &source);
+    alSourcei(source, AL_BUFFER, buffer);
+    return SoundData{buffer, source};
+    #endif
+}

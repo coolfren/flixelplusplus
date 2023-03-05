@@ -48,12 +48,6 @@ namespace Flx
         Flx::Point origin;
         
         #ifdef FLIXEL_OPENGL
-
-        /**
-         * Used for persectives on the game stage
-        */
-        float z;
-
         unsigned int VAO,VBO[2];
         #endif
        

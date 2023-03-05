@@ -4,6 +4,9 @@
 
 namespace Flx
 {
+    /**
+     * The color class. This class represents the channels Red, Green, Blue and Alpha.
+    */
     struct Color
     {
         /// @brief Red color value

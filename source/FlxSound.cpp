@@ -1,5 +1,7 @@
 #include "flixel++/FlxSound.hpp"
 #include "flixel++/FlxG.hpp"
+#include "flixel++/FlxUtils.hpp"
+#include "flixel++/FlxLog.hpp"
 
 Flx::Sound::Sound()
 {
@@ -8,8 +10,8 @@ Flx::Sound::Sound()
 Flx::Sound::~Sound()
 {
     #ifdef FLIXEL_OPENAL
-    alDeleteSources(1, &source);
-    alDeleteBuffers(1, &buffer);
+    alDeleteSources(1, &soundData.source);
+    alDeleteBuffers(1, &soundData.buffer);
     vorbis_info_clear(info);
     #endif
 }
@@ -18,12 +20,16 @@ void Flx::Sound::play()
 {
     startTime = Flx::Globals::game->backend->getTicks();
     #ifdef FLIXEL_OPENAL
-    alSourcePlay(source);
+    alSourcePlay(soundData.source);
     #endif
 }
 
 void Flx::Sound::load(const char *path)
 {
+    if(!Flx::Utils::fileExists(path)){
+        Flx::Log::warn(path);
+        return;
+    }
     #if defined(TREMOR) && !defined(__WIN32)
     ov_open(fopen(path, "r"), &vorbis, nullptr, 0);
     #else
@@ -31,10 +37,6 @@ void Flx::Sound::load(const char *path)
     #endif
 
     info = ov_info(&vorbis, -1);
-
-    #ifdef FLIXEL_OPENAL
-    alGenBuffers(1, &buffer);
-    #endif
 
     int current_section;
     while (true)
@@ -57,18 +59,14 @@ void Flx::Sound::load(const char *path)
 
         bufferData.insert(bufferData.end(), pcm.begin(), pcm.begin() + result);
     }
-    #ifdef FLIXEL_OPENAL
-    alBufferData(buffer, AL_FORMAT_STEREO16, bufferData.data(), bufferData.size(), info->rate);
-    alGenSources(1, &source);
-    alSourcei(source, AL_BUFFER, buffer);
-    #endif
+    soundData = Flx::Globals::sound->generateBuffers(bufferData, info->rate);
 }
 
 float Flx::Sound::getPosition()
 {
     float val = 0;
     #ifdef FLIXEL_OPENAL
-    alGetSourcef(buffer, AL_SEC_OFFSET, &val);
+    alGetSourcef(soundData.buffer, AL_SEC_OFFSET, &val);
     #endif
     return val * 1000;
 }

@@ -6,6 +6,11 @@
 
 namespace Flx
 {
+    /**
+     * The State class which is used to define what happens in a state.
+     * this class should be extended to make your own states.
+     * @note If you're overriding update or draw, make sure to call Flx::State::update() or Flx::State::draw() somewhere in the function!
+    */
     class State : public Flx::Group
     {
         public:

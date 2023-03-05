@@ -302,28 +302,29 @@ unsigned int VAO,VBO[2];
 Flx::Backends::OpenGL::OpenGL()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
-    glfwInit();
-
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-
-
     window = SDL_CreateWindow(game->title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (window == nullptr)
     {
         std::cout << __FILE__ << " | " << __LINE__ << " ==> Failed to load the sdl/gl Window!" << std::endl;
         SDL_GetError();
     }
+
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
     SDL_GLContext glContext = SDL_GL_CreateContext(window);
 
-    glewExperimental = GL_TRUE;
+    if (glContext == nullptr)
+    {
+        Flx::Log::error("Failed to create a GL context");
+    }
+    
     GLenum verifyGlew = glewInit();
     if (verifyGlew != GLEW_OK)
     {
-        fprintf(stderr, "Error: %s\n", glewGetErrorString(verifyGlew) ,"\n");
+        Flx::Log::error("Failed to initialize GLEW");
     }
-
 }
 
 Flx::Backends::OpenGL::~OpenGL()
@@ -340,32 +341,35 @@ Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic *graphic)
 
     return graphic;
 }
+
 Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path, Flx::Graphic *graphic)
 {
     int width, height;
-    unsigned char *data = SOIL_load_image(path, &graphic->width, &graphic->height, &graphic->nChannels, graphic->nChannels);
-    GLenum colorMode = GL_RGB;
+    unsigned char *data = SOIL_load_image(path, &graphic->width, &graphic->height, &graphic->channels, graphic->channels);
 
-    switch (graphic->nChannels)
+    GLenum colorMode = GL_RGB;
+    switch (graphic->channels)
     {
-    case 1:
-        colorMode = GL_RGB;
-    case 4:
-        colorMode = GL_RGBA;
+        case 1:
+            colorMode = GL_RGB;
+        case 4:
+            colorMode = GL_RGBA;
     };
 
     if (data)
     {
+
+        Flx::Graphic* graphic = new Flx::Graphic(width, height, data);
+        glGenTextures(1, &graphic->id);
         glBindTexture(GL_TEXTURE_2D, graphic->id);
+
         glTexImage2D(GL_TEXTURE_2D, 0, colorMode, width, height, 0, colorMode, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        trace("Image not loaded at: " + (std::string)path + "/n");
+
+        return graphic;
     }
 
-    return graphic;
+    return nullptr;
 }
 
 Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { return nullptr; }
@@ -423,18 +427,17 @@ void Flx::Backends::OpenGL::runEvents()
 
 void Flx::Backends::OpenGL::update()
 {
-    glClearColor(1.0f, 0.5f, 0.35f, 1.0f);
+    game->curState->update();
+    glClear(GL_COLOR_BUFFER_BIT);
 
     perspective = glm::ortho(0.0f, (float)Flx::Globals::width, (float)Flx::Globals::height, 0.0f, -1.0f, 1.0f);
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    game->curState->draw();
 
     SDL_GL_SwapWindow(window);
 }
 
-void Flx::Backends::OpenGL::render(Flx::Sprite *spr)
-{
-
+void Flx::Backends::OpenGL::render(Flx::Sprite *spr) {
     auto anim = spr->animation->getCurAnim();
     Flx::Rect stuff = spr->clipRect;
 
@@ -465,6 +468,10 @@ void Flx::Backends::OpenGL::render(Flx::Sprite *spr)
     glBufferData(GL_ARRAY_BUFFER,dst.size() * sizeof(GLVertex3),&dst[0],GL_STATIC_DRAW);
 
    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(GLVertex3),(void*)0);
+
+    glUseProgram(spr->shader.program);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, spr->graphic->id);
 
 }
 
@@ -504,26 +511,35 @@ void Flx::Backends::OpenGL::delay(uint32_t ms)
 #endif
 }
 
+void checkShaderStatus(GLuint shader)
+{
+    GLint compiled = false;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
+    if(!compiled){
+        Flx::Log::warn("Could not compile shader!");
+    }
+}
+
 Flx::Shader *Flx::Backends::OpenGL::compileShader(Flx::Shader *shader)
 {
-    shader->program = new GLuint;
-    GLuint *programPtr = (GLuint *)shader->program;
-    *programPtr = glCreateProgram();
+    shader->program = glCreateProgram();
 
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
     const char *source = shader->vertexSource.c_str();
     int size = shader->vertexSource.size();
     glShaderSource(vs, 1, &source, &size);
     glCompileShader(vs);
+    checkShaderStatus(vs);
 
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
     source = shader->fragmentSource.c_str();
     size = shader->fragmentSource.size();
     glShaderSource(fs, 1, &source, &size);
     glCompileShader(fs);
+    checkShaderStatus(fs);
 
-    glAttachShader(*programPtr, vs);
-    glAttachShader(*programPtr, fs);
+    glAttachShader(shader->program, vs);
+    glAttachShader(shader->program, fs);
     return shader;
 }
 
