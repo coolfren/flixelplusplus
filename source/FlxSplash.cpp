@@ -22,9 +22,11 @@ Flx::Splash::Splash(Flx::State *state)
 void Flx::Splash::create()
 {
 
-   /* yellow = new Flx::Sprite(0, 0);
+    //yellow = new Flx::Sprite(0, 0);
 
-    yellow->loadGraphic((void *)logoYellow_png, logoYellow_png_length);
+    //Flx::Globals::game->backend->render(yellow);
+
+    /*yellow->loadGraphic((void *)logoYellow_png, logoYellow_png_length);
     yellow->setGraphicSize((yellow->graphic->width / 9), (yellow->graphic->height / 9));
     add(yellow);
     yellow->screenCenter();

@@ -270,7 +270,6 @@ Flx::Shader *Flx::Backends::SDL::compileShader(Flx::Shader *shader)
 // -------------------------------------
 #ifdef FLIXEL_OPENGL
 
-using Flx::Backends::OpenGL_Rect;
 
 #define SOGL_MAJOR_VERSION 3
 #define SOGL_MINOR_VERSION 3
@@ -284,20 +283,7 @@ using Flx::Backends::OpenGL_Rect;
 #include <glm/gtc/type_ptr.hpp>
 #include <GLFW/glfw3.h>
 
-struct OpenGL_Rect
-{
-    float x;
-    float y;
-    float z;
-    float w;
-    float h;
-};
 
-struct GLVertex
-{
-    glm::vec3 pos;
-    glm::vec2 texPos;
-};
 
 glm::mat4 perspective = glm::mat4(1.0f);
 
@@ -347,7 +333,7 @@ Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic *graphic)
 Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path, Flx::Graphic *graphic)
 {
     int width, height;
-    unsigned char *data = SOIL_load_image(path, &width, &height, &graphic->nChannels, graphic->nChannels);
+    unsigned char *data = SOIL_load_image(path, &graphic->width, &graphic->height, &graphic->nChannels, graphic->nChannels);
     GLenum colorMode = GL_RGB;
 
     switch (graphic->nChannels)
@@ -376,11 +362,44 @@ Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { return null
 
 Flx::Graphic *Flx::Backends::OpenGL::requestRectangle(float width, float height, int color) { return nullptr; }
 
-inline const OpenGL_Rect toOpenGLRect(Flx::Rect &rect, float z)
+inline const std::vector<glm::vec3> to2DOpenGLRect(Flx::Rect &rect,float z)
 {
-    return OpenGL_Rect{
-        rect.x, rect.y, z, rect.width, rect.height};
+    std::vector<glm::vec3> buffer;
+
+    //UPPER LEFT
+    buffer.push_back(glm::vec3(rect.x,rect.y,z));
+
+    //BOTTOM LEFT
+    buffer.push_back(glm::vec3(rect.x,rect.y + rect.height,z));
+    
+    //BOTTOM RIGHT
+    buffer.push_back(glm::vec3(rect.x + rect.width,rect.y + rect.height,z));
+    
+    //UPPER RIGHT
+    buffer.push_back(glm::vec3(rect.x + rect.width,rect.y,z));
+
+    return buffer;
 }
+
+inline const std::vector<glm::vec2> to2DOpenGLRect(Flx::Rect &rect)
+{
+    std::vector<glm::vec2> buffer;
+
+    //UPPER LEFT
+    buffer.push_back(glm::vec2(rect.x,rect.y));
+
+    //BOTTOM LEFT
+    buffer.push_back(glm::vec2(rect.x,rect.y + rect.height));
+    
+    //BOTTOM RIGHT
+    buffer.push_back(glm::vec2(rect.x + rect.width,rect.y + rect.height));
+    
+    //UPPER RIGHT
+    buffer.push_back(glm::vec2(rect.x + rect.width,rect.y));
+
+    return buffer;
+}
+
 
 bool Flx::Backends::OpenGL::deleteTexture(void *spr)
 {
@@ -404,7 +423,29 @@ void Flx::Backends::OpenGL::update()
     SDL_GL_SwapWindow(window);
 }
 
-void Flx::Backends::OpenGL::render(Flx::Sprite *spr) {}
+void Flx::Backends::OpenGL::render(Flx::Sprite *spr) {
+
+    auto anim = spr->animation->getCurAnim();
+    Flx::Rect stuff = spr->clipRect;
+
+    if(spr->animation->animated){
+        stuff.x = anim->x;
+        stuff.y = anim->y;
+        stuff.width = anim->width;
+        stuff.height = anim->height;
+    }
+
+    std::vector<glm::vec3> src = to2DOpenGLRect(stuff,spr->z); 
+
+    stuff.x = spr->x - (spr->width / 2);
+    stuff.y = spr->y - (spr->height / 2);
+    stuff.width = spr->width;
+    stuff.height = spr->height;
+
+    std::vector<glm::vec2> dst = to2DOpenGLRect(stuff);    
+
+    trace(src[0].x);
+}
 
 uint32_t Flx::Backends::OpenGL::getTicks() { return 0; }
 

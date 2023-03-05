@@ -50,6 +50,7 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
         switchState(initialState);
     else
         switchState(new Flx::Splash(initialState));
+    
 }
 
 Flx::Game::~Game()

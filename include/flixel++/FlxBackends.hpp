@@ -59,16 +59,6 @@ namespace Flx::Backends
 #endif
 
 #ifdef FLIXEL_OPENGL
-    struct OpenGL_Rect
-    {
-        float x;
-        float y;
-        float z;
-        float w;
-        float h;
-    };
-
-
     class OpenGL : public Backend
     {
     private:

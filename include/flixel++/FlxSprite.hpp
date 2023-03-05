@@ -7,18 +7,12 @@
 #include "flixel++/FlxAnimation.hpp"
 #include "flixel++/FlxColor.hpp"
 #include "flixel++/FlxShader.hpp"
+
 namespace Flx
 {
     class Sprite : public Flx::Object
     {
     public:
-        #ifdef FLIXEL_OPENGL
-
-        /**
-         * Used for persectives on the game stage
-        */
-        float z;
-        #endif
         int alpha;
         int angle;
         bool visible;
@@ -52,8 +46,18 @@ namespace Flx
         Flx::Point offset;
         Flx::Point scale;
         Flx::Point origin;
+        
+        #ifdef FLIXEL_OPENGL
 
-                
+        /**
+         * Used for persectives on the game stage
+        */
+        float z;
+
+        unsigned int VAO,VBO;
+        #endif
+       
+        
     };
 }
 
