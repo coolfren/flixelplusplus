@@ -65,7 +65,19 @@
         "thread": "cpp",
         "cinttypes": "cpp",
         "valarray": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "csignal": "cpp",
+        "strstream": "cpp",
+        "bitset": "cpp",
+        "cfenv": "cpp",
+        "complex": "cpp",
+        "source_location": "cpp",
+        "future": "cpp",
+        "ranges": "cpp",
+        "shared_mutex": "cpp",
+        "span": "cpp",
+        "typeindex": "cpp",
+        "*.ipp": "cpp"
     },
     "cmake.configureOnOpen": true
 }
