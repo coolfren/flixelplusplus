@@ -22,6 +22,7 @@ void Flx::Backends::Backend::update() {}
 void Flx::Backends::Backend::render(Flx::Sprite *spr) {}
 uint32_t Flx::Backends::Backend::getTicks() { return 0; }
 void Flx::Backends::Backend::delay(uint32_t ms) {}
+void Flx::Backends::Backend::testrender(Flx::Rect rect) {}
 
 #ifdef FLIXEL_SDL
 
@@ -270,7 +271,6 @@ Flx::Shader *Flx::Backends::SDL::compileShader(Flx::Shader *shader)
 // -------------------------------------
 #ifdef FLIXEL_OPENGL
 
-
 #define SOGL_MAJOR_VERSION 3
 #define SOGL_MINOR_VERSION 3
 #define SOGL_IMPLEMENTATION_X11
@@ -283,9 +283,21 @@ Flx::Shader *Flx::Backends::SDL::compileShader(Flx::Shader *shader)
 #include <glm/gtc/type_ptr.hpp>
 #include <GLFW/glfw3.h>
 
-
-
 glm::mat4 perspective = glm::mat4(1.0f);
+
+struct GLVertex3{
+    float x;
+    float y;
+    float z;
+};
+
+struct GLVertex2{
+    float x;
+    float y;
+};
+
+unsigned int VAO,VBO[2];
+
 
 Flx::Backends::OpenGL::OpenGL()
 {
@@ -296,24 +308,22 @@ Flx::Backends::OpenGL::OpenGL()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
+
     window = SDL_CreateWindow(game->title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (window == nullptr)
     {
-        std::cout << "Failed to load the sdl/gl Window!" << std::endl;
+        std::cout << __FILE__ << " | " << __LINE__ << " ==> Failed to load the sdl/gl Window!" << std::endl;
         SDL_GetError();
     }
+    SDL_GLContext glContext = SDL_GL_CreateContext(window);
+
+    glewExperimental = GL_TRUE;
     GLenum verifyGlew = glewInit();
     if (verifyGlew != GLEW_OK)
     {
-        fprintf(stderr, "Error: %s\n", glewGetErrorString(verifyGlew));
+        fprintf(stderr, "Error: %s\n", glewGetErrorString(verifyGlew) ,"\n");
     }
 
-    SDL_GLContext glContext = SDL_GL_CreateContext(window);
-    if (glContext != nullptr)
-    {
-        std::cout << "Failed to create a GL context" << std::endl;
-        SDL_GetError();
-    }
 }
 
 Flx::Backends::OpenGL::~OpenGL()
@@ -362,21 +372,21 @@ Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { return null
 
 Flx::Graphic *Flx::Backends::OpenGL::requestRectangle(float width, float height, int color) { return nullptr; }
 
-inline const std::vector<glm::vec3> to2DOpenGLRect(Flx::Rect &rect,float z)
+inline const std::vector<GLVertex3> to2DOpenGLRect(Flx::Rect &rect, float z)
 {
-    std::vector<glm::vec3> buffer;
+    std::vector<GLVertex3> buffer;
 
-    //UPPER LEFT
-    buffer.push_back(glm::vec3(rect.x,rect.y,z));
+    // UPPER LEFT
+    buffer.push_back({rect.x, rect.y, z});
 
-    //BOTTOM LEFT
-    buffer.push_back(glm::vec3(rect.x,rect.y + rect.height,z));
-    
-    //BOTTOM RIGHT
-    buffer.push_back(glm::vec3(rect.x + rect.width,rect.y + rect.height,z));
-    
-    //UPPER RIGHT
-    buffer.push_back(glm::vec3(rect.x + rect.width,rect.y,z));
+    // BOTTOM LEFT
+    buffer.push_back({rect.x, rect.y + rect.height, z});
+
+    // BOTTOM RIGHT
+    buffer.push_back({rect.x + rect.width, rect.y + rect.height, z});
+
+    // UPPER RIGHT
+    buffer.push_back({rect.x + rect.width, rect.y, z});
 
     return buffer;
 }
@@ -385,21 +395,20 @@ inline const std::vector<glm::vec2> to2DOpenGLRect(Flx::Rect &rect)
 {
     std::vector<glm::vec2> buffer;
 
-    //UPPER LEFT
-    buffer.push_back(glm::vec2(rect.x,rect.y));
+    // UPPER LEFT
+    buffer.push_back(glm::vec2(rect.x, rect.y));
 
-    //BOTTOM LEFT
-    buffer.push_back(glm::vec2(rect.x,rect.y + rect.height));
-    
-    //BOTTOM RIGHT
-    buffer.push_back(glm::vec2(rect.x + rect.width,rect.y + rect.height));
-    
-    //UPPER RIGHT
-    buffer.push_back(glm::vec2(rect.x + rect.width,rect.y));
+    // BOTTOM LEFT
+    buffer.push_back(glm::vec2(rect.x, rect.y + rect.height));
+
+    // BOTTOM RIGHT
+    buffer.push_back(glm::vec2(rect.x + rect.width, rect.y + rect.height));
+
+    // UPPER RIGHT
+    buffer.push_back(glm::vec2(rect.x + rect.width, rect.y));
 
     return buffer;
 }
-
 
 bool Flx::Backends::OpenGL::deleteTexture(void *spr)
 {
@@ -423,28 +432,65 @@ void Flx::Backends::OpenGL::update()
     SDL_GL_SwapWindow(window);
 }
 
-void Flx::Backends::OpenGL::render(Flx::Sprite *spr) {
+void Flx::Backends::OpenGL::render(Flx::Sprite *spr)
+{
 
     auto anim = spr->animation->getCurAnim();
     Flx::Rect stuff = spr->clipRect;
 
-    if(spr->animation->animated){
+    if (spr->animation->animated)
+    {
         stuff.x = anim->x;
         stuff.y = anim->y;
         stuff.width = anim->width;
         stuff.height = anim->height;
     }
 
-    std::vector<glm::vec3> src = to2DOpenGLRect(stuff,spr->z); 
+    std::vector<GLVertex3> src = to2DOpenGLRect(stuff, spr->z);
 
     stuff.x = spr->x - (spr->width / 2);
     stuff.y = spr->y - (spr->height / 2);
     stuff.width = spr->width;
     stuff.height = spr->height;
 
-    std::vector<glm::vec2> dst = to2DOpenGLRect(stuff);    
+    std::vector<glm::vec2> dst = to2DOpenGLRect(stuff);
 
-    trace(src[0].x);
+    trace(src[0].z);
+
+    glGenVertexArrays(1,&spr->VAO);
+    glBindVertexArray(spr->VAO);
+
+    glGenBuffers(1,&spr->VBO[0]);
+    glBindBuffer(GL_ARRAY_BUFFER,spr->VBO[0]);
+    glBufferData(GL_ARRAY_BUFFER,dst.size() * sizeof(GLVertex3),&dst[0],GL_STATIC_DRAW);
+
+   glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(GLVertex3),(void*)0);
+
+}
+
+void Flx::Backends::OpenGL::testrender(Flx::Rect rect)
+{
+    Flx::Rect stuff = rect;
+
+    std::vector<GLVertex3> src = to2DOpenGLRect(stuff, 10);
+
+    stuff.x = rect.x - (rect.width / 2);
+    stuff.y = rect.y - (rect.height / 2);
+    stuff.width = rect.width;
+    stuff.height = rect.height;
+
+    std::vector<glm::vec2> dst = to2DOpenGLRect(stuff);
+
+    glGenVertexArrays(1,&VAO);
+    glBindVertexArray(VAO);
+
+    glGenBuffers(1,&VBO[0]);
+    glBindBuffer(GL_ARRAY_BUFFER,VBO[0]);
+    glBufferData(GL_ARRAY_BUFFER,dst.size() * sizeof(GLVertex3),&dst[0],GL_STATIC_DRAW);
+    trace(src[0].y);
+
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(GLVertex3),(void*)0);
+
 }
 
 uint32_t Flx::Backends::OpenGL::getTicks() { return 0; }

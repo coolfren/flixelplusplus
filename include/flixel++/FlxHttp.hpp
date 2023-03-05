@@ -13,7 +13,7 @@ namespace Flx
     {
     public:
         /// @brief Creates an new Http point
-        Http();
+        Http(const std::string& url);
         
         ~Http();
 

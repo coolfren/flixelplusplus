@@ -54,7 +54,7 @@ namespace Flx
         */
         float z;
 
-        unsigned int VAO,VBO;
+        unsigned int VAO,VBO[2];
         #endif
        
         
