@@ -2,8 +2,16 @@
 #define FLXSOUND_HPP
 #include "flixel++/Common.hpp"
 #include "flixel++/FlxBasic.hpp"
+
+
 namespace Flx
 {
+    struct SoundData
+    {
+        unsigned int buffer;
+        unsigned int source;
+    };
+
     // TODO: revamp Sound!
     class Sound : public Basic
     {
@@ -12,10 +20,7 @@ namespace Flx
 
         OggVorbis_File vorbis;
         vorbis_info* info;
-        #ifdef FLIXEL_OPENAL
-        ALuint buffer;
-        ALuint source;
-        #endif
+        SoundData soundData;
         std::vector<char> bufferData;
         public:
         Sound();

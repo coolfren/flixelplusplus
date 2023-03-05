@@ -2,8 +2,6 @@
 #define FLXGRAPHIC_HPP
 #include "flixel++/Common.hpp"
 
-
-
 namespace Flx
 {
 
@@ -17,13 +15,10 @@ namespace Flx
         uint32_t getPixel32(int x, int y);
         friend class Sprite;
 
-
-        #ifdef FLIXEL_OPENGL
-            int id;
-            const char* path;
-            static int currentID;
-            int nChannels;
-        #endif
+        unsigned int id;
+        const char* path;
+        static int currentID;
+        int channels;
     };
 }
 

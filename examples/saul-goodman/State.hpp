@@ -22,44 +22,19 @@ public:
     float offsetX = 0.0f, offsetY = 0.0f;
     void create()
     {
-        http = new Flx::Http("https://pastebin.com/raw/j9cs4GWP");
-        trace(http->storage);
-
         sprite = new Flx::Sprite(0, 0);
-        if (http->storage == "saul goodman")
-        {
-            sprite->loadGraphic("examples/assets/Saul.png");
-            sprite->setGraphicSize(800, 800);
-        }
-        else
-        {
-            sprite->loadGraphic("assets/images/logo/logo.png");
-            sprite->setGraphicSize(240, 240);
-        }
+
+        sprite->loadGraphic("assets/Saul.png");
+        sprite->setGraphicSize(800, 800);
 
         sprite->screenCenter();
         add(sprite);
 
         text = new Flx::Text(0, 100, "i am a piece of text!");
-        if (http->storage == "saul goodman")
-        {
-            text->screenCenter();
-            text->setText(http->storage + " V1.0");
-        }
-        else
-        {
-            text->x = (Flx::Globals::width / 2);
-            text->setText("i am a piece of new text!");
-        }
         add(text);
-
-        if (http->storage == "saul goodman")
-        {
-            Flx::Globals::mouse->loadGraphic("examples/assets/troll.png");
-        }
-
+        
         flixelSound = new Flx::Sound();
-        flixelSound->load("assets/sounds/flixel.ogg");
+        flixelSound->load("assets/flixel.ogg");
         flixelSound->play();
 
     };

@@ -16,7 +16,7 @@ namespace Flx
         float floating(float min, float max);
         bool boolean(float chance);
     };
-    
+
     class SoundManager
     {
         private:
@@ -28,6 +28,7 @@ namespace Flx
         Flx::Sound* music;
         SoundManager();
         ~SoundManager();
+        SoundData generateBuffers(std::vector<char>& bufferData, size_t rate);
     };
 }
 

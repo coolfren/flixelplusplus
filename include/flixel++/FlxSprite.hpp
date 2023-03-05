@@ -12,13 +12,6 @@ namespace Flx
     class Sprite : public Flx::Object
     {
     public:
-        #ifdef FLIXEL_OPENGL
-
-        /**
-         * Used for persectives on the game stage
-        */
-        float z;
-        #endif
         int alpha;
         int angle;
         bool visible;
