@@ -31,6 +31,3 @@ clean:
 	rm -rf build/
 	rm -rf obj/
 	@make -f mk/switch.mk clean
-example:
-	@make -f examples/Makefile
-	LD_LIBRARY_PATH="./build/" examples/example

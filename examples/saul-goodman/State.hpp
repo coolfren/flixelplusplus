@@ -28,12 +28,12 @@ public:
         sprite = new Flx::Sprite(0, 0);
         if (http->storage == "saul goodman")
         {
-            sprite->loadGraphic("examples/assets/Saul.png");
+            sprite->loadGraphic("assets/Saul.png");
             sprite->setGraphicSize(800, 800);
         }
         else
         {
-            sprite->loadGraphic("assets/images/logo/logo.png");
+            sprite->loadGraphic("assets/logo.png");
             sprite->setGraphicSize(240, 240);
         }
 
@@ -55,11 +55,11 @@ public:
 
         if (http->storage == "saul goodman")
         {
-            Flx::Globals::mouse->loadGraphic("examples/assets/troll.png");
+            Flx::Globals::mouse->loadGraphic("assets/troll.png");
         }
 
         flixelSound = new Flx::Sound();
-        flixelSound->load("assets/sounds/flixel.ogg");
+        flixelSound->load("assets/flixel.ogg");
         flixelSound->play();
 
     };
