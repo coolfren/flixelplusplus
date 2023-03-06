@@ -22,6 +22,7 @@ void Flx::Backends::Backend::update() {}
 void Flx::Backends::Backend::render(Flx::Sprite *spr) {}
 uint32_t Flx::Backends::Backend::getTicks() { return 0; }
 void Flx::Backends::Backend::delay(uint32_t ms) {}
+void Flx::Backends::Backend::testrender(Flx::Rect rect) {}
 
 #ifdef FLIXEL_SDL
 
@@ -282,9 +283,21 @@ Flx::Shader *Flx::Backends::SDL::compileShader(Flx::Shader *shader)
 #include <glm/gtc/type_ptr.hpp>
 #include <GLFW/glfw3.h>
 
-
-
 glm::mat4 perspective = glm::mat4(1.0f);
+
+struct GLVertex3{
+    float x;
+    float y;
+    float z;
+};
+
+struct GLVertex2{
+    float x;
+    float y;
+};
+
+unsigned int VAO,VBO[2];
+
 
 Flx::Backends::OpenGL::OpenGL()
 {
@@ -292,7 +305,7 @@ Flx::Backends::OpenGL::OpenGL()
     window = SDL_CreateWindow(game->title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (window == nullptr)
     {
-        std::cout << "Failed to load the sdl/gl Window!" << std::endl;
+        std::cout << __FILE__ << " | " << __LINE__ << " ==> Failed to load the sdl/gl Window!" << std::endl;
         SDL_GetError();
     }
 
@@ -329,14 +342,13 @@ Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic *graphic)
     return graphic;
 }
 
-Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
+Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path, Flx::Graphic *graphic)
 {
     int width, height;
-    unsigned char *data = SOIL_load_image(path, &graphic->width, &graphic->height, &graphic->nChannels, graphic->nChannels);
-    GLenum colorMode = GL_RGB;
+    unsigned char *data = SOIL_load_image(path, &graphic->width, &graphic->height, &graphic->channels, graphic->channels);
 
     GLenum colorMode = GL_RGB;
-    switch (channels)
+    switch (graphic->channels)
     {
         case 1:
             colorMode = GL_RGB;
@@ -364,21 +376,21 @@ Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { return null
 
 Flx::Graphic *Flx::Backends::OpenGL::requestRectangle(float width, float height, int color) { return nullptr; }
 
-inline const std::vector<glm::vec3> to2DOpenGLRect(Flx::Rect &rect,float z)
+inline const std::vector<GLVertex3> to2DOpenGLRect(Flx::Rect &rect, float z)
 {
-    std::vector<glm::vec3> buffer;
+    std::vector<GLVertex3> buffer;
 
-    //UPPER LEFT
-    buffer.push_back(glm::vec3(rect.x,rect.y,z));
+    // UPPER LEFT
+    buffer.push_back({rect.x, rect.y, z});
 
-    //BOTTOM LEFT
-    buffer.push_back(glm::vec3(rect.x,rect.y + rect.height,z));
-    
-    //BOTTOM RIGHT
-    buffer.push_back(glm::vec3(rect.x + rect.width,rect.y + rect.height,z));
-    
-    //UPPER RIGHT
-    buffer.push_back(glm::vec3(rect.x + rect.width,rect.y,z));
+    // BOTTOM LEFT
+    buffer.push_back({rect.x, rect.y + rect.height, z});
+
+    // BOTTOM RIGHT
+    buffer.push_back({rect.x + rect.width, rect.y + rect.height, z});
+
+    // UPPER RIGHT
+    buffer.push_back({rect.x + rect.width, rect.y, z});
 
     return buffer;
 }
@@ -387,21 +399,20 @@ inline const std::vector<glm::vec2> to2DOpenGLRect(Flx::Rect &rect)
 {
     std::vector<glm::vec2> buffer;
 
-    //UPPER LEFT
-    buffer.push_back(glm::vec2(rect.x,rect.y));
+    // UPPER LEFT
+    buffer.push_back(glm::vec2(rect.x, rect.y));
 
-    //BOTTOM LEFT
-    buffer.push_back(glm::vec2(rect.x,rect.y + rect.height));
-    
-    //BOTTOM RIGHT
-    buffer.push_back(glm::vec2(rect.x + rect.width,rect.y + rect.height));
-    
-    //UPPER RIGHT
-    buffer.push_back(glm::vec2(rect.x + rect.width,rect.y));
+    // BOTTOM LEFT
+    buffer.push_back(glm::vec2(rect.x, rect.y + rect.height));
+
+    // BOTTOM RIGHT
+    buffer.push_back(glm::vec2(rect.x + rect.width, rect.y + rect.height));
+
+    // UPPER RIGHT
+    buffer.push_back(glm::vec2(rect.x + rect.width, rect.y));
 
     return buffer;
 }
-
 
 bool Flx::Backends::OpenGL::deleteTexture(void *spr)
 {
@@ -430,25 +441,63 @@ void Flx::Backends::OpenGL::render(Flx::Sprite *spr) {
     auto anim = spr->animation->getCurAnim();
     Flx::Rect stuff = spr->clipRect;
 
-    if(spr->animation->animated){
+    if (spr->animation->animated)
+    {
         stuff.x = anim->x;
         stuff.y = anim->y;
         stuff.width = anim->width;
         stuff.height = anim->height;
     }
 
-    std::vector<glm::vec3> src = to2DOpenGLRect(stuff,spr->z); 
+    std::vector<GLVertex3> src = to2DOpenGLRect(stuff, spr->z);
 
     stuff.x = spr->x - (spr->width / 2);
     stuff.y = spr->y - (spr->height / 2);
     stuff.width = spr->width;
     stuff.height = spr->height;
 
-    std::vector<glm::vec2> dst = to2DOpenGLRect(stuff);    
+    std::vector<glm::vec2> dst = to2DOpenGLRect(stuff);
+
+    trace(src[0].z);
+
+    glGenVertexArrays(1,&spr->VAO);
+    glBindVertexArray(spr->VAO);
+
+    glGenBuffers(1,&spr->VBO[0]);
+    glBindBuffer(GL_ARRAY_BUFFER,spr->VBO[0]);
+    glBufferData(GL_ARRAY_BUFFER,dst.size() * sizeof(GLVertex3),&dst[0],GL_STATIC_DRAW);
+
+   glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(GLVertex3),(void*)0);
 
     glUseProgram(spr->shader.program);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, spr->graphic->id);
+
+}
+
+void Flx::Backends::OpenGL::testrender(Flx::Rect rect)
+{
+    Flx::Rect stuff = rect;
+
+    std::vector<GLVertex3> src = to2DOpenGLRect(stuff, 10);
+
+    stuff.x = rect.x - (rect.width / 2);
+    stuff.y = rect.y - (rect.height / 2);
+    stuff.width = rect.width;
+    stuff.height = rect.height;
+
+    std::vector<glm::vec2> dst = to2DOpenGLRect(stuff);
+
+    glGenVertexArrays(1,&VAO);
+    glBindVertexArray(VAO);
+
+    glGenBuffers(1,&VBO[0]);
+    glBindBuffer(GL_ARRAY_BUFFER,VBO[0]);
+    glBufferData(GL_ARRAY_BUFFER,dst.size() * sizeof(GLVertex3),&dst[0],GL_STATIC_DRAW);
+    trace(src[0].y);
+
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(GLVertex3),(void*)0);
+
 }
 
 uint32_t Flx::Backends::OpenGL::getTicks() { return 0; }

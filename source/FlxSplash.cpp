@@ -9,10 +9,13 @@
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxColor.hpp"
 #include "flixel++/FlxLog.hpp"
+#include "flixel++/FlxShader.hpp"
 
 int elapsedTime = 0;
 int result = 0;
 const char flixel[8] = {'F', 'l', 'i', 'x', 'e', 'l', '+', '+'};
+Flx::Rect temp;
+Flx::Shader* tempShader;
 
 Flx::Splash::Splash(Flx::State *state)
     : nextState(state)
@@ -21,10 +24,12 @@ Flx::Splash::Splash(Flx::State *state)
 
 void Flx::Splash::create()
 {
+    trace("START");
 
-    //yellow = new Flx::Sprite(0, 0);
+    //yellow = new Flx::Sprite();
 
-    //Flx::Globals::game->backend->render(yellow);
+    temp = Flx::Rect(0,23,10,10);
+
 
     /*yellow->loadGraphic((void *)logoYellow_png, logoYellow_png_length);
     yellow->setGraphicSize((yellow->graphic->width / 9), (yellow->graphic->height / 9));
@@ -86,6 +91,8 @@ void Flx::Splash::create()
     flixelSound->load("assets/sounds/flixel.ogg");
     flixelSound->play();
     trace("TRIGGER");
+
+    Flx::Globals::game->backend->testrender(temp);
 }
 
 void Flx::Splash::update()
@@ -130,4 +137,5 @@ void Flx::Splash::update()
     {
         Flx::Globals::switchState(nextState);
     }
+
 }

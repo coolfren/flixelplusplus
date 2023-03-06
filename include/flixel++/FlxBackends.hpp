@@ -31,6 +31,7 @@ namespace Flx::Backends
         virtual void render(Flx::Sprite *spr);
         virtual uint32_t getTicks();
         virtual void delay(uint32_t ms);
+        virtual void testrender(Flx::Rect rect);
     };
 
 #ifdef FLIXEL_SDL
@@ -55,6 +56,7 @@ namespace Flx::Backends
         void render(Flx::Sprite *spr);
         inline uint32_t getTicks();
         inline void delay(uint32_t ms);
+        
     };
 #endif
 
@@ -68,7 +70,7 @@ namespace Flx::Backends
         OpenGL();
         ~OpenGL();
         Flx::Graphic *createGraphic(Flx::Graphic *graphic);
-        Flx::Graphic *requestTexture(const char *path);
+        Flx::Graphic *requestTexture(const char *path, Flx::Graphic *graphic);
         Flx::Graphic *requestText(const char *text);
         Flx::Graphic *requestRectangle(float width, float height, int color);
         Flx::Shader *compileShader(Flx::Shader *shader);
@@ -79,7 +81,7 @@ namespace Flx::Backends
         uint32_t getTicks();
         void delay(uint32_t ms);
 
-
+        void testrender(Flx::Rect rect);
     };
 #endif
 }
