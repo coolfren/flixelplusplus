@@ -70,7 +70,7 @@ namespace Flx::Backends
         OpenGL();
         ~OpenGL();
         Flx::Graphic *createGraphic(Flx::Graphic *graphic);
-        Flx::Graphic *requestTexture(const char *path, Flx::Graphic *graphic);
+        Flx::Graphic *requestTexture(const char *path);
         Flx::Graphic *requestText(const char *text);
         Flx::Graphic *requestRectangle(float width, float height, int color);
         Flx::Shader *compileShader(Flx::Shader *shader);

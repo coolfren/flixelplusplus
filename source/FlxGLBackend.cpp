@@ -77,7 +77,7 @@ Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic *graphic)
     return graphic;
 }
 
-Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path, Flx::Graphic *graphic)
+Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
 {
     int width, height, channels;
     unsigned char *data = SOIL_load_image(path, &width, &height, &channels, channels);
