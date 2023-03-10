@@ -80,8 +80,6 @@ namespace Flx::Backends
         void render(Flx::Sprite *spr);
         uint32_t getTicks();
         void delay(uint32_t ms);
-
-        void testrender(Flx::Rect rect);
     };
 #endif
 }

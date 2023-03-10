@@ -4,3 +4,4 @@ source/main.cpp
 release/
 debug/
 .vscode/*.log
+*example

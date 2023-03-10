@@ -1,6 +1,7 @@
 #ifndef FLXGRAPHIC_HPP
 #define FLXGRAPHIC_HPP
 #include "flixel++/Common.hpp"
+#include "flixel++/FlxColor.hpp"
 
 namespace Flx
 {
@@ -13,8 +14,11 @@ namespace Flx
         Graphic(int width, int height, void* tex);
         ~Graphic();
         int width, height;
+        /**
+         * The graphic data that is stored in RAM
+        */
         void* bitmap;
-        uint32_t getPixel32(int x, int y);
+        Flx::Color getPixel32(int x, int y);
         friend class Sprite;
 
         unsigned int id;

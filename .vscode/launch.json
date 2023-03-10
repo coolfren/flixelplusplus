@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/examples/saul-goodman/example",
+            "program": "${workspaceFolder}/examples/logo/example",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
