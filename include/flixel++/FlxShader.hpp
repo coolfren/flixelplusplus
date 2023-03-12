@@ -8,7 +8,7 @@
         "out vec2 fragCoord;\n"\
         "out vec3 Color;\n"\
         "void main() {\n"\
-        "   fragCoord = vertexCoord;\n"\
+        "   fragCoord = vec2(vertexCoord.x, -vertexCoord.y);\n"\
         "   Color = vertexColor;\n"\
         "   gl_Position = vec4(vertexPos, 1.0);\n"\
         "}\n"

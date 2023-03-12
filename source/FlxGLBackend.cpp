@@ -145,6 +145,8 @@ Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
     glTexImage2D(GL_TEXTURE_2D, 0, colorMode, width, height, 0, colorMode, GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
 
+    SOIL_free_image_data(data);
+
     return graphic;
 }
 
@@ -237,6 +239,10 @@ void Flx::Backends::OpenGL::render(Flx::Sprite *spr) {
 
     std::vector<glm::vec2> dst = to2DOpenGLRect(stuff);
 
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     glActiveTexture(GL_TEXTURE0);
 
     glBindTexture(GL_TEXTURE_2D, spr->graphic->id);
@@ -244,6 +250,7 @@ void Flx::Backends::OpenGL::render(Flx::Sprite *spr) {
     glUseProgram(spr->shader.program);
 
     glBindVertexArray(VAO);
+
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 }
