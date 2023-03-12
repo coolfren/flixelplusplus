@@ -1,1 +1,2 @@
 source/assets/* linguist-vendored
+mk/*.cmake linguist-vendored
