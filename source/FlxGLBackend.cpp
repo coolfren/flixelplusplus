@@ -20,31 +20,30 @@ glm::mat4 perspective = glm::mat4(1.0f);
 
 void gameEvents(SDL_Window *window);
 
-struct GLVertex3{
-    float x;
-    float y;
-    float z;
+struct GLVertex
+{
+    glm::vec3 vecPos;
+    glm::vec3 colorControl;
+    glm::vec2 texPos;
 };
 
-struct GLVertex2{
-    float x;
-    float y;
-};
+unsigned int VAO, VBO, EBO;
 
-unsigned int VAO,VBO, EBO;
-
-float vertices[] = {
+/*float vertices[] = {
     // positions          // colors           // texture coords
      0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
      0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
     -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
-};
+    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left
+};*/
 
-unsigned int indices[] = {  
+unsigned int indices[] = {
     0, 1, 3, // first triangle
     1, 2, 3  // second triangle
 };
+
+// FOR SAVING VERTEX DATA DON'T REMOVE THIS
+std::vector<GLVertex> vertices{GLVertex(), GLVertex(), GLVertex(), GLVertex()};
 
 Flx::Backends::OpenGL::OpenGL()
 {
@@ -58,6 +57,11 @@ Flx::Backends::OpenGL::OpenGL()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 3);
+
+    glEnable(GL_MULTISAMPLE);
 
     SDL_GLContext glContext = SDL_GL_CreateContext(window);
 
@@ -65,7 +69,6 @@ Flx::Backends::OpenGL::OpenGL()
     {
         Flx::Log::error("Failed to create a GL context");
     }
-    
     GLenum verifyGlew = glewInit();
     if (verifyGlew != GLEW_OK)
     {
@@ -74,30 +77,13 @@ Flx::Backends::OpenGL::OpenGL()
 
     glViewport(0, 0, width, height);
 
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-
-    glBindVertexArray(VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
 }
 
 Flx::Backends::OpenGL::~OpenGL()
 {
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
     SDL_DestroyWindow(window);
 }
 
@@ -113,6 +99,10 @@ Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic *graphic)
 
 Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
 {
+    glGenVertexArrays(1, &VAO); // vertex array object
+    glGenBuffers(1, &VBO);      // vertex buffer object
+    glGenBuffers(1, &EBO);      // element buffer object
+
     int width, height, channels;
     unsigned char *data = SOIL_load_image(path, &width, &height, &channels, SOIL_LOAD_AUTO);
 
@@ -125,19 +115,19 @@ Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
     GLenum colorMode;
     switch (channels)
     {
-        case 4:
-            colorMode = GL_RGBA;
-            break;
-        default:
-            colorMode = GL_RGB;
-            break;
+    case 4:
+        colorMode = GL_RGBA;
+        break;
+    default:
+        colorMode = GL_RGB;
+        break;
     };
 
-    Flx::Graphic* graphic = new Flx::Graphic(width, height, data);
+    Flx::Graphic *graphic = new Flx::Graphic(width, height, data);
     glGenTextures(1, &graphic->id);
     glBindTexture(GL_TEXTURE_2D, graphic->id);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -145,8 +135,10 @@ Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
     glTexImage2D(GL_TEXTURE_2D, 0, colorMode, width, height, 0, colorMode, GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
 
-    SOIL_free_image_data(data);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    SOIL_free_image_data(data);
     return graphic;
 }
 
@@ -154,40 +146,37 @@ Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { return null
 
 Flx::Graphic *Flx::Backends::OpenGL::requestRectangle(float width, float height, int color) { return nullptr; }
 
-inline const std::vector<GLVertex3> to2DOpenGLRect(Flx::Rect &rect, float z)
+inline const std::vector<GLVertex> to2DOpenGLRect(std::vector<GLVertex> buffer, Flx::Rect &rect, float z)
 {
-    std::vector<GLVertex3> buffer;
 
     // UPPER LEFT
-    buffer.push_back({rect.x, rect.y, z});
+    buffer[0].vecPos = glm::vec3(rect.x, rect.y, z);
 
     // BOTTOM LEFT
-    buffer.push_back({rect.x, rect.y + rect.height, z});
+    buffer[1].vecPos = glm::vec3(rect.x, rect.y + rect.height, z);
 
     // BOTTOM RIGHT
-    buffer.push_back({rect.x + rect.width, rect.y + rect.height, z});
+    buffer[2].vecPos = glm::vec3(rect.x + rect.width, rect.y + rect.height, z);
 
     // UPPER RIGHT
-    buffer.push_back({rect.x + rect.width, rect.y, z});
+    buffer[3].vecPos = glm::vec3(rect.x + rect.width, rect.y, z);
 
     return buffer;
 }
 
-inline const std::vector<glm::vec2> to2DOpenGLRect(Flx::Rect &rect)
+inline const std::vector<GLVertex> to2DOpenGLRect(std::vector<GLVertex> buffer, Flx::Rect &rect)
 {
-    std::vector<glm::vec2> buffer;
-
     // UPPER LEFT
-    buffer.push_back(glm::vec2(rect.x, rect.y));
+    buffer[0].texPos = glm::vec2(rect.x, rect.y);
 
     // BOTTOM LEFT
-    buffer.push_back(glm::vec2(rect.x, rect.y + rect.height));
+    buffer[1].texPos = glm::vec2(rect.x, rect.y + rect.height);
 
     // BOTTOM RIGHT
-    buffer.push_back(glm::vec2(rect.x + rect.width, rect.y + rect.height));
+    buffer[2].texPos = glm::vec2(rect.x + rect.width, rect.y + rect.height);
 
     // UPPER RIGHT
-    buffer.push_back(glm::vec2(rect.x + rect.width, rect.y));
+    buffer[3].texPos = glm::vec2(rect.x + rect.width, rect.y);
 
     return buffer;
 }
@@ -218,41 +207,67 @@ void Flx::Backends::OpenGL::update()
     SDL_GL_SwapWindow(window);
 }
 
-void Flx::Backends::OpenGL::render(Flx::Sprite *spr) {
+void Flx::Backends::OpenGL::render(Flx::Sprite *spr)
+{
     Flx::Rect stuff = spr->clipRect;
 
     if (spr->animation->animated)
     {
-        Flx::Frame* anim = spr->animation->getCurAnim();
+        Flx::Frame *anim = spr->animation->getCurAnim();
         stuff.x = anim->x;
         stuff.y = anim->y;
         stuff.width = anim->width;
         stuff.height = anim->height;
     }
 
-    std::vector<GLVertex3> src = to2DOpenGLRect(stuff, spr->z);
+    stuff.x = -0.5f;
+    stuff.y = -0.5f;
+    stuff.width = 1.0f;
+    stuff.height = 1.0f;
+
+    vertices = to2DOpenGLRect(vertices, stuff, spr->z);
 
     stuff.x = spr->x - (spr->width / 2);
     stuff.y = spr->y - (spr->height / 2);
     stuff.width = spr->width;
     stuff.height = spr->height;
+    
+    stuff.x = 0.0f;
+    stuff.y = 0.0f;
+    stuff.width = 1.0f;
+    stuff.height = 1.0f;
 
-    std::vector<glm::vec2> dst = to2DOpenGLRect(stuff);
-
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    glActiveTexture(GL_TEXTURE0);
-
-    glBindTexture(GL_TEXTURE_2D, spr->graphic->id);
-
-    glUseProgram(spr->shader.program);
+    vertices = to2DOpenGLRect(vertices, stuff);
 
     glBindVertexArray(VAO);
 
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    // load data into VBO
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * sizeof(GLVertex), &vertices[0], GL_STATIC_DRAW);
 
+    // load data into EBO
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices) * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
+
+    // set vertex attribute pointers
+    // vertex.position
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLVertex), (void *)0);
+    glEnableVertexAttribArray(0);
+
+    //vertex.color
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(GLVertex), (void *)(offsetof(GLVertex, colorControl)));
+    glEnableVertexAttribArray(1);
+
+    // vertex.texCoord
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(GLVertex), (void *)(offsetof(GLVertex, texPos)));
+    glEnableVertexAttribArray(2);
+
+    glActiveTexture(GL_TEXTURE0 + spr->graphic->id);
+    glBindTexture(GL_TEXTURE_2D, spr->graphic->id);
+    glUseProgram(spr->shader.program);
+
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
 uint32_t Flx::Backends::OpenGL::getTicks() { return 0; }
@@ -270,7 +285,8 @@ void checkShaderStatus(GLuint shader)
 {
     GLint compiled = false;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
-    if(!compiled){
+    if (!compiled)
+    {
         Flx::Log::warn("Could not compile shader!");
     }
 }
