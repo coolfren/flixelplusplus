@@ -1,1 +1,11 @@
+<<<<<<< HEAD
 example
+=======
+obj/
+build/
+source/main.cpp
+release/
+debug/
+.vscode/*.log
+*example
+>>>>>>> 572b473f9f3e7ae00ff42aa78531bc1f983bf54f
