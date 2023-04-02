@@ -5,17 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/include",
                 "/opt/devkitpro/portlibs/ppc/include",
-                "/opt/devkitpro/libctru/include",
-                "${workspaceFolder}/bundles/simple-opengl-loader",
-                "${workspaceFolder}/bundles/tinyxml2"
+                "/opt/devkitpro/libctru/include"
             ],
-<<<<<<< HEAD
-            "defines": [
-                "FLIXEL_SDL"
-            ],
-=======
             "defines": ["FLIXEL_SDL"],
->>>>>>> fb2c92419a144a1e197c69ac19b40f0aef306c9b
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++14",
