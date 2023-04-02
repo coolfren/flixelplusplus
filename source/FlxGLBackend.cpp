@@ -329,6 +329,10 @@ void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
     spr->shader.setShaderValue("bitmap", (int)spr->graphic->id);
     spr->shader.setShaderValue("projection", perspective);
 
+    glm::mat4 transform = glm::mat4(1.f);
+    transform = glm::scale(transform, glm::vec3(spr->scale.x, spr->scale.y, 1.f));
+    glUniformMatrix4fv(glGetUniformLocation(spr->shader.program, "transform"), 1, GL_FALSE, glm::value_ptr(transform));
+
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
