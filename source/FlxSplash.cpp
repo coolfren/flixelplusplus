@@ -14,6 +14,8 @@
 int elapsedTime = 0;
 int result = 0;
 const char flixel[8] = {'F', 'l', 'i', 'x', 'e', 'l', '+', '+'};
+Flx::Rect temp;
+Flx::Shader* tempShader;
 
 Flx::Splash::Splash(Flx::State *state)
     : nextState(state)
@@ -24,19 +26,19 @@ void Flx::Splash::create()
 {
     trace("START");
 
-    flixelSound = new Flx::Sound();
-    flixelSound->load("assets/sounds/flixel.ogg");
-    flixelSound->play();
+    //yellow = new Flx::Sprite();
 
-    yellow = new Flx::Sprite();
-    yellow->loadGraphic((void *)logoYellow_png, logoYellow_png_size);
+    temp = Flx::Rect(0,23,10,10);
+
+
+    /*yellow->loadGraphic((void *)logoYellow_png, logoYellow_png_length);
     yellow->setGraphicSize((yellow->graphic->width / 9), (yellow->graphic->height / 9));
     add(yellow);
     yellow->screenCenter();
-    yellow->visible = true;
+    yellow->visible = false;
 
     red = new Flx::Sprite(0, 0);
-    red->loadGraphic((void *)logoRed_png, logoRed_png_size);
+    red->loadGraphic((void *)logoRed_png, logoRed_png_length);
     red->setGraphicSize((red->graphic->width / 9), (red->graphic->height / 9) + 3);
     add(red);
     red->screenCenter();
@@ -44,14 +46,14 @@ void Flx::Splash::create()
 
 
     blue = new Flx::Sprite(0, 0);
-    blue->loadGraphic((void *)logoBlue_png, logoBlue_png_size);
+    blue->loadGraphic((void *)logoBlue_png, logoBlue_png_length);
     blue->setGraphicSize((blue->graphic->width / 9), (blue->graphic->height / 9) +2 );
     add(blue);
     blue->screenCenter();
     blue->visible = false;
 
     cyan = new Flx::Sprite(0, 0);
-    cyan->loadGraphic((void *)logoCyan_png, logoCyan_png_size);
+    cyan->loadGraphic((void *)logoCyan_png, logoCyan_png_length);
     cyan->setGraphicSize((cyan->graphic->width / 9), (cyan->graphic->height / 9));
     add(cyan);
     cyan->screenCenter();
@@ -59,31 +61,43 @@ void Flx::Splash::create()
 
 
     green = new Flx::Sprite(0, 0);
-    green->loadGraphic((void *)logoGreen_png, logoGreen_png_size);
+    green->loadGraphic((void *)logoGreen_png, logoGreen_png_length);
     green->setGraphicSize((green->graphic->width / 9) + 5, (green->graphic->height / 9) + 5);
     add(green);
     green->screenCenter();
 
     cpp = new Flx::Sprite(0, 0);
-    cpp->loadGraphic((void *)logoC_png, logoC_png_size);
+    cpp->loadGraphic((void *)logoC_png, logoC_png_length);
     cpp->setGraphicSize((cpp->graphic->width / 9), (cpp->graphic->height / 9));
     add(cpp);
     cpp->screenCenter();
     cpp->visible = true;
     cpp->alpha = 0;
 
-    /*flixelText = new Text(0,0,"");
+    flixelText = new Text(0,0,"");
     flixelText->screenCenter();
     flixelText->y += 150;
-    add(flixelText);*/
+    add(flixelText);
+
+    Sprite *sprite = new Flx::Sprite(0, 0);
+    sprite->loadGraphic("assets/images/logo/logo.png");
+    sprite->setGraphicSize(240, 240);
+
+    sprite->screenCenter();
+    add(sprite);*/
 
 
+    flixelSound = new Flx::Sound();
+    flixelSound->load("assets/sounds/flixel.ogg");
+    flixelSound->play();
     trace("TRIGGER");
+
+    Flx::Globals::game->backend->testrender(temp);
 }
 
 void Flx::Splash::update()
 {
-    if(elapsedTime >= 7){
+    /*if(elapsedTime >= 7){
         yellow->visible = true;
     }
     if(elapsedTime >= 14){
@@ -101,7 +115,7 @@ void Flx::Splash::update()
     }
 
     if(elapsedTime >= 100 && elapsedTime <= 140 && elapsedTime % 5 == 0){
-        //flixelText->setText(flixelText->text + flixel[(elapsedTime - 100) / 5]);
+        flixelText->setText(flixelText->text + flixel[(elapsedTime - 100) / 5]);
     }
 
     if(cpp->alpha < 100 && elapsedTime < 200 )
@@ -116,7 +130,7 @@ void Flx::Splash::update()
         green->alpha -= 1;
         cpp->alpha -= 1;
         flixelText->alpha -= 1;
-    }
+    }*/
 
     elapsedTime += 1;
     if (elapsedTime >= 330)

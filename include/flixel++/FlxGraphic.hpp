@@ -21,10 +21,9 @@ namespace Flx
         Flx::Color getPixel32(int x, int y);
         friend class Sprite;
 
-        static int currentID;
-
         unsigned int id;
         const char* path;
+        static int currentID;
         int channels;
     };
 }

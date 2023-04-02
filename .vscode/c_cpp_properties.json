@@ -9,9 +9,13 @@
                 "${workspaceFolder}/bundles/simple-opengl-loader",
                 "${workspaceFolder}/bundles/tinyxml2"
             ],
+<<<<<<< HEAD
             "defines": [
                 "FLIXEL_SDL"
             ],
+=======
+            "defines": ["FLIXEL_SDL"],
+>>>>>>> fb2c92419a144a1e197c69ac19b40f0aef306c9b
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++14",

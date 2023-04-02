@@ -3,14 +3,13 @@
 #include "flixel++/FlxG.hpp"
 #include "flixel++/FlxLog.hpp"
 #include "flixel++/FlxColor.hpp"
-#include "flixel++/FlxMacros.hpp"
 
 int Flx::Graphic::currentID = 0;
 
 Flx::Graphic::Graphic(int width, int height, void* tex)
-    : width(width), height(height), bitmap(tex),id(currentID++)
+    : width(width), height(height), bitmap(tex)
 {
-    trace(id);
+    id = currentID++;
 }
 
 Flx::Graphic::~Graphic(){

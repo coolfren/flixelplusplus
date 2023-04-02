@@ -5,7 +5,6 @@
 #include "flixel++/FlxLog.hpp"
 #include "flixel++/FlxMacros.hpp"
 
-
 using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
 
 #ifdef FLIXEL_OPENGL
@@ -18,16 +17,8 @@ using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
 #include <glm/gtc/type_ptr.hpp>
 
 glm::mat4 perspective = glm::mat4(1.0f);
-glm::mat4 model = glm::mat4(1.0f);
 
 void gameEvents(SDL_Window *window);
-
-struct OpenGLrgba {
-    float r;
-    float g;
-    float b;
-    float a;
-};
 
 struct GLVertex
 {
@@ -37,8 +28,6 @@ struct GLVertex
 };
 
 unsigned int VAO, VBO, EBO;
-
-OpenGLrgba newBGColor;
 
 /*float vertices[] = {
     // positions          // colors           // texture coords
@@ -88,10 +77,6 @@ Flx::Backends::OpenGL::OpenGL()
 
     glViewport(0, 0, width, height);
 
-    glGenVertexArrays(1, &VAO); // vertex array object
-    glGenBuffers(1, &VBO);      // vertex buffer object
-    glGenBuffers(1, &EBO);      // element buffer object
-
 }
 
 Flx::Backends::OpenGL::~OpenGL()
@@ -114,6 +99,9 @@ Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic *graphic)
 
 Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
 {
+    glGenVertexArrays(1, &VAO); // vertex array object
+    glGenBuffers(1, &VBO);      // vertex buffer object
+    glGenBuffers(1, &EBO);      // element buffer object
 
     int width, height, channels;
     unsigned char *data = SOIL_load_image(path, &width, &height, &channels, SOIL_LOAD_AUTO);
@@ -153,37 +141,6 @@ Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
     SOIL_free_image_data(data);
     return graphic;
 }
-
-Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const void *data, const size_t size)
-{
-    /*int width, height, channels;
-    unsigned char* rawData = (unsigned char*)data;
-
-    if (!data)
-    {
-        Flx::Log::warn("Could not load graphic!");
-        return nullptr;
-    }
-
-    Flx::Graphic *graphic = new Flx::Graphic(width, height, rawData);
-    glGenTextures(1, &graphic->id);
-    glBindTexture(GL_TEXTURE_2D, graphic->id);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    glTexSubImage1D(GL_TEXTURE_2D, 0, width, height)
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    trace("trigger  texture");
-
-    return graphic;*/
-}
-
 
 Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { return nullptr; }
 
@@ -239,12 +196,7 @@ void Flx::Backends::OpenGL::update()
 {
     game->curState->update();
 
-    newBGColor.r = (float)Flx::Globals::bgColor.r / 255;
-    newBGColor.g = (float)Flx::Globals::bgColor.g / 255;
-    newBGColor.b = (float)Flx::Globals::bgColor.b / 255;
-    newBGColor.a = (float)Flx::Globals::bgColor.a / 255;
-
-    glClearColor(Flx::Globals::bgColor.r,newBGColor.g,newBGColor.b,newBGColor.a);
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -255,7 +207,7 @@ void Flx::Backends::OpenGL::update()
     SDL_GL_SwapWindow(window);
 }
 
-void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
+void Flx::Backends::OpenGL::render(Flx::Sprite *spr)
 {
     Flx::Rect stuff = spr->clipRect;
 
@@ -268,13 +220,18 @@ void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
         stuff.height = anim->height;
     }
 
+    stuff.x = -0.5f;
+    stuff.y = -0.5f;
+    stuff.width = 1.0f;
+    stuff.height = 1.0f;
+
+    vertices = to2DOpenGLRect(vertices, stuff, spr->z);
+
     stuff.x = spr->x - (spr->width / 2);
     stuff.y = spr->y - (spr->height / 2);
     stuff.width = spr->width;
     stuff.height = spr->height;
-
-    vertices = to2DOpenGLRect(vertices, stuff, spr->z);
-   
+    
     stuff.x = 0.0f;
     stuff.y = 0.0f;
     stuff.width = 1.0f;
@@ -283,9 +240,6 @@ void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
     vertices = to2DOpenGLRect(vertices, stuff);
 
     glBindVertexArray(VAO);
-
-    glActiveTexture(GL_TEXTURE0 + spr->graphic->id);
-    glBindTexture(GL_TEXTURE_2D, spr->graphic->id);
 
     // load data into VBO
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -308,10 +262,9 @@ void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(GLVertex), (void *)(offsetof(GLVertex, texPos)));
     glEnableVertexAttribArray(2);
 
-    glUseProgram(spr->graphic->id);
-
-    spr->shader.setShaderValue("bitmap", (int)spr->graphic->id);
-    spr->shader.setShaderValue("projection", perspective);
+    glActiveTexture(GL_TEXTURE0 + spr->graphic->id);
+    glBindTexture(GL_TEXTURE_2D, spr->graphic->id);
+    glUseProgram(spr->shader.program);
 
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -328,29 +281,14 @@ void Flx::Backends::OpenGL::delay(uint32_t ms)
 #endif
 }
 
-/*void checkShaderStatus(GLuint shader)
+void checkShaderStatus(GLuint shader)
 {
     GLint compiled = false;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
     if (!compiled)
     {
         Flx::Log::warn("Could not compile shader!");
-        
     }
-}*/
-
-
-void checkShaderStatus(GLuint shader){
-    int success;
-	char infoLog[512];
-
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(shader, 512, NULL, infoLog);
-		std::cout << "Error with vertex shader comp.:" << std::endl
-				  << infoLog << std::endl;
-	}
 }
 
 Flx::Shader *Flx::Backends::OpenGL::compileShader(Flx::Shader *shader)

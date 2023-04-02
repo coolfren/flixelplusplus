@@ -9,15 +9,19 @@ Flx::Sound::Sound()
 
 Flx::Sound::~Sound()
 {
+    #ifdef FLIXEL_OPENAL
     alDeleteSources(1, &soundData.source);
     alDeleteBuffers(1, &soundData.buffer);
     vorbis_info_clear(info);
+    #endif
 }
 
 void Flx::Sound::play()
 {
     startTime = Flx::Globals::game->backend->getTicks();
+    #ifdef FLIXEL_OPENAL
     alSourcePlay(soundData.source);
+    #endif
 }
 
 void Flx::Sound::load(const char *path)
@@ -61,6 +65,8 @@ void Flx::Sound::load(const char *path)
 float Flx::Sound::getPosition()
 {
     float val = 0;
+    #ifdef FLIXEL_OPENAL
     alGetSourcef(soundData.buffer, AL_SEC_OFFSET, &val);
+    #endif
     return val * 1000;
 }

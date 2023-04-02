@@ -1,4 +1,3 @@
-
 #ifndef FLXSOUND_HPP
 #define FLXSOUND_HPP
 #include "flixel++/Common.hpp"

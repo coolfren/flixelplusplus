@@ -1,29 +1,19 @@
 #pragma once
 #include <flixel++/FlxState.hpp>
 #include <flixel++/FlxSprite.hpp>
-#include <flixel++/FlxMacros.hpp>
 
 class PlayState : public Flx::State
 {
-public:
-    Flx::Sprite *logo;
-    float time;
+    public:
     PlayState(){};
     ~PlayState(){};
-    void create()
-    {
-        logo = new Flx::Sprite(0, 0);
+    void create(){
+        Flx::Sprite* logo = new Flx::Sprite(0, 0);
         logo->loadGraphic("assets/logo.png");
         logo->screenCenter();
         add(logo);
-        trace("Created");
     }
-    void update()
-    {
-        logo->x += sin(time);
-        logo->y += cos(time);
-        logo->z += tan(time);
-        time += 0.05;
+    void update(){
         Flx::State::update();
     }
 };

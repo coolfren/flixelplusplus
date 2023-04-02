@@ -3,7 +3,6 @@
 #include "flixel++/FlxAssets.hpp"
 #include "flixel++/FlxMacros.hpp"
 #include "flixel++/FlxSplash.hpp"
-#include "flixel++/FlxColor.hpp"
 
 int Flx::Globals::width = 0;
 int Flx::Globals::height = 0;
@@ -13,7 +12,6 @@ Flx::Random *Flx::Globals::random = nullptr;
 Flx::SoundManager *Flx::Globals::sound = nullptr;
 Flx::Keyboard *Flx::Globals::keys = nullptr;
 Flx::Mouse *Flx::Globals::mouse = nullptr;
-Flx::Color Flx::Globals::bgColor = Flx::Color(0,0,0,0);
 
 bool Flx::Globals::switchState(Flx::State *state)
 {
@@ -41,7 +39,6 @@ Flx::Game::Game(const char* title, int width, int height, int framerate, Flx::St
     Flx::Globals::height = height;
 
     this->backend = new Flx::Backends::OpenGL();
-    
     initializeConsoles();
 
     setupGlobals();

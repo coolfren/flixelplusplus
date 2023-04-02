@@ -3,7 +3,6 @@
 #include "flixel++/FlxGame.hpp"
 #include "flixel++/FlxKeyboard.hpp"
 #include "flixel++/FlxMouse.hpp"
-#include "flixel++/FlxColor.hpp"
 
 namespace Flx
 {
@@ -12,8 +11,6 @@ namespace Flx
     */
     namespace Globals
     {
-        extern Flx::Color bgColor;
-
         extern int width, height;
 
         extern Flx::Game* game;
