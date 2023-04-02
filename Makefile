@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-include ../common.mk
-=======
 #!/usr/bin/make -f
 all:
 	@echo "Specify what platform you want to build"
@@ -34,4 +31,3 @@ clean:
 	rm -rf build/
 	rm -rf obj/
 	@make -f mk/switch.mk clean
->>>>>>> 572b473f9f3e7ae00ff42aa78531bc1f983bf54f
