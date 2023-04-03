@@ -1,45 +1,37 @@
 #ifndef FLXSHADER_HPP
 #define FLXSHADER_HPP
 
-#define GLSL(x) "#version 330\n" #x
-#define HLSL(x) "#pragma target 5.0\n" #x
+#define _FLIXEL_DEFAULTVSHADER         "#version 330\n"\
+        "layout(location = 0) in vec3 vertexPos;\n"\
+        "layout(location = 2) in vec2 vertexCoord;\n"\
+        "out vec2 fragCoord;\n"\
+        "out vec3 Color;\n"\
+        "uniform mat4 projection;\n"\
+        "uniform mat4 model;\n"\
+        "void main() {\n"\
+        "   fragCoord = vertexCoord;\n"\
+        "   gl_Position = projection * vec4(vertexPos, 1.0f);\n"\
+        "}\n"
+
+        //* projection * model
+
+#define _FLIXEL_DEFAULTFSHADER         "#version 330\n"\
+        "uniform sampler2D bitmap;\n" \
+        "out vec4 FragColor;\n"\
+        "in vec2 fragCoord;\n"\
+        "void main() {\n"\
+        "   FragColor = texture(bitmap, fragCoord);\n"\
+        "}\n"
+
+
 #include <iostream>
+#include <GL/glew.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 
 namespace Flx
 {
-    namespace
-    {
-        static constexpr const char* _FLIXEL_DEFAULTVSHADER = GLSL(
-            layout(location = 0) in vec3 vertexPos;
-            layout(location = 1) in vec3 vertexColor;
-            layout(location = 2) in vec2 vertexCoord;
-
-            out vec2 fragCoord;
-            out vec3 Color;
-
-            uniform mat4 transform;
-
-            void main() {
-                Color = vertexColor;
-                gl_Position = transform * vec4(vertexPos, 1.0);
-                fragCoord = vec2(vertexCoord.x, -vertexCoord.y);
-            }
-        );
-
-        static constexpr const char* _FLIXEL_DEFAULTFSHADER = GLSL(
-            uniform sampler2D bitmap;
-
-            out vec4 FragColor;
-
-            in vec3 Color;
-            in vec2 fragCoord;
-
-            void main() {
-                FragColor = texture(bitmap, fragCoord);
-            }
-        );
-    }
-    
     class Shader
     {
         public:
@@ -48,6 +40,11 @@ namespace Flx
         unsigned int program;
         Shader(std::string vertexShader = _FLIXEL_DEFAULTVSHADER, std::string fragmentShader = _FLIXEL_DEFAULTFSHADER);
         ~Shader();
+
+        void setShaderValue(const std::string name,glm::mat4 value);
+        void setShaderValue(const std::string name,float value);
+        void setShaderValue(const std::string name,int value);
+
     };
 }
 

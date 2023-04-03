@@ -1,7 +1,8 @@
 obj/
 build/
+include/flixel++/Test.hpp
 source/main.cpp
 release/
 debug/
+examples/example
 .vscode/*.log
-*example

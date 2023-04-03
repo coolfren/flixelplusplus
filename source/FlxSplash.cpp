@@ -137,5 +137,4 @@ void Flx::Splash::update()
     {
         Flx::Globals::switchState(nextState);
     }
-
 }
