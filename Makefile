@@ -2,8 +2,20 @@
 all:
 	@echo "Specify what platform you want to build"
 pc:
+ifeq ($(PLATFORM),1)
 	@mkdir -p build
-	@cd build && cmake -DOPENGL=1 -DSDL=1 .. && make
+	@cd build && cmake -DSDL_LEGACY=1 .. && make
+
+else ifeq ($(PLATFORM),2)
+	@mkdir -p build
+	@cd build && cmake -DSDL=1 .. && make
+
+else ifeq ($(PLATFORM),3)
+	@mkdir -p build
+	@cd build && cmake -DOPENGL=1 .. && make
+
+
+endif
 
 install:
 	rm -rf /usr/include/flixel++
