@@ -1,9 +1,6 @@
-[submodule "bundles/tinyxml2"]
-	path = bundles/tinyxml2
-	url = https://github.com/leethomason/tinyxml2
 [submodule "bundles/simple-opengl-loader"]
 	path = bundles/simple-opengl-loader
 	url = https://github.com/tsherif/simple-opengl-loader
-[submodule "tinyxml2"]
-	path = tinyxml2
+[submodule "bundles/tinyxml2"]
+	path = bundles/tinyxml2
 	url = https://github.com/leethomason/tinyxml2
