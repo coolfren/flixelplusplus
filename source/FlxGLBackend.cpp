@@ -12,7 +12,7 @@ using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
 #ifdef FLIXEL_OPENGL
 
 #include <SDL2/SDL.h>
-#include <glad/glad.h>
+#include <GL/glew.h>
 #include <SOIL/SOIL.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -63,7 +63,7 @@ Flx::Backends::OpenGL::OpenGL()
         Flx::Log::error("Failed to create a GL context");
     }
 
-    GLenum verifyGlew = gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress);
+    GLenum verifyGlew = glewInit() == GLEW_OK;
     if (!verifyGlew)
     {
         Flx::Log::error("Failed to initialize GLAD");
