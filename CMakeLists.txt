@@ -8,9 +8,16 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 message(STATUS "Source dir: ${CMAKE_SOURCE_DIR}")
 
 project(flixel++, VERSION 0.1.0)
-include_directories("include/")
-include_directories("bundles/tinyxml2/")
-file (GLOB_RECURSE FLIXEL_FILES CONFIGURE_DEPENDS "source/*.cpp" "bundles/tinyxml2/tinyxml2.cpp")
+
+include_directories(
+    "include/"
+    "bundles/tinyxml2/"
+)
+
+file (GLOB_RECURSE FLIXEL_FILES CONFIGURE_DEPENDS 
+    "source/*.cpp" 
+    "bundles/tinyxml2/tinyxml2.cpp"
+)
 
 if(DEFINED SDL_LEGACY)
     add_definitions(-DSDL_LEGACY)
@@ -36,15 +43,15 @@ endif()
 if(DEFINED OPENGL)
     find_package(SDL2 REQUIRED)
     include_directories(${SDL2_INCLUDE_DIRS})
+    find_package(SDL_image REQUIRED)
+    include_directories(${SDLIMAGE_INCLUDE_DIRS})
 
+    find_package(SDL_ttf REQUIRED)
+    include_directories(${SDLTTF_INCLUDE_DIRS})
     find_package(OpenGL REQUIRED)
-
-    find_package(glfw3 3.3 REQUIRED)
-    include_directories(${GLFW_INCLUDE_DIRS})
 
     find_package(SOIL REQUIRED)
     include_directories(${SOIL_INCLUDE_DIRS})
-
     find_package(GLEW REQUIRED)
     include_directories(${GLEW_INCLUDE_DIRS})
 endif()
@@ -65,27 +72,38 @@ include_directories(${CURL_INCLUDE_DIR})
 add_library(flixel++ SHARED ${FLIXEL_FILES})
 
 if(DEFINED SDL_LEGACY)
-    target_link_libraries(flixel++ ${SDL_LIBRARIES})
-    target_link_libraries(flixel++ ${SDL_IMAGE_LIBRARIES})
-    target_link_libraries(flixel++ ${SDL_TTF_LIBRARIES})
+    target_link_libraries(flixel++ 
+        ${SDL_LIBRARIES}
+        ${SDL_IMAGE_LIBRARIES}
+        ${SDL_TTF_LIBRARIES}
+    )
 endif()
 if(DEFINED SDL)
-    target_link_libraries(flixel++ ${SDL2_LIBRARIES})
-    target_link_libraries(flixel++ ${SDL2_IMAGE_LIBRARIES})
-    target_link_libraries(flixel++ ${SDL2_TTF_LIBRARIES})
+    target_link_libraries(flixel++
+        ${SDL2_LIBRARIES}
+        ${SDL2_IMAGE_LIBRARIES}
+        ${SDL2_TTF_LIBRARIES}
+    )
 endif()
 if(DEFINED OPENGL)
-    target_link_libraries(flixel++ ${SDL2_LIBRARIES})
-    target_link_libraries(flixel++ ${GLEW_LIBRARIES})
-    target_link_libraries(flixel++ ${OPENGL_LIBRARY})
-    target_link_libraries(flixel++ ${GLFW_LIBRARY})
-    target_link_libraries(flixel++ ${SOIL_LIBRARY})
+    target_link_libraries(flixel++
+        ${SDL2_LIBRARIES}
+        ${OPENGL_LIBRARY}
+        ${GLEW_LIBRARIES}
+        ${GLFW_LIBRARY}
+        ${SOIL_LIBRARY}
+        ${SDL_IMAGE_LIBRARIES}
+        ${SDL_TTF_LIBRARIES}
+    )
 endif()
 
 
-target_link_libraries(flixel++ ${CURL_LIBRARIES})
-target_link_libraries(flixel++ ${OPENAL_LIBRARY})
-target_link_libraries(flixel++ ${VORBISFILE_LIBRARY})
-target_link_libraries(flixel++ ${CURL_LIBRARY})
+
+target_link_libraries(flixel++ 
+    ${CURL_LIBRARIES}
+    ${OPENAL_LIBRARY}
+    ${VORBISFILE_LIBRARY}
+    ${CURL_LIBRARY}
+)
 
 install(TARGETS flixel++ DESTINATION lib)

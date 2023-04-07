@@ -9,8 +9,8 @@ namespace Flx
         public:
         static std::vector<std::string> logs;
 
-        static void warn(const char* msg);
-        static void error(const char* msg);
+        static void warn(const std::string& msg);
+        static void error(const std::string& msg);
         static const char* recent();
     };
 }

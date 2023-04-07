@@ -106,6 +106,12 @@ void Flx::Sprite::update() {
     {
         animation->frameIndex++;
         animation->frameIndex = (Flx::Globals::game->backend->getTicks() / (animation->curAnim->fps)) % animation->curAnim->size();
+
+        Flx::Frame *anim = animation->getCurAnim();
+        clipRect.x = anim->x;
+        clipRect.y = anim->y;
+        clipRect.width = anim->width;
+        clipRect.height = anim->height;
     }
 }
 

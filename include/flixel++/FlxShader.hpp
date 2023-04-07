@@ -1,37 +1,43 @@
 #ifndef FLXSHADER_HPP
 #define FLXSHADER_HPP
 
-#define _FLIXEL_DEFAULTVSHADER         "#version 330\n"\
-        "layout(location = 0) in vec3 vertexPos;\n"\
-        "layout(location = 2) in vec2 vertexCoord;\n"\
-        "out vec2 fragCoord;\n"\
-        "out vec3 Color;\n"\
-        "uniform mat4 projection;\n"\
-        "uniform mat4 model;\n"\
-        "void main() {\n"\
-        "   fragCoord = vertexCoord;\n"\
-        "   gl_Position = projection * vec4(vertexPos, 1.0f);\n"\
-        "}\n"
-
-        //* projection * model
-
-#define _FLIXEL_DEFAULTFSHADER         "#version 330\n"\
-        "uniform sampler2D bitmap;\n" \
-        "out vec4 FragColor;\n"\
-        "in vec2 fragCoord;\n"\
-        "void main() {\n"\
-        "   FragColor = texture(bitmap, fragCoord);\n"\
-        "}\n"
-
-
 #include <iostream>
-#include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#define GLSL(x) "#version 330\n" #x
 
 namespace Flx
 {
+    namespace
+    {
+        static constexpr const char* _FLIXEL_DEFAULTVSHADER = GLSL(
+            layout(location = 0) in vec3 vertexPos;
+            layout(location = 2) in vec2 vertexCoord;
+
+            out vec2 fragCoord;
+            out vec3 Color;
+
+            uniform mat4 projection;
+            uniform mat4 model;
+
+            void main() {
+                fragCoord = vertexCoord;
+                gl_Position = projection * vec4(vertexPos, 1.0f);
+            }
+        );
+
+        static constexpr const char* _FLIXEL_DEFAULTFSHADER = GLSL(
+            uniform sampler2D bitmap;
+
+            out vec4 FragColor;
+            in vec2 fragCoord;
+
+            void main() {
+                FragColor = texture(bitmap, fragCoord);
+            }
+        );
+    }
     class Shader
     {
         public:
@@ -42,6 +48,7 @@ namespace Flx
         ~Shader();
 
         void setShaderValue(const std::string name,glm::mat4 value);
+        void setShaderValue(const std::string name,glm::vec2 value);
         void setShaderValue(const std::string name,float value);
         void setShaderValue(const std::string name,int value);
 
