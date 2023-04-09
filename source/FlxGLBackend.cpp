@@ -96,7 +96,7 @@ Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic *graphic)
     return graphic;
 }
 
-Flx::Graphic* handleTexData(const void* data, int width, int height, int channels)
+inline Flx::Graphic* handleTexData(const void* data, int width, int height, int channels)
 {
     GLenum colorMode;
     switch (channels)
@@ -156,7 +156,7 @@ Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { return null
 
 Flx::Graphic *Flx::Backends::OpenGL::requestRectangle(float width, float height, int color) { return nullptr; }
 
-inline const std::vector<GLVertex> to2DOpenGLRect(std::vector<GLVertex> buffer, Flx::Rect &rect, float z)
+inline void to2DOpenGLRect(std::vector<GLVertex>& buffer, Flx::Rect &rect, float z)
 {
 
     // UPPER LEFT
@@ -170,27 +170,22 @@ inline const std::vector<GLVertex> to2DOpenGLRect(std::vector<GLVertex> buffer, 
 
     // UPPER RIGHT
     buffer[3].vecPos = glm::vec3(rect.x + rect.width, rect.y, z);
-
-    return buffer;
 }
 
-inline const std::vector<GLVertex> to2DOpenGLRect(std::vector<GLVertex> buffer, Flx::Rect &rect, int textureWidth, int textureHeight)
+inline void to2DOpenGLRect(std::vector<GLVertex>& buffer, Flx::Rect &rect, int textureWidth, int textureHeight)
 {
     // UPPER LEFT
-    buffer[0].texPos = glm::vec2(rect.x / textureWidth, rect.y / textureHeight);
+    buffer[0].texPos = glm::vec2(rect.x, rect.y);
 
     // BOTTOM LEFT
-    buffer[1].texPos = glm::vec2(rect.x / textureWidth, (rect.y + rect.height) / textureHeight);
+    buffer[1].texPos = glm::vec2(rect.x, rect.y + rect.height);
 
     // BOTTOM RIGHT
-    buffer[2].texPos = glm::vec2((rect.x + rect.width) / textureWidth, (rect.y + rect.height) / textureHeight);
+    buffer[2].texPos = glm::vec2(rect.x + rect.width, rect.y + rect.height);
 
     // UPPER RIGHT
-    buffer[3].texPos = glm::vec2((rect.x + rect.width) / textureWidth, rect.y / textureHeight);
-
-    return buffer;
+    buffer[3].texPos = glm::vec2(rect.x + rect.width, rect.y);
 }
-
 
 bool Flx::Backends::OpenGL::deleteTexture(void *spr)
 {
@@ -233,15 +228,14 @@ void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
     stuff.width = spr->width;
     stuff.height = spr->height;
 
-    vertices = to2DOpenGLRect(vertices, stuff, spr->z);
+    to2DOpenGLRect(vertices, stuff, spr->z);
 
-    stuff = spr->clipRect;
-    // stuff.x = 0.0f;
-    // stuff.y = 0.0f;
-    // stuff.width = 1.0f;
-    // stuff.height = 1.0f;
+    stuff.x = 0.0f;
+    stuff.y = 0.0f;
+    stuff.width = 1.0f;
+    stuff.height = 1.0f;
 
-    vertices = to2DOpenGLRect(vertices, stuff, spr->graphic->width, spr->graphic->height);
+    to2DOpenGLRect(vertices, stuff, spr->graphic->width, spr->graphic->height);
 
     glBindVertexArray(VAO);
 

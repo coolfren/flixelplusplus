@@ -105,13 +105,20 @@ void Flx::Sprite::update() {
     if(animation->animated)
     {
         animation->frameIndex++;
-        animation->frameIndex = (Flx::Globals::game->backend->getTicks() / (animation->curAnim->fps)) % animation->curAnim->size();
+
+        uint32_t ticks = Flx::Globals::game->backend->getTicks();
+        int fps = animation->curAnim->fps;
+        int size = animation->curAnim->size();
+
+        animation->frameIndex = (ticks / (fps)) % size;
 
         Flx::Frame *anim = animation->getCurAnim();
         clipRect.x = anim->x;
         clipRect.y = anim->y;
         clipRect.width = anim->width;
         clipRect.height = anim->height;
+        this->width = anim->width;
+        this->height = anim->height;
     }
 }
 
