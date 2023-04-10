@@ -271,7 +271,9 @@ void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-uint32_t Flx::Backends::OpenGL::getTicks() { return 0; }
+uint32_t Flx::Backends::OpenGL::getTicks() { 
+    return SDL_GetTicks();
+}
 
 void Flx::Backends::OpenGL::delay(uint32_t ms)
 {
