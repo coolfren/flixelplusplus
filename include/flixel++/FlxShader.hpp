@@ -47,10 +47,10 @@ namespace Flx
         Shader(std::string vertexShader = _FLIXEL_DEFAULTVSHADER, std::string fragmentShader = _FLIXEL_DEFAULTFSHADER);
         ~Shader();
 
-        void setShaderValue(const std::string name,glm::mat4 value);
-        void setShaderValue(const std::string name,glm::vec2 value);
-        void setShaderValue(const std::string name,float value);
-        void setShaderValue(const std::string name,int value);
+        void setShaderValue(const std::string& name, glm::mat4 value);
+        void setShaderValue(const std::string& name, glm::vec2 value);
+        void setShaderValue(const std::string& name, float value);
+        void setShaderValue(const std::string& name, int value);
 
     };
 }
