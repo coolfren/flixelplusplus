@@ -230,10 +230,7 @@ void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
 
     to2DOpenGLRect(vertices, stuff, spr->z);
 
-    stuff.x = 0.0f;
-    stuff.y = 0.0f;
-    stuff.width = 1.0f;
-    stuff.height = 1.0f;
+    stuff = spr->clipRect;
 
     to2DOpenGLRect(vertices, stuff, spr->graphic->width, spr->graphic->height);
 

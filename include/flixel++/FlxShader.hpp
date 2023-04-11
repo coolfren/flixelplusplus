@@ -34,7 +34,8 @@ namespace Flx
             in vec2 fragCoord;
 
             void main() {
-                FragColor = texture(bitmap, fragCoord);
+                vec2 uv = fragCoord / vec2(textureSize(bitmap, 0));
+                FragColor = texture(bitmap, uv);
             }
         );
     }
