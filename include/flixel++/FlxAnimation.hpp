@@ -21,8 +21,9 @@ namespace Flx
     class Animation
     {
         public:
-        std::vector<Frame> frames;
+        std::vector<Frame*> frames;
         int fps = 0;
+        bool looped = true;
         Animation();
         int size();
     };
@@ -36,9 +37,14 @@ namespace Flx
         Animation* curAnim;
         int frameIndex = 0;
         bool animated = false;
-        std::map<const std::string, Animation> animations;
+        std::map<const std::string, Animation> prefixes;
+        std::map<const std::string, std::vector<Flx::Frame>> animations;
         AnimationController();
-        void fromSparrow(const char* path, const char* defaultAnim, int fps);
+        void fromSparrow(const char* path);
+
+        void addByIndices(const std::string& name, const std::string& prefix, std::vector<int> indices, int fps = 30, bool looped = true);
+        void addByPrefix(const std::string& name, const std::string& prefix, int fps = 30, bool looped = true);
+
         void play(const char* name);
         Frame* getCurAnim();
     };

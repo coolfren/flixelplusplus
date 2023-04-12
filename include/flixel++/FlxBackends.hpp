@@ -13,6 +13,14 @@ struct SDL_Surface;
 struct SDL_Window;
 #endif
 
+#ifdef FLIXEL_X11
+struct Display;
+struct Window;
+struct Visual;
+struct GC;
+struct XEvent;
+#endif
+
 namespace Flx::Backends
 {
     class Backend
@@ -83,6 +91,35 @@ namespace Flx::Backends
         void delay(uint32_t ms);
     };
 #endif
+
+#ifdef FLIXEL_X11
+    class X11 : public Backend
+    {
+    private:
+        Window window;
+        Display* display;
+        XEvent event;
+        GC gc;
+        Visual* visual;
+        int screen;
+    public:
+        X11();
+        ~X11();
+        Flx::Graphic *createGraphic(Flx::Graphic *graphic);
+        Flx::Graphic *requestTexture(const char *path);
+        Flx::Graphic *requestTexture(const void *data, const size_t size);
+        Flx::Graphic *requestText(const char *text);
+        Flx::Graphic *requestRectangle(float width, float height, int color);
+        Flx::Shader *compileShader(Flx::Shader *shader);
+        bool deleteTexture(void *tex);
+        void runEvents();
+        void update();
+        void render(Flx::Sprite *spr);
+        uint32_t getTicks();
+        void delay(uint32_t ms);
+    };
+#endif
+
 }
 
 #endif

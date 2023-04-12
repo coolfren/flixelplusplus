@@ -13,7 +13,6 @@ using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
 
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
-#include <GL/freeglut.h>
 #include <SOIL/SOIL.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -23,12 +22,6 @@ glm::mat4 model = glm::mat4(1.0f);
 
 void gameEvents(SDL_Window *window);
 
-struct OpenGLrgba {
-    float r;
-    float g;
-    float b;
-    float a;
-};
 
 struct GLVertex
 {
@@ -38,16 +31,6 @@ struct GLVertex
 };
 
 unsigned int VAO, VBO, EBO;
-
-OpenGLrgba newBGColor;
-
-/*float vertices[] = {
-    // positions          // colors           // texture coords
-     0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-     0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-    -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left
-};*/
 
 unsigned int indices[] = {
     0, 1, 3, // first triangle
@@ -73,20 +56,20 @@ Flx::Backends::OpenGL::OpenGL()
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 3);
 
-    glEnable(GL_MULTISAMPLE);
-
     SDL_GLContext glContext = SDL_GL_CreateContext(window);
 
     if (glContext == nullptr)
     {
         Flx::Log::error("Failed to create a GL context");
     }
-    GLenum verifyGlew = glewInit();
-    if (verifyGlew != GLEW_OK)
+
+    GLenum verifyGlew = glewInit() == GLEW_OK;
+    if (!verifyGlew)
     {
-        Flx::Log::error("Failed to initialize GLEW");
+        Flx::Log::error("Failed to initialize GLAD");
     }
 
+    glEnable(GL_MULTISAMPLE);
     glViewport(0, 0, width, height);
 
     glGenVertexArrays(1, &VAO); // vertex array object
@@ -113,6 +96,38 @@ Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic *graphic)
     return graphic;
 }
 
+inline Flx::Graphic* handleTexData(const void* data, int width, int height, int channels)
+{
+    GLenum colorMode;
+    switch (channels)
+    {
+        case 4:
+            colorMode = GL_RGBA;
+            break;
+        default:
+            colorMode = GL_RGB;
+            break;
+    };
+
+    Flx::Graphic *graphic = new Flx::Graphic(width, height, (unsigned char*)data);
+    glGenTextures(1, &graphic->id);
+    glBindTexture(GL_TEXTURE_2D, graphic->id);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, colorMode, width, height, 0, colorMode, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    SOIL_free_image_data((unsigned char*)data);
+    return graphic;
+}
+
 Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
 {
 
@@ -125,87 +140,23 @@ Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
         return nullptr;
     }
 
-    GLenum colorMode;
-    switch (channels)
-    {
-    case 4:
-        colorMode = GL_RGBA;
-        break;
-    default:
-        colorMode = GL_RGB;
-        break;
-    };
-
-    Flx::Graphic *graphic = new Flx::Graphic(width, height, data);
-    glGenTextures(1, &graphic->id);
-    glBindTexture(GL_TEXTURE_2D, graphic->id);
-
-    trace(graphic->id);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, colorMode, width, height, 0, colorMode, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    SOIL_free_image_data(data);
-    return graphic;
+    return handleTexData(data, width, height, channels);
 }
 
 Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const void *data, const size_t size)
 {
     int width, height, channels;
-    unsigned char* rawData = (unsigned char *)logoBlue_png;
+    unsigned char* texData = SOIL_load_image_from_memory((unsigned char*)data, size, &width, &height, &channels, SOIL_LOAD_AUTO);
 
-    if (!data)
-    {
-        Flx::Log::warn("Could not load graphic!");
-        return nullptr;
-    }
-
-    GLenum colorMode;
-    switch (channels)
-    {
-    case 4:
-        colorMode = GL_RGBA;
-        break;
-    default:
-        colorMode = GL_RGB;
-        break;
-    };
-
-    Flx::Graphic *graphic = new Flx::Graphic(width, height, rawData);
-    glGenTextures(1, &graphic->id);
-    glBindTexture(GL_TEXTURE_2D, graphic->id);
-
-    trace(graphic->id);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, colorMode, width, height, 0, colorMode, GL_UNSIGNED_BYTE, rawData);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    trace("trigger  texture");
-
-    return graphic;
+    return handleTexData(texData, width, height, channels);
 }
-
+//
 
 Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { return nullptr; }
 
 Flx::Graphic *Flx::Backends::OpenGL::requestRectangle(float width, float height, int color) { return nullptr; }
 
-inline const std::vector<GLVertex> to2DOpenGLRect(std::vector<GLVertex> buffer, Flx::Rect &rect, float z)
+inline void to2DOpenGLRect(std::vector<GLVertex>& buffer, Flx::Rect &rect, float z)
 {
 
     // UPPER LEFT
@@ -219,11 +170,9 @@ inline const std::vector<GLVertex> to2DOpenGLRect(std::vector<GLVertex> buffer, 
 
     // UPPER RIGHT
     buffer[3].vecPos = glm::vec3(rect.x + rect.width, rect.y, z);
-
-    return buffer;
 }
 
-inline const std::vector<GLVertex> to2DOpenGLRect(std::vector<GLVertex> buffer, Flx::Rect &rect)
+inline void to2DOpenGLRect(std::vector<GLVertex>& buffer, Flx::Rect &rect, int textureWidth, int textureHeight)
 {
     // UPPER LEFT
     buffer[0].texPos = glm::vec2(rect.x, rect.y);
@@ -236,8 +185,6 @@ inline const std::vector<GLVertex> to2DOpenGLRect(std::vector<GLVertex> buffer, 
 
     // UPPER RIGHT
     buffer[3].texPos = glm::vec2(rect.x + rect.width, rect.y);
-
-    return buffer;
 }
 
 bool Flx::Backends::OpenGL::deleteTexture(void *spr)
@@ -255,12 +202,12 @@ void Flx::Backends::OpenGL::update()
 {
     game->curState->update();
 
-    newBGColor.r = (float)Flx::Globals::bgColor.r / 255;
-    newBGColor.g = (float)Flx::Globals::bgColor.g / 255;
-    newBGColor.b = (float)Flx::Globals::bgColor.b / 255;
-    newBGColor.a = (float)Flx::Globals::bgColor.a / 255;
-
-    glClearColor(Flx::Globals::bgColor.r,newBGColor.g,newBGColor.b,newBGColor.a);
+    glClearColor(
+        static_cast<float>(Flx::Globals::bgColor.r) / 255.0f,
+        static_cast<float>(Flx::Globals::bgColor.g) / 255.0f,
+        static_cast<float>(Flx::Globals::bgColor.b) / 255.0f,
+        static_cast<float>(Flx::Globals::bgColor.a) / 255.0f
+    );
 
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -273,30 +220,19 @@ void Flx::Backends::OpenGL::update()
 
 void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
 {
-    Flx::Rect stuff = spr->clipRect;
 
-    if (spr->animation->animated)
-    {
-        Flx::Frame *anim = spr->animation->getCurAnim();
-        stuff.x = anim->x;
-        stuff.y = anim->y;
-        stuff.width = anim->width;
-        stuff.height = anim->height;
-    }
+    Flx::Rect stuff;
 
     stuff.x = spr->x - (spr->width / 2);
     stuff.y = spr->y - (spr->height / 2);
     stuff.width = spr->width;
     stuff.height = spr->height;
 
-    vertices = to2DOpenGLRect(vertices, stuff, spr->z);
-   
-    stuff.x = 0.0f;
-    stuff.y = 0.0f;
-    stuff.width = 1.0f;
-    stuff.height = 1.0f;
+    to2DOpenGLRect(vertices, stuff, spr->z);
 
-    vertices = to2DOpenGLRect(vertices, stuff);
+    stuff = spr->clipRect;
+
+    to2DOpenGLRect(vertices, stuff, spr->graphic->width, spr->graphic->height);
 
     glBindVertexArray(VAO);
 
@@ -316,12 +252,11 @@ void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLVertex), (void *)0);
     glEnableVertexAttribArray(0);
 
-    //vertex.color
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(GLVertex), (void *)(offsetof(GLVertex, colorControl)));
     glEnableVertexAttribArray(1);
 
-    // vertex.texCoord
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(GLVertex), (void *)(offsetof(GLVertex, texPos)));
+
     glEnableVertexAttribArray(2);
 
     glUseProgram(spr->graphic->id);
@@ -329,15 +264,13 @@ void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
     spr->shader.setShaderValue("bitmap", (int)spr->graphic->id);
     spr->shader.setShaderValue("projection", perspective);
 
-    glm::mat4 transform = glm::mat4(1.f);
-    transform = glm::scale(transform, glm::vec3(spr->scale.x, spr->scale.y, 1.f));
-    glUniformMatrix4fv(glGetUniformLocation(spr->shader.program, "transform"), 1, GL_FALSE, glm::value_ptr(transform));
-
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-uint32_t Flx::Backends::OpenGL::getTicks() { return 0; }
+uint32_t Flx::Backends::OpenGL::getTicks() { 
+    return SDL_GetTicks();
+}
 
 void Flx::Backends::OpenGL::delay(uint32_t ms)
 {
@@ -348,29 +281,19 @@ void Flx::Backends::OpenGL::delay(uint32_t ms)
 #endif
 }
 
-/*void checkShaderStatus(GLuint shader)
+void checkShaderStatus(GLuint shader)
 {
+    using namespace std::literals::string_literals;
+
     GLint compiled = false;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
     if (!compiled)
     {
-        Flx::Log::warn("Could not compile shader!");
+	    char infoLog[512];
+		glGetShaderInfoLog(shader, 512, NULL, infoLog);
+        Flx::Log::warn("Error compiling shader:"s + infoLog);
         
     }
-}*/
-
-
-void checkShaderStatus(GLuint shader){
-    int success;
-	char infoLog[512];
-
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(shader, 512, NULL, infoLog);
-		std::cout << "Error with vertex shader comp.:" << std::endl
-				  << infoLog << std::endl;
-	}
 }
 
 Flx::Shader *Flx::Backends::OpenGL::compileShader(Flx::Shader *shader)
@@ -394,6 +317,7 @@ Flx::Shader *Flx::Backends::OpenGL::compileShader(Flx::Shader *shader)
     glAttachShader(shader->program, vs);
     glAttachShader(shader->program, fs);
     glLinkProgram(shader->program);
+
     return shader;
 }
 

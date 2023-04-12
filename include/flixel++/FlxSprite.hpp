@@ -45,13 +45,7 @@ namespace Flx
          
         Flx::Point offset;
         Flx::Point scale;
-        Flx::Point origin;
-        
-        #ifdef FLIXEL_OPENGL
-        unsigned int VAO,VBO;
-        #endif
-       
-        
+        Flx::Point origin;    
     };
 }
 

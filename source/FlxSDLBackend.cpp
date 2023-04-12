@@ -23,7 +23,7 @@
 
 using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
 
-#if defined(FLIXEL_SDL) || defined(FLX_OPENGL)
+#if defined(FLIXEL_SDL) || defined(FLIXEL_OPENGL)
 inline void gameEvents(SDL_Window *window)
 {
     SDL_Event e;

@@ -24,7 +24,6 @@ Flx::Splash::Splash(Flx::State *state)
 
 void Flx::Splash::create()
 {
-    trace("START");
 
     //yellow = new Flx::Sprite();
 
@@ -90,7 +89,6 @@ void Flx::Splash::create()
     flixelSound = new Flx::Sound();
     flixelSound->load("assets/sounds/flixel.ogg");
     flixelSound->play();
-    trace("TRIGGER");
 
     Flx::Globals::game->backend->testrender(temp);
 }
