@@ -3,17 +3,19 @@
 
 using namespace std::literals::string_literals;
 
+std::ostream& Flx::Log::defaultStream = std::cout;
+
 std::vector<std::string> Flx::Log::logs = std::vector<std::string>();
 
 void Flx::Log::warn(const std::string& msg)
 {
-    std::cout << "[WARN]: " << msg << std::endl;
+    defaultStream << "[WARN]: " << msg << std::endl;
     logs.push_back("Warning: "s + msg);
 }
 
 void Flx::Log::error(const std::string& msg)
 {
-    std::cout << "[ERROR]: " << msg << std::endl;
+    defaultStream << "[ERROR]: " << msg << std::endl;
     logs.push_back("Error: "s + msg);
 }
 

@@ -221,7 +221,7 @@ void Flx::Backends::OpenGL::update()
 void Flx::Backends::OpenGL::render(Flx::Sprite* spr)
 {
 
-    Flx::Rect stuff = spr->clipRect;
+    Flx::Rect stuff;
 
     stuff.x = spr->x - (spr->width / 2);
     stuff.y = spr->y - (spr->height / 2);
