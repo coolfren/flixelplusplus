@@ -2,6 +2,8 @@
 #define FLXMANAGERS_HPP
 #include "flixel++/Common.hpp"
 #include "flixel++/FlxSound.hpp"
+#include "flixel++/FlxAudioBackends.hpp"
+
 namespace Flx
 {
     class Random
@@ -19,16 +21,11 @@ namespace Flx
 
     class SoundManager
     {
-        private:
-        #ifdef FLIXEL_OPENAL
-        ALCdevice *device;
-        ALCcontext *context;
-        #endif
         public:
         Flx::Sound* music;
+        Flx::Backends::AudioBackend* backend;
         SoundManager();
         ~SoundManager();
-        SoundData generateBuffers(std::vector<char>& bufferData, size_t rate);
     };
 }
 

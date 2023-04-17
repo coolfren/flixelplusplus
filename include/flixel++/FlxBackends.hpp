@@ -26,20 +26,18 @@ namespace Flx::Backends
     class Backend
     {
     public:
-        Backend();
-        virtual ~Backend();
-        virtual Flx::Graphic *requestTexture(const char *path);
-        virtual Flx::Graphic *requestTexture(const void *data, const size_t size);
-        virtual Flx::Graphic *requestText(const char *text);
-        virtual Flx::Graphic *requestRectangle(float width, float height, int color);
-        virtual Flx::Shader *compileShader(Flx::Shader *shader);
-        virtual bool deleteTexture(void *tex);
-        virtual void runEvents();
-        virtual void update();
-        virtual void render(Flx::Sprite *spr);
-        virtual uint32_t getTicks();
-        virtual void delay(uint32_t ms);
-        virtual void testrender(Flx::Rect rect);
+        virtual ~Backend(){};
+        virtual Flx::Graphic *requestTexture(const char *path) = 0;
+        virtual Flx::Graphic *requestTexture(const void *data, const size_t size) = 0;
+        virtual Flx::Graphic *requestText(const char *text) = 0;
+        virtual Flx::Graphic *requestRectangle(float width, float height, int color) = 0;
+        virtual Flx::Shader *compileShader(Flx::Shader *shader) = 0;
+        virtual bool deleteTexture(void *tex) = 0;
+        virtual void runEvents() = 0;
+        virtual void update() = 0;
+        virtual void render(Flx::Sprite *spr) = 0;
+        virtual uint32_t getTicks() = 0;
+        virtual void delay(uint32_t ms) = 0;
     };
 
 #ifdef FLIXEL_SDL
@@ -77,7 +75,6 @@ namespace Flx::Backends
     public:
         OpenGL();
         ~OpenGL();
-        Flx::Graphic *createGraphic(Flx::Graphic *graphic);
         Flx::Graphic *requestTexture(const char *path);
         Flx::Graphic *requestTexture(const void *data, const size_t size);
         Flx::Graphic *requestText(const char *text);

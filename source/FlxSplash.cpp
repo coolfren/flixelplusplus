@@ -89,8 +89,6 @@ void Flx::Splash::create()
     flixelSound = new Flx::Sound();
     flixelSound->load("assets/sounds/flixel.ogg");
     flixelSound->play();
-
-    Flx::Globals::game->backend->testrender(temp);
 }
 
 void Flx::Splash::update()

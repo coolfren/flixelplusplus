@@ -86,16 +86,6 @@ Flx::Backends::OpenGL::~OpenGL()
     SDL_DestroyWindow(window);
 }
 
-Flx::Graphic *Flx::Backends::OpenGL::createGraphic(Flx::Graphic *graphic)
-{
-    GLuint tempBitmap;
-    glGenTextures(1, &tempBitmap);
-    glBindTexture(GL_TEXTURE_2D, tempBitmap);
-    graphic->bitmap = (void *)tempBitmap;
-
-    return graphic;
-}
-
 inline Flx::Graphic* handleTexData(const void* data, int width, int height, int channels)
 {
     GLenum colorMode;
