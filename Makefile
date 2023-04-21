@@ -12,7 +12,7 @@ else ifeq ($(PLATFORM),SDL_LEGACY)
 
 else
 	@mkdir -p build
-	@cd build && cmake -DOPENGL=1 .. && make
+	@cd build && cmake -DSDL=1 .. && make
 endif
 
 install:

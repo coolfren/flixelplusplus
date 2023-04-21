@@ -6,22 +6,28 @@
 #include "flixel++/FlxMacros.hpp"
 
 #include "assets/logoBlue.h"
+#include "assets/default.h"
 
 using Flx::Globals::game, Flx::Globals::width, Flx::Globals::height;
 
 #ifdef FLIXEL_OPENGL
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <GL/glew.h>
 #include <SOIL/SOIL.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+SDL_PixelFormat pf;
+
+int widthG;
+
 glm::mat4 perspective = glm::mat4(1.0f);
 glm::mat4 model = glm::mat4(1.0f);
 
 void gameEvents(SDL_Window *window);
-
 
 struct GLVertex
 {
@@ -40,9 +46,14 @@ unsigned int indices[] = {
 // FOR SAVING VERTEX DATA DON'T REMOVE THIS
 std::vector<GLVertex> vertices{GLVertex(), GLVertex(), GLVertex(), GLVertex()};
 
+SDL_Surface* surface;
+
 Flx::Backends::OpenGL::OpenGL()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
+    IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
+    TTF_Init();
+
     window = SDL_CreateWindow(game->title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
     if (window == nullptr)
     {
@@ -76,6 +87,18 @@ Flx::Backends::OpenGL::OpenGL()
     glGenBuffers(1, &VBO);      // vertex buffer object
     glGenBuffers(1, &EBO);      // element buffer object
 
+
+    SDL_RWops* rw = SDL_RWFromConstMem((void*)default_ttf, default_ttf_size);
+    Flx::Assets::defaultFont = TTF_OpenFontRW(rw, 1, 24);
+
+    pf.palette = 0;
+    pf.BitsPerPixel = 32;
+    pf.BytesPerPixel = 4;
+    pf.Rmask = 0x000000ff;
+    pf.Gmask = 0x0000ff00;
+    pf.Bmask = 0x00ff0000;
+    pf.Amask = 0xff000000;
+
 }
 
 Flx::Backends::OpenGL::~OpenGL()
@@ -108,13 +131,12 @@ inline Flx::Graphic* handleTexData(const void* data, int width, int height, int 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, colorMode, width, height, 0, colorMode, GL_UNSIGNED_BYTE, data);
+    glTexImage2D(GL_TEXTURE_2D, 0, colorMode, width, height, 0, colorMode, GL_UNSIGNED_BYTE, (unsigned char*)data);
     glGenerateMipmap(GL_TEXTURE_2D);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    SOIL_free_image_data((unsigned char*)data);
     return graphic;
 }
 
@@ -131,6 +153,7 @@ Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const char *path)
     }
 
     return handleTexData(data, width, height, channels);
+    SOIL_free_image_data(data);
 }
 
 Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const void *data, const size_t size)
@@ -139,10 +162,16 @@ Flx::Graphic *Flx::Backends::OpenGL::requestTexture(const void *data, const size
     unsigned char* texData = SOIL_load_image_from_memory((unsigned char*)data, size, &width, &height, &channels, SOIL_LOAD_AUTO);
 
     return handleTexData(texData, width, height, channels);
-}
-//
+    SOIL_free_image_data(texData);
 
-Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { return nullptr; }
+}
+
+Flx::Graphic *Flx::Backends::OpenGL::requestText(const char *text) { 
+    surface = TTF_RenderText_Solid((TTF_Font *)Flx::Assets::defaultFont, text, {255, 255, 255, 255});
+    trace(surface->format->BitsPerPixel);
+    SDL_Surface* glSurface = SDL_ConvertSurface(surface, &pf, SDL_SWSURFACE);
+    return handleTexData(glSurface->pixels,glSurface->w,glSurface->h,4);
+}
 
 Flx::Graphic *Flx::Backends::OpenGL::requestRectangle(float width, float height, int color) { return nullptr; }
 
@@ -206,6 +235,7 @@ void Flx::Backends::OpenGL::update()
     game->curState->draw();
 
     SDL_GL_SwapWindow(window);
+
 }
 
 void Flx::Backends::OpenGL::render(Flx::Sprite* spr)

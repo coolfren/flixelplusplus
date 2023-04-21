@@ -101,6 +101,8 @@ Flx::Backends::SDL::SDL()
 #else
     Flx::Assets::defaultCursor = SDL_CreateTextureFromSurface(renderer, temp);
     SDL_FreeSurface(temp);
+
+    trace("Loaded SDL");
 #endif
 }
 

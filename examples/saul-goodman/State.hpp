@@ -103,7 +103,8 @@ public:
         saul->screenCenter();
         add(saul);
 
-        /*text = new Flx::Text(0, 100, "i am a piece of text!");
+        text = new Flx::Text(0, 100, "i am a piece of text!");
+        text->screenCenter();
         if (http->storage == "saul goodman")
         {
             text->screenCenter();
@@ -114,12 +115,12 @@ public:
             text->x = (Flx::Globals::width / 2);
             text->setText("i am a piece of new text!");
         }
-        add(text);*/
+        add(text);
 
-        /*if (http->storage == "saul goodman")
+        if (http->storage == "saul goodman")
         {
             Flx::Globals::mouse->loadGraphic("assets/troll.png");
-        }*/
+        }
 
         flixelSound = new Flx::Sound();
         flixelSound->load("assets/beatbox.ogg");
@@ -135,8 +136,8 @@ public:
         saul->height += 3 * cos(time) + offsetY * 2;
         waltuh->width += 10 * sin(time) + offsetX * 2;
         jessy->width += 10 * sin(time * 1.4) + offsetX * 2;
-        /*text->x -= cos(time) - offsetX * 2;
-        text->y -= sin(time) - offsetY * 2;*/
+        text->x -= cos(time) - offsetX * 2;
+        text->y -= sin(time) - offsetY * 2;
 
         time += 0.05f;
 
