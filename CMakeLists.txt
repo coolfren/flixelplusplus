@@ -43,17 +43,29 @@ endif()
 if(DEFINED OPENGL)
     find_package(SDL2 REQUIRED)
     include_directories(${SDL2_INCLUDE_DIRS})
+
     find_package(SDL_image REQUIRED)
     include_directories(${SDLIMAGE_INCLUDE_DIRS})
 
     find_package(SDL_ttf REQUIRED)
     include_directories(${SDLTTF_INCLUDE_DIRS})
+    
     find_package(OpenGL REQUIRED)
 
     find_package(SOIL REQUIRED)
     include_directories(${SOIL_INCLUDE_DIRS})
+
     find_package(GLEW REQUIRED)
     include_directories(${GLEW_INCLUDE_DIRS})
+
+    find_package(SDL2_image REQUIRED)
+    include_directories(${SDL2IMAGE_INCLUDE_DIRS})
+
+    find_package(SDL2_ttf REQUIRED)
+    include_directories(${SDL2TTF_INCLUDE_DIRS})
+
+    find_package(SDL2 REQUIRED)
+    include_directories(${SDL2_INCLUDE_DIRS})
 endif()
 
 
